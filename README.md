@@ -1,29 +1,28 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+This is the repo for Dovetail v2.  v2 is a rethink on the dovetail product focused on correcting mistakes made with v1.
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Ruby 2.1.2, Rails 4.1.1
+* config/database-sample.yml -> config/database.yml - Edit as appropriate.
+* No external dependencies at this time.
+* bundle exec rake test
+* bundle exec cap deploy
 
 ### Contribution guidelines ###
 
-* Writing tests
+* Create a feature branch
+* Code feature
+* Write tests
+* Commit and push feature branch
+* Create pull request and get some people on team to review.
 * Code review
-* Other guidelines
+* Reviewer will merge 
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Vince Hodges vhodges@gmail.com
+* Matt Farely matt@pendeavor.com
