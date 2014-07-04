@@ -1,0 +1,90 @@
+
+Account has many Spaces
+Account has many line items
+Account has one profile
+
+Member belongs to account
+Member has many spaces
+Member belongs to Spaces
+Member has many line items
+Member has one profile
+Member has many roles
+Member belongs to Team
+
+Space has many plan types
+Space has many members
+Space has many modules
+
+Plan has many resources (10 visits)
+
+Pass has many resources (days, desks, lockers)
+
+Resource 
+
+Line Item has one polymorphic (plan, resource, pass)
+
+Team has many members
+
+
+Pass
+----------------
+name:string
+price:
+expiration_date (1-12 months/forever)
+
+Plan
+-----------------
+name:string
+price:
+billing_frequency:string (month, week, day)
+
+Account
+------------------
+email
+billing details (name)
+password
+plan
+credit_card
+
+NON MVP - branding_details (login logo, nav bar logo, nav bar color, subdomain)
+
+Member
+-----------------
+email
+password
+
+Space
+-----------------
+name
+address
+phone
+fax
+website
+country
+postal/zip
+time zone
+currency
+tax_rate
+url-slug
+
+Profile - NON-MVP
+----------------
+first_name
+last_name
+bio
+phone_number
+photo (pull in gravatar)
+website
+
+NON-MVP socialnetworks
+
+Resource
+----------------
+name:string
+quantity:integer (fixed or nil/unlimited)
+
+Team
+---------------
+name
+primary_member_id
+logo
