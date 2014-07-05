@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140705032825) do
+ActiveRecord::Schema.define(version: 20140705042720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "spaces", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "website"
+    t.string   "country"
+    t.string   "postal"
+    t.string   "timezone"
+    t.string   "currency"
+    t.string   "slug"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spaces", ["user_id"], name: "index_spaces_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
