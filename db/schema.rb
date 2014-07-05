@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140705210553) do
+ActiveRecord::Schema.define(version: 20140705213145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,28 @@ ActiveRecord::Schema.define(version: 20140705210553) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "members", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "space_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "members", ["space_id"], name: "index_members_on_space_id", using: :btree
+  add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
+
+  create_table "space_members", force: true do |t|
+    t.integer  "space_id"
+    t.integer  "member_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "space_members", ["member_id"], name: "index_space_members_on_member_id", using: :btree
+  add_index "space_members", ["space_id"], name: "index_space_members_on_space_id", using: :btree
 
   create_table "spaces", force: true do |t|
     t.string   "name"

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :spaces
+
+  # Note most everything will be a nested resource of spaces
+  resources :spaces do
+    resources :members
+  end
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

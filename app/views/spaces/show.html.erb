@@ -50,10 +50,6 @@
   <%= @space.slug %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @space.user %>
-</p>
-
+<%= link_to 'Members', space_members_path(@space) %> | 
 <%= link_to 'Edit', edit_space_path(@space) %> |
 <%= link_to 'Back', spaces_path %>
