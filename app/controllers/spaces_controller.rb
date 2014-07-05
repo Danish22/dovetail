@@ -4,7 +4,7 @@ class SpacesController < ApplicationController
   # GET /spaces
   # GET /spaces.json
   def index
-    @spaces = Space.all
+    @spaces = current_user.spaces.all
   end
 
   # GET /spaces/1
@@ -14,7 +14,7 @@ class SpacesController < ApplicationController
 
   # GET /spaces/new
   def new
-    @space = Space.new
+    @space = current_user.spaces.new
   end
 
   # GET /spaces/1/edit
@@ -24,10 +24,13 @@ class SpacesController < ApplicationController
   # POST /spaces
   # POST /spaces.json
   def create
-    @space = Space.new(space_params)
-
+    @space = current_user.created_spaces.new(space_params)
+           
     respond_to do |format|
       if @space.save
+        
+        current_user.spaces << @space  # Creates the join record
+
         format.html { redirect_to @space, notice: 'Space was successfully created.' }
         format.json { render :show, status: :created, location: @space }
       else
@@ -64,7 +67,7 @@ class SpacesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_space
-      @space = Space.find(params[:id])
+      @space = current_user.spaces.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
