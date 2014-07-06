@@ -29,6 +29,9 @@ gem 'textacular', '~> 3.0'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'oauth2' 
 
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem "jquery-ui-rails", '~> 4.2.1'
+
 group :development, :test do
   gem 'meta_request'
   gem 'pry'
