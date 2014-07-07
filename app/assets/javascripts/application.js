@@ -10,8 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery-1.11.0.min
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+// require turbolinks
+//= require bootstrap.min
+// require_tree . #NOTE: Requiring tree is not a good idea!
 //= stub active_admin
