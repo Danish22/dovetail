@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
   has_many :user_spaces
   has_many :spaces, through: :user_spaces
 
+  def to_s
+    self.email
+  end
 end
