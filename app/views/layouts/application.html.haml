@@ -12,16 +12,50 @@
     = csrf_meta_tags
 
   %body.page-body
-    = link_to "Home", root_url
-    %p.notice= notice
-    %p.alert= alert
+    -#%p.notice= notice
+    -#%p.alert= alert
 
-    .page-containeri.horizontal-menu
+    .page-container.horizontal-menu
       %header.navbar.navbar-fixed-top
-        .navbar-brand
-          =link_to "Logo", "Logo"
 
-        %ul.navbar-nav
-          %li
+        .navbar-inner
+          -# LOGO
+          .navbar-brand
+            %a{:href => "/"}
+              = image_tag "logomark.png", height: 20
+          
+          -# MAIN MENU
+          %ul.navbar-nav
+            %li
+              %a
+                %i.entypo-gauge
+                %span Dashboard
+
+              %ul
+                %li
+                  %a
+                    %span
+                      Dashboard
+                %li
+                  %a
+                    %span
+                      Dashboard
+                %li
+                  %a
+                    %span
+                      Dashboard
+          
+          %ul.nav.navbar-right.pull-right
+            %li.dropdown
+              %a.dropdown-toggle{'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-close-others' => 'true'}
+                %i.entypo-mail
+                %span.badge.badge-info 2
+
+            %li.dropdown
+              %a.dropdown-toggle{'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-close-others' => 'true'}
+                %i.entypo-bell
+                %span.badge.badge-secondary 2
+            
+          %ul.user-info.pull-right.pull-none-xms
 
     = yield
