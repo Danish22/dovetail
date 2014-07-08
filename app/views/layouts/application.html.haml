@@ -22,29 +22,47 @@
           -# LOGO
           .navbar-brand
             %a{:href => "/"}
-              = image_tag "logomark.png", height: 20
-          
+              = image_tag "logomark.png", height: 30
+
           -# MAIN MENU
-          %ul.navbar-nav
+          %ul.navbar-nav.centered
             %li
               %a
                 %i.entypo-gauge
                 %span Dashboard
 
-              %ul
-                %li
-                  %a
-                    %span
-                      Dashboard
-                %li
-                  %a
-                    %span
-                      Dashboard
-                %li
-                  %a
-                    %span
-                      Dashboard
-          
+            %li
+              %a
+                %i.entypo-gauge
+                %span
+                  Dashboard
+            %li
+              %a
+                %i.entypo-gauge
+                %span
+                  Dashboard
+            %li
+              %a
+                %i.entypo-gauge
+                %span
+                  Dashboard
+
+          %ul.user-info.pull-right.pull-none-xsm
+            %li.dropdown
+              %a.dropdown-toggle{'data-toggle' => 'dropdown'}
+                %img.img-circle{'src' => 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/73.jpg', 'width' => '44'}
+              %i.entypo-down-open
+            %li
+              %ul.dropdown-menu
+                %li.caret
+                  %li
+                    %a
+                      Edit Profile
+                  %li
+                    %a
+                      %i.entypo-mail
+                      Inbox
+
           %ul.nav.navbar-right.pull-right
             %li.dropdown
               %a.dropdown-toggle{'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-close-others' => 'true'}
@@ -55,7 +73,5 @@
               %a.dropdown-toggle{'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-close-others' => 'true'}
                 %i.entypo-bell
                 %span.badge.badge-secondary 2
-            
-          %ul.user-info.pull-right.pull-none-xms
 
     = yield
