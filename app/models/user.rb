@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :user_spaces
   has_many :spaces, through: :user_spaces
 
+  has_many :payment_methods
+
   def to_s
     self.email
   end
