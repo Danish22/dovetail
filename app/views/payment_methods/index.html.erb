@@ -5,6 +5,7 @@
     <tr>
       <th>Billing name</th>
       <th>Billing email</th>
+      <th>Credit Card</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +15,8 @@
       <tr>
         <td><%= payment_method.billing_name %></td>
         <td><%= payment_method.billing_email %></td>
+        <td><%= last_four(payment_method.last_4_digits)-%></td>
+
         <td><%= link_to 'Show', payment_method %></td>
         <td><%= link_to 'Edit', edit_payment_method_path(payment_method) %></td>
         <td><%= link_to 'Destroy', payment_method, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<% unless @payment_method.last_4_digits.blank? -%>
+  Current Card: <%= last_four(@payment_method.last_4_digits)-%>
+<% end -%>
+
 <p>
   <strong>Billing name:</strong>
   <%= @payment_method.billing_name %>
