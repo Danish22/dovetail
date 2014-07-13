@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
 
   has_many :payment_methods
 
+  def full_name
+    [self.first_name, self.last_name].compact.reject{|f| f.blank? }.join(' ')
+  end
+
   def to_s
     self.email
   end

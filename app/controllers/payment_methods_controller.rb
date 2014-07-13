@@ -15,6 +15,10 @@ class PaymentMethodsController < ApplicationController
   # GET /payment_methods/new
   def new
     @payment_method = current_user.payment_methods.new
+
+    # Default values to the current user
+    @payment_method.billing_email = current_user.email
+    @payment_method.billing_name = current_user.full_name
   end
 
   # GET /payment_methods/1/edit
