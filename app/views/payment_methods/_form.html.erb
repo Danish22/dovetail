@@ -1,4 +1,4 @@
-<%= form_for(@payment_method) do |f| %>
+<%= form_for(@payment_method, html: { class: "payment_method_form"}) do |f| %>
   <% if @payment_method.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@payment_method.errors.count, "error") %> prohibited this payment_method from being saved:</h2>
@@ -94,7 +94,7 @@
    Stripe.setPublishableKey('<%=ENV['STRIPE_PUBLISHABLE_KEY']-%>');
    
    var stripeResponseHandler = function(status, response) {
-     var form = $('#new_payment_method');
+     var form = $('.payment_method_form');
      
      if (response.error) {
        // Show the errors on the form
@@ -111,7 +111,7 @@
    };
    
    jQuery(function($) {
-     $('#new_payment_method').submit(function(event) {
+     $('.payment_method_form').submit(function(event) {
        var form = $(this);
 
        // Disable the submit button to prevent repeated clicks
