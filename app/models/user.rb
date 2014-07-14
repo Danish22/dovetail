@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :created_spaces, class: Space
-  has_many :created_mmebers, class: Member
+  has_many :created_members, class: Member
 
   has_many :user_spaces
   has_many :spaces, through: :user_spaces
