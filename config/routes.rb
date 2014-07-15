@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # Note most everything will be a nested resource of spaces
   resources :spaces do
+    member do
+      post 'cancel_subscription'
+    end
     resources :members
   end
 

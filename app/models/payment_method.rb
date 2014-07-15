@@ -1,36 +1,63 @@
 class PaymentMethod < ActiveRecord::Base
 
   belongs_to :user
-  #has_many :spaces # Coming Soon
+  has_many :spaces
+
+  before_destroy :cancel_subscriptions
 
   # Represents the card, only present when setting up or updating subscription
   attr_accessor :stripe_token 
 
-  # Update an existing subscription (ie change plan)
-  def update_subscription(space)
-      #params = {:plan => self.plan}
-      #params.merge!({:coupon => self.coupon}) unless self.coupon.blank?
-      #response = customer.update_subscription(params)
-  end
+  # Create or Update an existing subscription (ie change plan)
+  def update_subscription(space, coupon)
 
-  # Cancels a subscription
-  # TOOD Implement properly w/rt multiple subscriptions
-  def cancel_subscription(space)
-    if !stripe_id.blank?
-      customer = Stripe::Customer.retrieve(stripe_id, ENV['STRIPE_API_KEY'])
-      params = {} #:plan => self.plan
-      if customer.cancel_subscription(params)
-        self.stripe_token = nil
-        self.last_4_digits
-        self.save
-      else
-        return false
-      end
+    # Should never happen, but want it to scream load if it does
+    raise "Missing Stripe Id" if stripe_id.blank?
+
+    customer = Stripe::Customer.retrieve(stripe_id, ENV['STRIPE_API_KEY'])
+
+    if  space.stripe_subscription_id.blank?
+      # Set up a new subscription
+      params = {plan: space.plan}
+      params.merge!({coupon: coupon}) unless coupon.blank?
+      subscription = customer.subscriptions.create(params)
+
+      space.stripe_subscription_id = subscription.id
+      space.payment_method = self  
+
+      space.save!
     else
-      return true
+      # Update an existing subscription
+      subscription = customer.subscriptions.retrieve(space.stripe_subscription_id)
+      subscription.plan = space.plan
+      subscription.coupon = coupon unless coupon.blank?
+      subscription.save
     end
   end
 
+  # Cancels a subscription
+  def cancel_subscription(space)
+
+    raise "Missing Stripe Id" if stripe_id.blank?
+    raise "Missing subscription Id" if space.stripe_subscription_id.blank?
+
+    customer = Stripe::Customer.retrieve(stripe_id, ENV['STRIPE_API_KEY'])
+    customer.subscriptions.retrieve(space.stripe_subscription_id).delete
+
+    space.stripe_subscription_id = nil
+    space.payment_method = nil # Removes 'self' from space as the payment method
+
+    space.save!
+  end
+
+  #  Remove subscriptions on delete 
+  def cancel_subscriptions
+    spaces.each do |space|
+      cancel_subscription(space)
+    end
+  end  
+
+  # Creates or updates a Stripe customer record.  Exception handling is done in the controller
   def update_stripe()
     if stripe_id.nil?
       if !stripe_token.present?
@@ -71,9 +98,7 @@ class PaymentMethod < ActiveRecord::Base
     "#{self.billing_name} : #{self.billing_email}"
   end
 
-  # TODO (s)
-  #  * Handle dormant accounts
-  #  * Remove subscriptions on delete (or disallow delete while active subscriptions?!?)
-  
-
+  def select_name
+    "#{self.billing_name} <#{self.billing_email}> Card on file: **** **** **** #{self.last_4_digits}"
+  end
 end

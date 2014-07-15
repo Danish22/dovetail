@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140713133908) do
+ActiveRecord::Schema.define(version: 20140715193420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,9 @@ ActiveRecord::Schema.define(version: 20140713133908) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "plan"
+    t.string   "stripe_subscription_id"
+    t.integer  "payment_method_id"
   end
 
   add_index "spaces", ["user_id"], name: "index_spaces_on_user_id", using: :btree
@@ -175,6 +178,7 @@ ActiveRecord::Schema.define(version: 20140713133908) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.datetime "trial_ending"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

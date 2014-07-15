@@ -27,7 +27,8 @@
      last_name: '<%= current_user.last_name -%>',     // Add any attributes you'd like to use in the email subject or body.
      space_count: '<%= current_user.created_spaces.count -%>',
      payment_method_count: '<%= current_user.payment_methods.count -%>',
-     members_count: '<%= current_user.created_members.count -%>'
+     members_count: '<%= current_user.created_members.count -%>',
+     trial_ending: <%= current_user.trial_ending.to_i -%>,
    });
   </script>
 <% end -%>

@@ -92,6 +92,13 @@
                   %i.entypo-bell
                   %span.badge.badge-secondary 2
 
+    = render 'shared/need_payment_method'
+
+    .container
+      - flash.each do |key, value|
+        %div{ :class => flash_class(key), :style => "margin-top:25px;" }
+          = value
+
     .container 
       = yield
     
