@@ -32,11 +32,19 @@ class PaymentMethodsController < ApplicationController
 
     begin
       respond_to do |format|
+        
         if @payment_method.save
           
           # Raises an exception on card error.
           @payment_method.update_stripe()  #Does two saves (here and update_attributes), but it's okay
-          
+
+          if params[:space_ids] && !params[:space_ids].empty?
+            params[:space_ids].each do |i| 
+              space = current_user.spaces.find(i) # Can pay for any space, not just their own
+              @payment_method.update_subscription(space, params[:coupon])
+            end
+          end
+
           format.html { redirect_to @payment_method, notice: 'Payment method was successfully created.' }
           format.json { render :show, status: :created, location: @payment_method }
         else

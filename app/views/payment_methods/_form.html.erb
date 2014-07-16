@@ -79,6 +79,20 @@
       </div>
     </div>
   </div>
+
+  <% if @payment_method.new_record? && current_user.created_spaces.missing_payment_method.count > 0 -%>
+    <h4>Use this payment method for:</h4>
+    <p><em>Please note, for each selection, your credit card will be billed immeadiately(sp) and when the subscription renews (all dependent on the plan selected for the space).</em></p>
+    <%  current_user.created_spaces.missing_payment_method.each do |space|-%>
+      <%=check_box_tag("space_ids[]", space.id)-%> <%= space.name-%> <%= space.plan_description-%><br>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :coupon %><br>
+      <%= text_field_tag(:coupon) %>
+    </div>
+
+  <% end %>
    
   <div class="actions">
     <%= f.submit %>
@@ -111,7 +125,7 @@
    };
    
    jQuery(function($) {
-     $('.payment_method_form').submit(function(event) {
+     $('.xpayment_method_form').submit(function(event) {
        var form = $(this);
 
        // Disable the submit button to prevent repeated clicks

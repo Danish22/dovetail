@@ -30,6 +30,14 @@ class Space < ActiveRecord::Base
     ]
   end
 
+  def plan_description
+    unless plan.blank?
+      Space.plans.each do |plan|
+        return plan[0] if plan[1] == self.plan
+      end
+    end
+  end
+
   # TODO Maybe handle (somehow) exception.
   def cancel_subscription
     unless payment_method.nil?
