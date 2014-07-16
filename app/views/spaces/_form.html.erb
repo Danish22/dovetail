@@ -39,10 +39,12 @@
     <%= f.label :postal %><br>
     <%= f.text_field :postal %>
   </div>
+
   <div class="field">
-    <%= f.label :timezone %><br>
-    <%= f.text_field :timezone %>
+    <label for="space_timezone">Select your timezone</label>
+    <%= f.time_zone_select :timezone, nil, {}, {class: ''}%>
   </div>
+
   <div class="field">
     <%= f.label :currency %><br>
     <%= f.text_field :currency %>

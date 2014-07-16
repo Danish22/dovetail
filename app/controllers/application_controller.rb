@@ -6,7 +6,17 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_payment_method
 
+  #around_filter :space_time_zone, :if => :has_timezone
+
+  def space_time_zone(&block)
+    Time.use_zone(current_account.timezone, &block)
+  end
+
   protected
+
+  def has_timezone
+    @space && !@space.timezone.nil? && !@space.timezone.blank?
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :first_name
