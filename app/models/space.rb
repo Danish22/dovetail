@@ -13,6 +13,8 @@ class Space < ActiveRecord::Base
   # but the subscription is local (to support multiple spaces on one payment method).
   belongs_to :payment_method # Plus plan and stripe_subscription_id
 
+  scope :missing_payment_method, -> { where(payment_method_id: nil) }
+
   validates :name, presence: true
   validates :address, presence: true
   validates :timezone, presence: true
