@@ -28,7 +28,7 @@ class SpacesController < ApplicationController
     @space = current_user.created_spaces.new(space_params)
            
     respond_to do |format|
-      if @space.save &&  update_subscription
+      if @space.save && update_subscription
         
         current_user.spaces << @space  # Creates the join record to add the admin to this space
 
@@ -94,7 +94,21 @@ class SpacesController < ApplicationController
         pm = @space.payment_method  # Update
       end
 
-      pm.update_subscription(@space, params[:coupon]) unless pm.nil?
+      begin
+        pm.update_subscription(@space, params[:coupon]) unless pm.nil?
+      rescue Stripe::CardError => e
+        Rails.logger.info("Card error #{e.message}")
+        @space.errors.add :base, e.message
+        @space.stripe_token = nil
+        return false
+      rescue Stripe::StripeError => e
+        Rails.logger.error "StripeError: " + e.message
+        @space.errors.add :base, "There was a problem with your credit card"
+        @space.stripe_token = nil
+        return false
+      end
+
+      return true
     end
 
 end

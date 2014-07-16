@@ -8,6 +8,9 @@ class PaymentMethod < ActiveRecord::Base
   # Represents the card, only present when setting up or updating subscription
   attr_accessor :stripe_token 
 
+  validates :billing_name, presence: true
+  validates :billing_email, presence: true
+
   # Create or Update an existing subscription (ie change plan)
   def update_subscription(space, coupon)
 

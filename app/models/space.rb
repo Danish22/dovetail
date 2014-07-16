@@ -13,6 +13,12 @@ class Space < ActiveRecord::Base
   # but the subscription is local (to support multiple spaces on one payment method).
   belongs_to :payment_method # Plus plan and stripe_subscription_id
 
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :timezone, presence: true
+  validates :currency, presence: true
+  validates :plan, presence: true
+
   def self.plans
     [
      ["Basic Monthly ($50/Month)", "Basic-M"],
