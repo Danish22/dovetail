@@ -97,6 +97,16 @@ class PaymentMethod < ActiveRecord::Base
     self.save
   end
 
+  def recent_receipts
+    raise "Missing Stripe Id" if stripe_id.blank?
+
+    # Defaults to 10
+    Stripe::Invoice.all({
+                          :customer => stripe_id,
+                        },
+                        ENV['STRIPE_API_KEY'])
+  end
+
   def stripe_description
     "#{self.billing_name} : #{self.billing_email}"
   end

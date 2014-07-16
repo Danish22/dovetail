@@ -18,4 +18,14 @@ module ApplicationHelper
     end
   end
 
+  def fmt_date(timestamp)
+    Time.at(timestamp.to_i).utc.to_datetime.strftime("%B %d, %Y")
+  end
+
+  def fmt_amount(amount)
+    dollars = amount.to_i / 100
+    cents = amount.to_i % 100
+    sprintf("$%d.%02d", dollars, cents)
+  end
+
 end
