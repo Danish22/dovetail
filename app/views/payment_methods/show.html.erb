@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<% unless @payment_method.last_4_digits.blank? -%>
+  Current Card: <%= last_four(@payment_method.last_4_digits)-%>
+<% end -%>
+
+<p>
+  <strong>Billing name:</strong>
+  <%= @payment_method.billing_name %>
+</p>
+
+<p>
+  <strong>Billing email:</strong>
+  <%= @payment_method.billing_email %>
+</p>
+
+<div>
+  <h3> 10 Most Recent Invoices</h3>
+  <ol>
+     <% @payment_method.recent_receipts.each do |receipt| -%>
+      <li>
+        <%= fmt_date(receipt.period_start) -%> - <%= fmt_date(receipt.period_start) -%>
+        <%= fmt_amount(receipt.amount_due) -%> - <%= receipt.paid ? "Paid" : "Pending" -%><br>        
+        <ul>
+          <% receipt.lines.each do |line| -%>          
+            <li>
+              <%= line.description || line.plan.name -%> - <%= fmt_amount(line.amount) -%> <br>        
+            </li>
+          <% end -%>   
+        </ul>
+      </li>
+    <% end -%>
+  </ol>
+</div>
+
+<%= link_to 'Edit', edit_payment_method_path(@payment_method) %> |
+<%= link_to 'Back', payment_methods_path %>

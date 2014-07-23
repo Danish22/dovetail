@@ -29,24 +29,24 @@
             %ul.navbar-nav
               %li
                 %a
-                  %i.entypo-gauge
-                  %span Dashboard
+                  %i.entypo-home
+                  %span Space
 
               %li
                 %a
-                  %i.entypo-gauge
+                  %i.entypo-users
                   %span
-                    Dashboard
+                    Community
               %li
                 %a
-                  %i.entypo-gauge
+                  %i.entypo-credit-card
                   %span
-                    Dashboard
+                    Payments
               %li
                 %a
-                  %i.entypo-gauge
+                  %i.entypo-cog
                   %span
-                    Dashboard
+                    Settings
 
           .col-sm-3
             %ul.user-info.pull-right.pull-none-xsm
@@ -135,4 +135,16 @@
                             2 Min Ago
 
       .main-content
-        = yield
+        = render 'shared/need_payment_method'
+
+        .container
+          - flash.each do |key, value|
+            %div{ :class => flash_class(key), :style => "margin-top:25px;" }
+              = value
+
+        .container
+          = yield
+
+        = yield :javascript
+        = render 'shared/customerio'
+

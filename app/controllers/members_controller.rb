@@ -2,6 +2,7 @@ class MembersController < ApplicationController
 
   before_action :set_space
   before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :check_space_payment_method
 
   # GET /members
   # GET /members.json
