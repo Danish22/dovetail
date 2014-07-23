@@ -91,5 +91,48 @@
                 %a.dropdown-toggle{'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-close-others' => 'true'}
                   %i.entypo-bell
                   %span.badge.badge-secondary 2
+                %ul.dropdown-menu
+                  %li.top
+                    %p.small
+                      %a.pull-right{'href' => '#'}
+                        Mark all Read
+                      You have
+                      %strong 3
+                      New notifications.
+                  %li
+                    %ul.dropdown-menu-list.scroller
+                      %li.unread.notification-success
+                        %a{'href' => '#'}
+                          %i.entypo-user-add.pull-right
+                          %span.line
+                            %strong
+                              New User Registered
+                          %span.line.small
+                            30 Seconds Ago
+                      %li.unread.notification-secondary
+                        %a{'href' => '#'}
+                          %i.entypo-heart.pull-right
+                          %span.line
+                            %strong
+                              New User Registered
+                          %span.line.small
+                            2 Min Ago
+                      %li.unread.notification-secondary
+                        %a{'href' => '#'}
+                          %i.entypo-user.pull-right
+                          %span.line
+                            %strong
+                              New User Registered
+                          %span.line.small
+                            2 Min Ago
+                      %li.unread.notification-secondary
+                        %a{'href' => '#'}
+                          %i.entypo-cancel-circled.pull-right
+                          %span.line
+                            %strong
+                              New User Registered
+                          %span.line.small
+                            2 Min Ago
 
-    = yield
+      .main-content
+        = yield

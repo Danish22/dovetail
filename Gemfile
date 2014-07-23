@@ -21,6 +21,7 @@ gem 'gravtastic'
 gem "figaro"
 gem 'whenever', :require => false
 gem 'minitest'
+gem 'rb-readline'
 
 gem 'kaminari'
 gem 'bootstrap_form'

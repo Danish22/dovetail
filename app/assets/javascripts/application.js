@@ -12,7 +12,6 @@
 //
 //= require jquery-1.11.0.min
 //= require jquery_ujs
-// require turbolinks
 //= require bootstrap.min
 // require_tree . #NOTE: Requiring tree is not a good idea!
 //= stub active_admin

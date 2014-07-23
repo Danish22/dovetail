@@ -190,6 +190,7 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.0.0)
+    rb-readline (0.5.1)
     rdoc (4.1.1)
       json (~> 1.4)
     responders (1.0.0)
@@ -270,6 +271,7 @@ DEPENDENCIES
   pg
   pry
   rails (= 4.1.1)
+  rb-readline
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
