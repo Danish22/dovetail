@@ -74,7 +74,11 @@ class MembersController < ApplicationController
     end
 
     def set_space
-      @space = current_user.spaces.find(params[:space_id])
+      if params[:space_id].blank?
+        @space = current_user.spaces.first
+      else
+        @space = current_user.spaces.find(params[:space_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

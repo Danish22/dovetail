@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  root 'members#index'
+  root to: 'members#index'
 end
