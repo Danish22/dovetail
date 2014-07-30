@@ -1,0 +1,102 @@
+%body.page-body.login-page.login-form-fall
+
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = devise_error_messages!
+    .div
+      = f.label :email
+      = f.email_field :email, autofocus: true
+
+    .div
+      = f.label :first_name
+      = f.text_field :first_name
+
+    .div
+      = f.label :last_name
+      = f.text_field :last_name
+
+    .div
+      = f.label :password
+      = f.password_field :password, autocomplete: "off"
+
+    .div
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: "off"
+
+    .div
+      = f.submit "Sign up"
+
+    = render "users/shared/links"
+
+
+  .login-container
+    .login-header.login-caret
+      .login-content
+        %a.logo{href: "index.html"}
+          %img{alt: "", src: "assets/images/logo@2x.png", width: "120"}/
+        %p.description Create an account, it's free and takes few moments only!
+        .login-progressbar-indicator
+          %h3 43%
+          %span logging in...
+    .login-progressbar
+      %div
+    .login-form
+      .login-content
+        %form#form_register{method: "post", role: "form"}
+          .form-register-success
+            %i.entypo-check
+            %h3 You have been successfully registered.
+            %p We have emailed you the confirmation link for your account.
+          .form-steps
+            #step-1.step.current
+              .form-group
+                .input-group
+                  .input-group-addon
+                    %i.entypo-user
+                  %input#name.form-control{autocomplete: "off", name: "name", placeholder: "Full Name", type: "text"}/
+              .form-group
+                .input-group
+                  .input-group-addon
+                    %i.entypo-phone
+                  %input#phone.form-control{autocomplete: "off", "data-mask" => "phone", name: "phone", placeholder: "Phone Number", type: "text"}/
+              .form-group
+                .input-group
+                  .input-group-addon
+                    %i.entypo-calendar
+                  %input#birthdate.form-control{autocomplete: "off", "data-mask" => "date", name: "birthdate", placeholder: "Date of Birth (DD/MM/YYYY)", type: "text"}/
+              .form-group
+                %button.btn.btn-primary.btn-block.btn-login{"data-step" => "step-2", type: "button"}
+                  %i.entypo-right-open-mini
+                  Next Step
+              .form-group
+                Step 1 of 2
+            #step-2.step
+              .form-group
+                .input-group
+                  .input-group-addon
+                    %i.entypo-user-add
+                  %input#username.form-control{autocomplete: "off", "data-is-regex" => "true", "data-mask" => "[a-zA-Z0-1\\.]+", name: "username", placeholder: "Username", type: "text"}/
+              .form-group
+                .input-group
+                  .input-group-addon
+                    %i.entypo-mail
+                  %input#email.form-control{autocomplete: "off", "data-mask" => "email", name: "email", placeholder: "E-mail", type: "text"}/
+              .form-group
+                .input-group
+                  .input-group-addon
+                    %i.entypo-lock
+                  %input#password.form-control{autocomplete: "off", name: "password", placeholder: "Choose Password", type: "password"}/
+              .form-group
+                %button.btn.btn-success.btn-block.btn-login{type: "submit"}
+                  %i.entypo-right-open-mini
+                  Complete Registration
+              .form-group
+                Step 2 of 2
+        .login-bottom-links
+          %a.link{href: "extra-login.html"}
+            %i.entypo-lock
+            Return to Login Page
+          %br/
+          %a{href: "#"} ToS
+          \-
+          %a{href: "#"} Privacy Policy
+
