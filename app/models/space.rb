@@ -9,6 +9,8 @@ class Space < ActiveRecord::Base
   has_many :space_members, dependent: :destroy
   has_many :members, through: :space_members
 
+  has_many :locations
+
   # Space is payed for through the connected payment_method
   # but the subscription is local (to support multiple spaces on one payment method).
   belongs_to :payment_method # Plus plan and stripe_subscription_id
@@ -23,26 +25,7 @@ class Space < ActiveRecord::Base
   validates :currency, presence: true
   validates :plan, presence: true
 
-  def self.plans
-    [
-     ["Basic Monthly ($50/Month)", "Basic-M"],
-     ["Basic Yearly ($500/Year)", "Basic-Y"]
-    ]
-  end
-
-  def plan_description
-    unless plan.blank?
-      Space.plans.each do |plan|
-        return plan[0] if plan[1] == self.plan
-      end
-    end
-  end
-
-  # TODO Maybe handle (somehow) exception.
   def cancel_subscription
-    unless payment_method.nil?
-      payment_method.cancel_subscription(self)
-    end
   end
 
 end

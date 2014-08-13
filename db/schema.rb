@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715193420) do
+ActiveRecord::Schema.define(version: 20140813050017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,25 @@ ActiveRecord::Schema.define(version: 20140715193420) do
     t.datetime "valid_until"
     t.integer  "replaced_by_id"
     t.boolean  "is_default"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "location_members", force: true do |t|
+    t.integer "member_id"
+    t.integer "location_id"
+  end
+
+  create_table "locations", force: true do |t|
+    t.integer  "address_id"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "timezone"
+    t.string   "currency"
+    t.decimal  "tax_rate"
+    t.integer  "space_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -175,9 +194,10 @@ ActiveRecord::Schema.define(version: 20140715193420) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "trial_ending"
+    t.string   "full_name"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "trial_ending"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

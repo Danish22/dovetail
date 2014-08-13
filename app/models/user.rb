@@ -17,10 +17,6 @@ class User < ActiveRecord::Base
     Date.today.to_time(:utc) < self.trial_ending 
   end
 
-  def full_name
-    [self.first_name, self.last_name].compact.reject{|f| f.blank? }.join(' ')
-  end
-
   # Mostly for the ActiveAdmin interface
   def to_s
     self.email

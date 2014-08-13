@@ -12,34 +12,40 @@ var neonRegister = neonRegister || {};
 	
 	$(document).ready(function()
 	{
+    
+    function post(path, params, method) {
+        method = method || "post"; // Set method to post by default if not specified.
+
+        // The rest of this code assumes you are not using a library.
+        // It can be made less wordy if you use one.
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+
+        for(var key in params) {
+            if(params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", key);
+                hiddenField.setAttribute("value", params[key]);
+
+                form.appendChild(hiddenField);
+             }
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    } 
+
 
     $('#submit_form').click(function(e){
       e.preventDefault();
-
-      $.ajax({
-        url: '/users',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-          authenticity_token: $('#new_user > div:nth-child(1) > input[type="hidden"]:nth-child(2)').val(),
-          user: {
-            name: 	$("input#name").val(),
-            email: 		$("input#email").val(),
-            password:	$("input#password").val(),
-            password_confirmation:	$("input#password").val(),
-            commit: "Sign up"
-          }
-        },
-        error: function()
-        {
-          //alert("An error occoured!");
-        },
-        success: function(response)
-        {
-          // login here
-          // redirect to next sign up page
-      });
-
+            
+      $('#user_email').val($("input#email").val());
+      $('#user_full_name').val($("input#name").val());
+      $('#user_password').val($("input#password").val());
+      $('#user_password_confirmation').val($("input#password").val());
+      $('#new_user').submit();
     });
 
 		neonRegister.$container = $("#form_register");

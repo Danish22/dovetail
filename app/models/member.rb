@@ -6,6 +6,9 @@ class Member < ActiveRecord::Base
   has_many :space_members
   has_many :spaces, through: :space_members
 
+  has_many :location_members
+  has_many :spaces, through: :location_members
+
   validates :name, presence: true
   validates :email, presence: true
 
