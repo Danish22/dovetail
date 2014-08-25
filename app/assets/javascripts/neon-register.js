@@ -12,6 +12,42 @@ var neonRegister = neonRegister || {};
 	
 	$(document).ready(function()
 	{
+    
+    function post(path, params, method) {
+        method = method || "post"; // Set method to post by default if not specified.
+
+        // The rest of this code assumes you are not using a library.
+        // It can be made less wordy if you use one.
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+
+        for(var key in params) {
+            if(params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", key);
+                hiddenField.setAttribute("value", params[key]);
+
+                form.appendChild(hiddenField);
+             }
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    } 
+
+
+    $('#submit_form').click(function(e){
+      e.preventDefault();
+            
+      $('#user_email').val($("input#email").val());
+      $('#user_full_name').val($("input#name").val());
+      $('#user_password').val($("input#password").val());
+      $('#user_password_confirmation').val($("input#password").val());
+      $('#new_user').submit();
+    });
+
 		neonRegister.$container = $("#form_register");
 		neonRegister.$steps = neonRegister.$container.find(".form-steps");
 		neonRegister.$steps_list = neonRegister.$steps.find(".step");
@@ -23,19 +59,16 @@ var neonRegister = neonRegister || {};
 				name: {
 					required: true
 				},
-				
 				email: {
 					required: true,
 					email: true
 				},
-				
-				username: {
-					required: true	
+				password_confirmation: {
+					required: true,
 				},
-				
 				password: {
 					required: true
-				},
+				}
 				
 			},
 			
@@ -67,58 +100,6 @@ var neonRegister = neonRegister || {};
 					neonRegister.setPercentage(98, function()
 					{
 						// Send data to the server
-						$.ajax({
-							url: baseurl + 'data/sample-register-form.php',
-							method: 'POST',
-							dataType: 'json',
-							data: {
-								name: 		$("input#name").val(),
-								phone: 		$("input#phone").val(),
-								birthdate: 	$("input#birthdate").val(),
-								username: 	$("input#username").val(),
-								email: 		$("input#email").val(),
-								password:	$("input#password").val()
-							},
-							error: function()
-							{
-								alert("An error occoured!");
-							},
-							success: function(response)
-							{
-								// From response you can fetch the data object retured
-								var name = response.submitted_data.name,
-									phone = response.submitted_data.phone,
-									birthdate = response.submitted_data.birthdate,
-									username = response.submitted_data.username,
-									email = response.submitted_data.email,
-									password = response.submitted_data.password;
-								
-								
-								// Form is fully completed, we update the percentage
-								neonRegister.setPercentage(100);
-								
-								
-								// We will give some time for the animation to finish, then execute the following procedures	
-								setTimeout(function()
-								{
-									// Hide the description title
-									$(".login-page .login-header .description").slideUp();
-									
-									// Hide the register form (steps)
-									neonRegister.$steps.slideUp('normal', function()
-									{
-										// Remove loging-in state
-										$(".login-page").removeClass('logging-in');
-										
-										// Now we show the success message
-										$(".form-register-success").slideDown('normal');
-										
-										// You can use the data returned from response variable
-									});
-									
-								}, 1000);
-							}
-						});
 					});
 				});
 			}

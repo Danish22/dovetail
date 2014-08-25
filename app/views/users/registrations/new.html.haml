@@ -1,0 +1,65 @@
+%body.page-body.login-page.login-form-fall
+
+  .login-container
+    .login-header.login-caret
+      .login-content
+        %a.logo{href: "index.html"}
+          =image_tag "dovetail-white.png", width: '200'
+        %p.description Create an account, it's free and takes few moments only!
+    .login-form
+      .login-content
+        .form-register-success
+          %i.entypo-check
+          %h3 You have been successfully registered.
+          %p We have emailed you the confirmation link for your account.
+        .form-steps
+          #step-1.step.current
+            .form-group
+              .input-group
+                .input-group-addon
+                  %i.entypo-mail
+                %input#email.form-control{autocomplete: "off", "data-mask" => "email", name: "email", placeholder: "E-mail", type: "text"}
+            .form-group
+              .input-group
+                .input-group-addon
+                  %i.entypo-user
+                %input#name.form-control{autocomplete: "off", name: "name", placeholder: "Full Name", type: "text"}
+            .form-group
+              .input-group
+                .input-group-addon
+                  %i.entypo-lock
+                %input#password.form-control{autocomplete: "off", name: "password", placeholder: "Choose Password", type: "password"}
+            .form-group
+              %button.btn.btn-success.btn-block.btn-login#submit_form{type: "submit"}
+                %i.entypo-right-open-mini
+                Complete Registration
+        .login-bottom-links
+          = link_to new_user_session_path, class: 'link' do
+            %i.entypo-lock
+            Return to Login Page
+          -#%br
+            %a{href: "#"} ToS
+            \-
+            %a{href: "#"} Privacy Policy
+
+.hidden{:style => "display: none;"}
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = devise_error_messages!
+    .div
+      = f.label :email
+      = f.email_field :email, autofocus: true
+    
+    .div
+      = f.label :full_name
+      = f.text_field :full_name
+    
+    .div
+      = f.label :password
+      = f.password_field :password, autocomplete: "off"
+    
+    .div
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: "off"
+    
+    .div
+      = f.submit "Sign up"

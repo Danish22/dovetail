@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :set_space
   before_action :set_member, only: [:show, :edit, :update, :destroy]
   before_action :check_space_payment_method
@@ -74,7 +75,11 @@ class MembersController < ApplicationController
     end
 
     def set_space
-      @space = current_user.spaces.find(params[:space_id])
+      if params[:space_id].blank?
+        @space = current_user.spaces.first
+      else
+        @space = current_user.spaces.find(params[:space_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

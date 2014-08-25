@@ -1,0 +1,17 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %meta{content: "Dovetail", name: "author"}/
+    %title Dovetail
+
+    = stylesheet_link_tag "jquery-ui-1.10.3.custom.min.css"
+    = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag "neon-forms.css"
+    = stylesheet_link_tag "custom.css"
+
+    = javascript_include_tag 'application'
+
+  = yield

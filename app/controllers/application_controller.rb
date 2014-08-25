@@ -6,6 +6,9 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_payment_method
 
+  layout :layout_by_resource
+
+
   #around_filter :space_time_zone, :if => :has_timezone
 
   def space_time_zone(&block)
@@ -13,6 +16,14 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def layout_by_resource
+    if devise_controller?
+      "devise"
+    else
+      "application"
+    end
+  end
 
   def has_timezone
     @space && !@space.timezone.nil? && !@space.timezone.blank?

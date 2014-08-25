@@ -10,9 +10,16 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require main-gsap 
 //= require jquery-1.11.0.min
 //= require jquery_ujs
-// require turbolinks
 //= require bootstrap.min
+//= require joinable
+//= require resizeable
+//= require neon-api
+//= require jquery.validate.min.js
+//= require neon-register
+//= require jquery.inputmask.bundle.min.js
+//= require neon-custom
 // require_tree . #NOTE: Requiring tree is not a good idea!
 //= stub active_admin
