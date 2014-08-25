@@ -28,4 +28,8 @@ class Space < ActiveRecord::Base
   def cancel_subscription
   end
 
+  def self.plans
+    ["Basic-M", "Basic-Y"]
+  end
+
 end
