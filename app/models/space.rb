@@ -11,6 +11,10 @@ class Space < ActiveRecord::Base
 
   has_many :locations
 
+  has_many :invites
+
+  after_create :add_default_location
+
   # Space is payed for through the connected payment_method
   # but the subscription is local (to support multiple spaces on one payment method).
   belongs_to :payment_method # Plus plan and stripe_subscription_id
@@ -26,6 +30,10 @@ class Space < ActiveRecord::Base
   validates :plan, presence: true
 
   def cancel_subscription
+  end
+
+  def add_default_location
+    locations.create!(name: "Default")
   end
 
   def self.plans

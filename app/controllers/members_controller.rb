@@ -77,9 +77,11 @@ class MembersController < ApplicationController
     def set_space
       if params[:space_id].blank?
         @space = current_user.spaces.first
+        redirect_to space_members_path(@space)
       else
         @space = current_user.spaces.find(params[:space_id])
       end
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

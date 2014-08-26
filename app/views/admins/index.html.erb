@@ -1,0 +1,49 @@
+<h1>Admins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admins.each do |admin| %>
+      <tr>
+        <td><%= admin.email %></td>
+        <td><%= link_to 'Destroy',"#", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Pending Invites</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Sent By</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invites.each do |invite| %>
+      <tr>
+        <td><%= invite.email %></td>
+        <td><%= invite.sender.email %></td>
+        <td><%= link_to 'Destroy', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Resend', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Invite an admin</h2>
+
+<%= form_for [@space, @invite] do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <%= f.submit 'Send' %>
+<% end %>

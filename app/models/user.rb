@@ -13,6 +13,14 @@ class User < ActiveRecord::Base
 
   has_many :payment_methods
 
+  has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
+  has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
+
+  after_create :add_to_space_if_invited
+
+  # Virtual Attribute
+  attr_accessor :invite_token
+
   def trialing?
     Date.today.to_time(:utc) < self.trial_ending 
   end
@@ -24,5 +32,16 @@ class User < ActiveRecord::Base
 
   def set_trial_ending
     self.trial_ending = Date.today.to_time(:utc) + 14.days
+  end
+
+  def add_to_space_if_invited
+    unless invite_token.blank?
+      invite = Invite.find_by_token(invite_token)
+      if invite
+        invite.space.users << self
+        invite.recipient_id = self.id
+        invite.save!
+      end
+    end
   end
 end

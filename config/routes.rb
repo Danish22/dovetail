@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     end
     resources :members
     resources :locations
+    resources :invites
+    resources :admins
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }

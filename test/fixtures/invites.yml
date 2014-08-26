@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recipient_id: 1
+  sender_id: 1
+  space_id: 1
+  email: MyString
+  token: MyString
+
+two:
+  recipient_id: 1
+  sender_id: 1
+  space_id: 1
+  email: MyString
+  token: MyString
