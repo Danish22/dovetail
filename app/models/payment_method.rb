@@ -21,7 +21,7 @@ class PaymentMethod < ActiveRecord::Base
 
     if  space.stripe_subscription_id.blank?
       # Set up a new subscription
-      params = {plan: space.plan}
+      params = {plan: space.plan, quantity: space.locations.count}
       params.merge!({coupon: coupon}) unless coupon.blank?
       subscription = customer.subscriptions.create(params)
 
@@ -34,6 +34,7 @@ class PaymentMethod < ActiveRecord::Base
       subscription = customer.subscriptions.retrieve(space.stripe_subscription_id)
       subscription.plan = space.plan
       subscription.coupon = coupon unless coupon.blank?
+      subscription.quantity = space.locations.count
       subscription.save
     end
   end

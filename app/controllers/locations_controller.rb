@@ -31,6 +31,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
+        update_subscription_quantity 
         format.html { redirect_to [@space, @location], notice: 'Location was successfully created.' }
         format.json { render :show, status: :created, location: @location }
       else
@@ -58,6 +59,7 @@ class LocationsController < ApplicationController
   # DELETE /locations/1.json
   def destroy
     @location.destroy
+    update_subscription_quantity 
     respond_to do |format|
       format.html { redirect_to space_locations_url(@space), notice: 'Location was successfully destroyed.' }
       format.json { head :no_content }
@@ -77,5 +79,13 @@ class LocationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
       params.require(:location).permit(:name, :city, :state, :postal_code, :country, :timezone, :currency, :tax_rate)
+    end
+
+    # Because we meter on locations, we need to update the subscription when ever one is added or removed.
+    def update_subscription_quantity
+      # TODO Make this asyncronous/background
+      if @space.payment_method   # Only if they've subscribed (ie not trialing)
+        @space.payment_method.update_subscription(@space, nil)
+      end
     end
 end
