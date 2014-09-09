@@ -13,6 +13,8 @@ class Space < ActiveRecord::Base
 
   has_many :invites
 
+  accepts_nested_attributes_for :locations
+
   after_create :add_default_location
 
   # Space is payed for through the connected payment_method

@@ -16,6 +16,7 @@ class SpacesController < ApplicationController
   # GET /spaces/new
   def new
     @space = current_user.spaces.new
+    @location = @space.locations.new
   end
 
   # GET /spaces/1/edit
@@ -26,10 +27,10 @@ class SpacesController < ApplicationController
   # POST /spaces.json
   def create
     @space = current_user.created_spaces.new(space_params)
-           
+
     respond_to do |format|
       if @space.save && update_subscription
-        
+
         current_user.spaces << @space  # Creates the join record to add the admin to this space
 
         format.html { redirect_to @space, notice: 'Space was successfully created.' }

@@ -6,6 +6,8 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'haml'
+gem 'simple_form'
+gem 'country_select'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # -- DO NOT USE THE RUBY RACER, Install NodeJS and make sure it's in the path
@@ -22,6 +24,7 @@ gem "figaro"
 gem 'whenever', :require => false
 gem 'minitest'
 gem 'rb-readline'
+gem "haml-rails"
 
 gem 'kaminari'
 gem 'bootstrap_form'
@@ -29,7 +32,7 @@ gem 'textacular', '~> 3.0'
 
 # For stripe and/or OAuth 2.0
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
-gem 'oauth2' 
+gem 'oauth2'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem "jquery-ui-rails", '~> 4.2.1'
