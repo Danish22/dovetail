@@ -15,9 +15,7 @@ class Space < ActiveRecord::Base
 
   accepts_nested_attributes_for :locations
 
-  after_create :add_default_location
-
-  # Space is payed for through the connected payment_method
+  # Space is paid for through the connected payment_method
   # but the subscription is local (to support multiple spaces on one payment method).
   belongs_to :payment_method # Plus plan and stripe_subscription_id
 
@@ -26,20 +24,29 @@ class Space < ActiveRecord::Base
   before_destroy :cancel_subscription
 
   validates :name, presence: true
-  validates :address, presence: true
-  validates :timezone, presence: true
-  validates :currency, presence: true
-  validates :plan, presence: true
+  #validates :plan, presence: true
 
   def cancel_subscription
-  end
-
-  def add_default_location
-    locations.create!(name: "Default")
+    if payment_method
+      payment_method.cancel_subscription(self)
+    end
   end
 
   def self.plans
     ["Basic-M", "Basic-Y"]
+  end
+
+  def plan_description
+    @plan_descriptions ||= {
+      "Basic-M" => "Basic Monthly",
+      "Basic-Y" => "Basic Annually"
+    }
+
+    if self.plan
+      return @plan_descriptions[self.plan]
+    else
+      return "No plan selected"
+    end
   end
 
 end

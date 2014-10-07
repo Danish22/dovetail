@@ -20,50 +20,63 @@
 
         .navbar-inner.row
           -# LOGO
-          .navbar-brand.col-sm-3
-            %a.nav-logo{:href => "/"}
+          .navbar-brand.col-sm-1
+            %a.nav-logo{:href => "/",:style=>"color:#f1f1f1;"}
               = image_tag "logomark.png", height: 30
+
+          .col-sm-2
+            %h3{:style=>"color:#f1f1f1;margin-top:14px;"}
+              - if @space
+                = @space.name
 
           -# MAIN MENU
           .col-sm-6.centered
             %ul.navbar-nav
-              %li
-                %a
-                  %i.entypo-home
-                  %span Space
-
-              %li
-                %a
-                  %i.entypo-users
-                  %span
-                    Community
-              %li
-                %a
-                  %i.entypo-credit-card
-                  %span
-                    Payments
-              %li
-                %a
-                  %i.entypo-cog
-                  %span
-                    Settings
+              %li{:class => active_tab("members")}
+                - if @space
+                  %a{:href => space_members_path(@space)}
+                    %i.entypo-users
+                    %span
+                      Community
+              %li{:class => active_tab("payments")}
+                - if @space
+                  %a
+                    %i.entypo-credit-card
+                    %span
+                      Payments
+              %li{:class => active_tab(["spaces", "admins", "locations"])}
+                - if @space
+                  %a{:href => edit_space_path(@space)}
+                    %i.entypo-cog
+                    %span
+                      Settings
 
           .col-sm-3
             %ul.user-info.pull-right.pull-none-xsm
               %li.dropdown
-                %a.dropdown-toggle{'data-toggle' => 'dropdown'}
-                  %img.img-circle{'src' => 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/73.jpg', 'width' => '44'}
-                %i.entypo-down-open
-              %li
-                %ul.dropdown-menu
-                  %li.caret
-                    %li
-                      %a
-                        Edit Profile
-                    %li
-                      %a
-                        %i.entypo-mail
-                        Inbox
+                %a.dropdown-toggle{'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-close-others' => 'true'}
+                  %img.img-circle{'src' => current_user.gravatar_url(:size =>44, :rating => 'G', :secure => true, :default => 'mm'), 'width' => '44'}
+                  %i.entypo-down-open
+                %ul.dropdown-menu{:style => "right:0;left:auto;"}
+                  %li
+                    %a{:href=> payment_methods_path}
+                      %i.entypo-credit-card
+                      Payment Methods
+                  %li.divider
+                    - current_user.spaces.each do |s|
+                      %li
+                        %a{:href=> url_for(:controller => controller_name, :action => action_name, :space_id => s)}
+                          %i.entypo-right
+                          = s.name                        
+                  %li.divider
+                  %li 
+                    %a{:href=> new_space_path}
+                      %i.entypo-plus
+                      Add Space
+                  %li.divider
+                  %li
+                    %a
+                      = link_to("<i class='entypo-logout'></i> Sign out".html_safe,  destroy_user_session_path, :method => :delete)
 
             %ul.nav.navbar-right.pull-right
               %li.dropdown
@@ -133,6 +146,12 @@
                               New User Registered
                           %span.line.small
                             2 Min Ago
+
+      - if select_sub_nav && @space
+        .sub-menu{:style=> "padding:3px;background:#ddd;"}
+          .container.text-center
+            %ul.nav.nav-pills{:style=>"display:inline-block;"}
+              = render select_sub_nav
 
       .main-content
         = render 'shared/need_payment_method'

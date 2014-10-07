@@ -1,11 +1,10 @@
-<h1>Listing members</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -14,9 +13,10 @@
       <tr>
         <td><%= member.name %></td>
         <td><%= member.email %></td>
-        <td><%= link_to 'Show', [@space, member] %></td>
-        <td><%= link_to 'Edit', edit_space_member_path(@space, member) %></td>
-        <td><%= link_to 'Destroy', [@space, member], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="text-right">
+          <%= link_to 'Edit', edit_space_member_path(@space, member) %>
+          <%= link_to 'Destroy', [@space, member], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -24,7 +24,4 @@
 
 <br>
 
-<%= link_to 'New Member', new_space_member_path(@space) %> |
-<%= link_to @space.name, space_path(@space) %> | 
-<%= link_to "Spaces", spaces_path %>
-
+<%= link_to 'New Member', new_space_member_path(@space) %>

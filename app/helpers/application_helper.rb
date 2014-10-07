@@ -28,4 +28,27 @@ module ApplicationHelper
     sprintf("$%d.%02d", dollars, cents)
   end
 
+  def active_tab(controller)
+    if controller.is_a?(Array)
+      if controller.include?(controller_name)
+        return "active"
+      else
+        return ""
+      end
+    else
+      if controller_name == controller
+        return "active"
+      else
+        return ""
+      end
+    end
+  end
+
+  def select_sub_nav
+    if ["spaces", "admins", "locations"].include? controller_name
+      return "shared/settings"
+    elsif ["members"].include? controller_name
+      return nil
+    end
+  end
 end

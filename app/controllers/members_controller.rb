@@ -76,7 +76,7 @@ class MembersController < ApplicationController
 
     def set_space
       if params[:space_id].blank?
-        @space = current_user.spaces.first
+        @space = current_user.default_space
         redirect_to space_members_path(@space)
       else
         @space = current_user.spaces.find(params[:space_id])

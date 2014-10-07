@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_payment_method
   before_action :force_space_creation
+  before_action :set_default_space
 
   layout :layout_by_resource
 
@@ -16,9 +17,13 @@ class ApplicationController < ActionController::Base
     Time.use_zone(current_account.timezone, &block)
   end
 
+  def set_default_space
+    @space = current_user.default_space if current_user
+  end
+
   def force_space_creation
     if current_user && current_user.spaces.count < 1
-      redirect_to new_space_path unless params[:controller] == "spaces" && params[:action] == "new"
+      redirect_to new_space_path unless params[:controller] == "spaces" && (params[:action] == "new"  || params[:action] == "create")
     end
   end
 

@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20140909031232) do
   create_table "payment_methods", force: true do |t|
     t.string   "billing_name"
     t.string   "billing_email"
+    t.string   "company_name"
     t.string   "stripe_id"
     t.integer  "user_id"
     t.datetime "created_at"

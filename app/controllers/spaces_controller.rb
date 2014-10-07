@@ -15,8 +15,8 @@ class SpacesController < ApplicationController
 
   # GET /spaces/new
   def new
-    @space = current_user.spaces.new
-    @location = @space.locations.new
+    @newspace = current_user.spaces.new
+    @location = @newspace.locations.new
   end
 
   # GET /spaces/1/edit
@@ -33,7 +33,7 @@ class SpacesController < ApplicationController
 
         current_user.spaces << @space  # Creates the join record to add the admin to this space
 
-        format.html { redirect_to @space, notice: 'Space was successfully created.' }
+        format.html { redirect_to space_members_path(@space), notice: 'Space was successfully created.' }
         format.json { render :show, status: :created, location: @space }
       else
         format.html { render :new }
@@ -84,7 +84,8 @@ class SpacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def space_params
-      params.require(:space).permit(:name, :address, :phone, :fax, :website, :country, :postal, :timezone, :currency, :slug, :user_id, :plan)
+      params.require(:space).permit(:name, :address, :phone, :fax, :website, :country, :postal, :timezone, :currency, :slug, :user_id, :plan, 
+                                    locations_attributes: [ :name, :address, :city, :state, :postal_code, :country, :timezone, :currency, :tax_rate ])
     end
 
     # Updates the payment method, plan and subscription

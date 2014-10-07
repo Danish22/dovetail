@@ -9,6 +9,9 @@ class Member < ActiveRecord::Base
   has_many :location_members
   has_many :spaces, through: :location_members
 
+  include Gravtastic
+  gravtastic
+
   validates :name, presence: true
   validates :email, presence: true
 

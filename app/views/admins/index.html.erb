@@ -1,6 +1,6 @@
-<h1>Admins</h1>
+<h2>Admins</h2>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Email</th>
@@ -18,8 +18,8 @@
   </tbody>
 </table>
 
-<h1>Pending Invites</h1>
-<table>
+<h2>Pending Invites</h2>
+<table class="table">
   <thead>
     <tr>
       <th>Email</th>
@@ -40,7 +40,7 @@
   </tbody>
 </table>
 
-<h2>Invite an admin</h2>
+<h3>Invite an admin</h3>
 
 <%= form_for [@space, @invite] do |f| %>
   <%= f.label :email %>

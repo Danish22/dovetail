@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require main-gsap 
-//= require jquery-1.11.0.min
+//= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
 //= require joinable
@@ -22,4 +22,4 @@
 //= require jquery.inputmask.bundle.min.js
 //= require neon-custom
 // require_tree . #NOTE: Requiring tree is not a good idea!
-//= stub active_admin
+// stub active_admin

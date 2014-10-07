@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
+  include Gravtastic
+  gravtastic
+
   before_create :set_trial_ending
 
   has_many :created_spaces, class: Space
@@ -44,4 +47,9 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def default_space
+    spaces.first
+  end
+
 end

@@ -4,7 +4,7 @@
 
 %hr
 
-= simple_form_for @space, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |s|
+= simple_form_for @newspace, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |s|
 
   %h3 Space Info
   = s.input :name, label: 'Space Name' 
@@ -13,7 +13,7 @@
 
 
   %h3 Location
-  = s.simple_fields_for :location do |l|
+  = s.simple_fields_for :locations do |l|
     = l.input :address, label: 'Street Address'
     = l.input :city, label: 'City'
     = l.input :state, label: 'State / Province'
@@ -24,3 +24,5 @@
     %h3 Billing Settings
     = l.input :currency
     = l.input :tax_rate
+
+    = s.button :submit
