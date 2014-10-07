@@ -22,6 +22,8 @@ module Dovetail
 
     config.app_generators.scaffold_controller = :scaffold_controller
 
+    config.serve_static_assets = true
+
     initializer 'setup_asset_pipeline', :group => :all  do |app|
       # We don't want the default of everything that isn't js or css, because it pulls too many things in
       app.config.assets.precompile.shift
