@@ -37,6 +37,8 @@ gem 'oauth2'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem "jquery-ui-rails", '~> 5.0'
 
+gem 'rails_12factor', group: :production
+
 group :development, :test do
   gem 'meta_request'
   gem 'pry'
