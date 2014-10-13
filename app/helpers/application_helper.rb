@@ -51,4 +51,31 @@ module ApplicationHelper
       return nil
     end
   end
+
+  def field_errors(obj, field)
+    msg = nil
+    # To get all errors associated with a single attribute, do the following:
+    if !obj.errors[field].blank?
+      errors = obj.errors[field]
+      if errors.kind_of?(Array)
+        msg = errors.join(", ")
+      else
+        msg = name_errors
+      end
+    end
+
+    unless msg.blank?
+      return "<span class='help-block'>#{msg}</span>".html_safe
+    else
+      return ""
+    end
+  end
+
+  def has_error(obj, field)
+    if !obj.errors[field].blank?
+      return "has-error" 
+    else
+      return ""
+    end
+  end
 end

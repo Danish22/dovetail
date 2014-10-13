@@ -4,25 +4,72 @@
 
 %hr
 
-= simple_form_for @newspace, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |s|
+.col-md-6.col-md-offset-3
 
-  %h3 Space Info
-  = s.input :name, label: 'Space Name' 
-  = s.input :slug, label: 'URL Slug'
-  -# :logo
+  = form_for(@newspace) do |s| 
+    %h3 Space Info
+    .form-group{:class => has_error(@newspace, :name)}
+      = s.label :name 
+      = s.text_field :name, class: "form-control"
+      = field_errors(@newspace, :name)
+    .form-group{:class => has_error(@newspace, :website)}
+      = s.label :website 
+      = s.text_field :website , class: "form-control"
+      = field_errors(@newspace, :website)
+    .form-group{:class => has_error(@newspace, :slug)}
+      = s.label :slug 
+      = s.text_field :slug, class: "form-control" 
+      = field_errors(@newspace, :slug)
+    .form-group{:class => has_error(@newspace, :plan)}
+      = s.label :plan 
+      = s.select(:plan, Space.plans, {}, {class: "form-control"})
+      = field_errors(@newspace, :plan)
+    - unless current_user.trialing?
+      .form-group{:class => has_error(@newspace, :coupon)}
+        = s.label :coupon 
+        = text_field_tag(:coupon, class: "form-control") 
+        = field_errors(@newspace, :coupon)
+      .form-group{:class => has_error(@newspace, :payment_method)}
+        = s.label :payment_method   
+        = link_to "Manage Payment Methods", payment_methods_path
+        = select_tag :payment_method,  options_from_collection_for_select(current_user.payment_methods, "id", "select_name"), include_blank: true, class: "form-control" 
+        = field_errors(@newspace, :payment_method)
 
+    %h3 Location
+    = s.fields_for :locations do |l|
+      .form-group{:class => has_error(l.object, :address)}
+        = l.label :address
+        = l.text_field :address, class: "form-control"
+        = field_errors(l.object, :address)
+      .form-group{:class => has_error(l.object, :city)}
+        = l.label :city
+        = l.text_field :city, class: "form-control"
+        = field_errors(l.object, :city)
+      .form-group{:class => has_error(l.object, :state)}
+        = l.label :state
+        = l.text_field :state, class: "form-control"
+        = field_errors(l.object, :state)
+      .form-group{:class => has_error(l.object, :postal_code)}
+        = l.label :postal_code
+        = l.text_field :postal_code, class: "form-control"
+        = field_errors(l.object, :postal_code)
+      .form-group{:class => has_error(l.object, :country)}
+        = l.label :country
+        = l.text_field :country, class: "form-control"
+        = field_errors(l.object, :country)
+      .form-group{:class => has_error(l.object, :timezone)}
+        = l.label :timezone
+        = l.text_field :timezone, class: "form-control"
+        = field_errors(l.object, :timezone)
 
-  %h3 Location
-  = s.simple_fields_for :locations do |l|
-    = l.input :address, label: 'Street Address'
-    = l.input :city, label: 'City'
-    = l.input :state, label: 'State / Province'
-    = l.input :postal_code, label: 'Postal Code'
-    = l.input :country, label: 'Country'
-    = l.input :timezone, label: 'Timezone'
+      %h3 Billing Settings
+      .form-group{:class => has_error(l.object, :currency)}
+        = l.label :currency
+        = l.text_field :currency, class: "form-control"
+        = field_errors(l.object, :currency)
+      .form-group{:class => has_error(l.object, :tax_rate)}
+        = l.label :tax_rate
+        = l.text_field :tax_rate, class: "form-control"
+        = field_errors(l.object, :tax_rate)
 
-    %h3 Billing Settings
-    = l.input :currency
-    = l.input :tax_rate
-
-    = s.button :submit
+    = s.submit class: "btn btn-primary"

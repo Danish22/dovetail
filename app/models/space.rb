@@ -33,7 +33,10 @@ class Space < ActiveRecord::Base
   end
 
   def self.plans
-    ["Basic-M", "Basic-Y"]
+    [
+     ["Basic Monthly", "Basic-M"],
+     ["Basic Yearly", "Basic-Y"]
+    ]
   end
 
   def plan_description

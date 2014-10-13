@@ -26,18 +26,18 @@ class SpacesController < ApplicationController
   # POST /spaces
   # POST /spaces.json
   def create
-    @space = current_user.created_spaces.new(space_params)
+    @newspace = current_user.created_spaces.new(space_params)
 
     respond_to do |format|
-      if @space.save && update_subscription
+      if @newspace.save && update_subscription
 
-        current_user.spaces << @space  # Creates the join record to add the admin to this space
+        current_user.spaces << @newspace  # Creates the join record to add the admin to this space
 
-        format.html { redirect_to space_members_path(@space), notice: 'Space was successfully created.' }
-        format.json { render :show, status: :created, location: @space }
+        format.html { redirect_to space_members_path(@newspace), notice: 'Space was successfully created.' }
+        format.json { render :show, status: :created, location: @newspace }
       else
         format.html { render :new }
-        format.json { render json: @space.errors, status: :unprocessable_entity }
+        format.json { render json: @mewspace.errors, status: :unprocessable_entity }
       end
     end
   end
