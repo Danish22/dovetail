@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909031232) do
+ActiveRecord::Schema.define(version: 20141013141833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,11 +103,6 @@ ActiveRecord::Schema.define(version: 20140909031232) do
     t.datetime "updated_at"
   end
 
-  create_table "location_members", force: true do |t|
-    t.integer "member_id"
-    t.integer "location_id"
-  end
-
   create_table "locations", force: true do |t|
     t.string   "city"
     t.string   "state"
@@ -130,6 +125,7 @@ ActiveRecord::Schema.define(version: 20140909031232) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "location_id"
   end
 
   add_index "members", ["space_id"], name: "index_members_on_space_id", using: :btree
@@ -147,16 +143,6 @@ ActiveRecord::Schema.define(version: 20140909031232) do
   end
 
   add_index "payment_methods", ["user_id"], name: "index_payment_methods_on_user_id", using: :btree
-
-  create_table "space_members", force: true do |t|
-    t.integer  "space_id"
-    t.integer  "member_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "space_members", ["member_id"], name: "index_space_members_on_member_id", using: :btree
-  add_index "space_members", ["space_id"], name: "index_space_members_on_space_id", using: :btree
 
   create_table "spaces", force: true do |t|
     t.string   "name"
