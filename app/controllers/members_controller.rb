@@ -18,7 +18,7 @@ class MembersController < ApplicationController
 
   # GET /members/new
   def new
-    @member = @space.created_members.new
+    @member = @space.members.new
   end
 
   # GET /members/1/edit
@@ -28,7 +28,7 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.json
   def create
-    @member = @space.created_members.new(member_params)
+    @member = @space.members.new(member_params)
     @member.user = current_user
 
     respond_to do |format|   

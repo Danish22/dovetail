@@ -4,10 +4,7 @@ class Space < ActiveRecord::Base
   has_many :user_spaces, dependent: :destroy
   has_many :users, through: :user_spaces
 
-  has_many :created_members, class: Member, dependent: :destroy
-
-  has_many :space_members, dependent: :destroy
-  has_many :members, through: :space_members
+  has_many :members, dependent: :destroy
 
   has_many :locations
 
