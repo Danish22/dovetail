@@ -35,7 +35,7 @@ class MembersController < ApplicationController
       if @member.save
         @space.members << @member
 
-        format.html { redirect_to [@space, @member], notice: 'Member was successfully created.' }
+        format.html { redirect_to space_members_url(@space), notice: 'Member was successfully created.' }
         format.json { render :show, status: :created, location: [@space, @member] }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to [@space, @member], notice: 'Member was successfully updated.' }
+        format.html { redirect_to space_members_url(@space), notice: 'Member was successfully updated.' }
         format.json { render :show, status: :ok, location: [@space, @member] }
       else
         format.html { render :edit }
@@ -86,6 +86,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:name, :email, :space_id, :user_id)
+      params.require(:member).permit(:name, :email, :location_id)
     end
 end
