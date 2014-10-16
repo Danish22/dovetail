@@ -1,49 +1,60 @@
-<h2>Admins</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @admins.each do |admin| %>
+<div class="col-md-6">
+  <h2>Managers</h2>
+  
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= admin.email %></td>
-        <td><%= link_to 'Destroy',"#", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Email</th>
+        <th colspan="1"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    
+    <tbody>
+      <% @admins.each do |admin| %>
+        <tr>
+          <td><%= admin.email %></td>
+          <td><%= link_to 'Destroy',"#", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<h2>Pending Invites</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Sent By</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @invites.each do |invite| %>
+<div class="col-md-6">
+  <h2>People invited to co-manage</h2>
+  <table class="table" style="margin-bottom:25px;">
+    <thead>
       <tr>
-        <td><%= invite.email %></td>
-        <td><%= invite.sender.email %></td>
-        <td><%= link_to 'Destroy', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Resend', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Email</th>
+        <th>Sent By</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    
+    <tbody>
+      <% @invites.each do |invite| %>
+        <tr>
+          <td><%= invite.email %></td>
+          <td><%= invite.sender.email %></td>
+          <td><%= link_to 'Destroy', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Resend', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
 
-<h3>Invite an admin</h3>
+      <% if @invites.empty? -%>
+        <tr><td class="text-center" colspan="4"><i>You have no unaccepted invites.</td></tr>
+      <% end -%>
 
-<%= form_for [@space, @invite] do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.submit 'Send' %>
-<% end %>
+    </tbody>
+  </table>
+  
+  <%= form_for [@space, @invite], html: {class: "form-inline", role: "form"} do |f| %>
+    <div class="form-group" style="width:270px;">
+      <div class="input-group">
+        <div class="input-group-addon">@</div>
+        <%= f.email_field :email, class: "form-control", placeholder: "Enter email", style: "width:225px;" %>
+      </div>
+    </div>
+    <%= f.submit 'Send Invite', class: "btn btn-primary" %>
+  <% end %>
+</div>
