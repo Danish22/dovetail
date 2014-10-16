@@ -1,4 +1,4 @@
-<h1>Editing payment_method</h1>
+<h1>Edit payment method</h1>
 
 <% unless @payment_method.last_4_digits.blank? -%>
   Current Card: <%= last_four(@payment_method.last_4_digits)-%>
@@ -6,5 +6,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @payment_method %> |
-<%= link_to 'Back', payment_methods_path %>
+<%= link_to 'Show', @payment_method %> 
