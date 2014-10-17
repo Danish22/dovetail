@@ -12,8 +12,8 @@
     <tbody>
       <% @admins.each do |admin| %>
         <tr>
-          <td><%= admin.email %> <%= admin.id == current_user.id ? "(you)" : ""-%></td>
-          <td><%= link_to 'Destroy',"#", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= admin.email %> <%= admin_relationship(admin, @space) -%></td>
+          <td class="command-bar"><%= link_to_unless (admin.id == current_user.id || admin.id == @space.user_id), 'Delete',"#", method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
@@ -25,7 +25,7 @@
   <table class="table" style="margin-bottom:25px;">
     <thead>
       <tr>
-        <th>Email</th>
+        <th>Sent To</th>
         <th>Sent By</th>
         <th colspan="2"></th>
       </tr>
@@ -36,8 +36,8 @@
         <tr>
           <td><%= invite.email %></td>
           <td><%= invite.sender.email %></td>
-          <td><%= link_to 'Destroy', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <td><%= link_to 'Resend', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="command-bar"><%= link_to 'Delete', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="command-bar"><%= link_to 'Resend', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
 

@@ -78,4 +78,18 @@ module ApplicationHelper
       return ""
     end
   end
+
+  def admin_relationship(admin, space)
+    relationships = []
+
+    relationships << "you" if admin.id == current_user.id
+    relationships << "owner" if admin.id == space.user_id
+
+    unless relationships.empty?
+      "(#{relationships.join(", ")})"
+    else
+      ""
+    end
+  end
+
 end

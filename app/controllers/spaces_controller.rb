@@ -15,7 +15,7 @@ class SpacesController < ApplicationController
 
   # GET /spaces/new
   def new
-    @newspace = current_user.spaces.new
+    @newspace = current_user.created_spaces.new
     @location = @newspace.locations.new
   end
 

@@ -41,3 +41,8 @@
   font-weight: 400;
   src: local('Noto Sans Italic'), local('NotoSans-Italic'), url(http://themes.googleusercontent.com/static/fonts/notosans/v4/ByLA_FLEa-16SpQuTcQn4IbN6UDyHWBl620a-IRfuBk.woff) format('woff');
 }
+
+.command-bar {
+    text-align:right;
+}
+
