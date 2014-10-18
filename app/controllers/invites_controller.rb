@@ -2,7 +2,7 @@ class InvitesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_space
-  before_action :set_invite, only: [:show, :edit, :update, :destroy]
+  before_action :set_invite, only: [:show, :edit, :update, :destroy, :resend]
 
   def create
     @invite = @space.invites.new(invite_params)
@@ -22,6 +22,25 @@ class InvitesController < ApplicationController
     end
 
     redirect_to space_admins_path(@space)
+  end
+
+  def resend
+    flash[:notice] = "Invite sent"
+    InvitesMailer.new_user_invite(@invite, new_user_registration_path(:invite_token => @invite.token)).deliver
+
+    respond_to do |format|
+      format.html { redirect_to space_admins_url(@space), notice: 'Resent invite' }
+      format.json { head :no_content }
+    end
+  end
+
+  def destroy
+    @space.invites.delete(@invite)
+
+    respond_to do |format|
+      format.html { redirect_to space_admins_url(@space), notice: 'Invite successfully removed' }
+      format.json { head :no_content }
+    end
   end
 
   private

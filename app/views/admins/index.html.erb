@@ -13,7 +13,7 @@
       <% @admins.each do |admin| %>
         <tr>
           <td><%= admin.email %> <%= admin_relationship(admin, @space) -%></td>
-          <td class="command-bar"><%= link_to_unless (admin.id == current_user.id || admin.id == @space.user_id), 'Delete',"#", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="command-bar"><%= link_to_unless (admin.id == current_user.id || admin.id == @space.user_id), 'Delete', space_admin_url(@space, admin), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
@@ -36,8 +36,8 @@
         <tr>
           <td><%= invite.email %></td>
           <td><%= invite.sender.email %></td>
+          <td class="command-bar"><%= link_to 'Resend', resend_space_invite_path(@space, invite) %></td>
           <td class="command-bar"><%= link_to 'Delete', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <td class="command-bar"><%= link_to 'Resend', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
 

@@ -9,6 +9,15 @@ class AdminsController < ApplicationController
     @invite = @space.invites.new
   end
 
+  def destroy
+    @space.users.delete(@space.users.find(params[:id]))
+
+    respond_to do |format|
+      format.html { redirect_to space_admins_url(@space), notice: 'Manager was successfully removed' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_space

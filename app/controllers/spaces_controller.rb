@@ -1,4 +1,6 @@
 class SpacesController < ApplicationController
+
+  before_action :authenticate_user!
   before_action :set_space, only: [:show, :edit, :update, :destroy, :cancel_subscription]
   before_action :check_space_payment_method, only: [:show]
 

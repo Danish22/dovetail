@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     end
     resources :members
     resources :locations
-    resources :invites
+    resources :invites do
+      member do
+        get 'resend'
+      end
+    end
     resources :admins
   end
 
