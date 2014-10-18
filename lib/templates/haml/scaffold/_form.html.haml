@@ -5,4 +5,7 @@
       = f.text_field :<%= attribute.name %>, class: "form-control"
       = field_errors(@<%= singular_table_name %>,  :<%= attribute.name %>)
   <%- end -%>
-  = f.submit class: "btn btn-primary"
+  = f.submit class: "btn btn-primary" 
+  or 
+  = link_to "Cancel", :back
+
