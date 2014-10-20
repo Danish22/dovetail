@@ -1,0 +1,26 @@
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Base price
+      %th Setup fee
+      %th Deposit
+      %th Frequency
+      %th Location
+      %th
+      
+  %tbody
+    - @plans.each do |plan|
+      %tr
+        %td= plan.name
+        %td= plan.base_price
+        %td= plan.setup_fee
+        %td= plan.deposit
+        %td= plan.frequency
+        %td= plan.location
+        %td.command-bar
+          = link_to 'Show', [@space, plan]
+          = link_to 'Edit', edit_space_plan_path(@space, plan)
+          = link_to 'Destroy', [@space, plan], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= link_to 'New Plan', new_space_plan_path(@space)

@@ -1,0 +1,21 @@
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Quantity
+      %th Unlimted
+      %th Location
+      %th
+      
+  %tbody
+    - @resources.each do |resource|
+      %tr
+        %td= resource.name
+        %td= resource.quantity
+        %td= resource.unlimted
+        %td= resource.location
+        %td.command-bar
+          = link_to 'Edit', edit_space_resource_path(@space, resource)
+          = link_to 'Destroy', [@space, resource], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= link_to 'New Resource', new_space_resource_path(@space)

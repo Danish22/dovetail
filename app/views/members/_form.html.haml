@@ -12,6 +12,10 @@
       = f.label :location 
       = f.collection_select :location_id, @space.locations, :id, :name, {allow_blank: false }, {class: "form-control"}
       = field_errors(@member, :location)
+    .form-group{:class => has_error(@member, :plan)}
+      = f.label :plan
+      = f.collection_select :plan_id, @space.plans, :id, :name, {include_blank: true}, {class: "form-control"}
+      = field_errors(@member, :plan)
     = f.submit class: "btn btn-primary"
     or
     = link_to("Cancel", :back)

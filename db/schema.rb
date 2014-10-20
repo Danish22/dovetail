@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013141833) do
+ActiveRecord::Schema.define(version: 20141019234644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20141013141833) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "location_id"
+    t.integer  "plan_id"
   end
 
   add_index "members", ["space_id"], name: "index_members_on_space_id", using: :btree
@@ -143,6 +144,44 @@ ActiveRecord::Schema.define(version: 20141013141833) do
   end
 
   add_index "payment_methods", ["user_id"], name: "index_payment_methods_on_user_id", using: :btree
+
+  create_table "plan_resources", force: true do |t|
+    t.integer  "plan_id"
+    t.integer  "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "plan_resources", ["plan_id"], name: "index_plan_resources_on_plan_id", using: :btree
+  add_index "plan_resources", ["resource_id"], name: "index_plan_resources_on_resource_id", using: :btree
+
+  create_table "plans", force: true do |t|
+    t.string   "name"
+    t.decimal  "base_price"
+    t.decimal  "setup_fee"
+    t.decimal  "deposit"
+    t.string   "frequency"
+    t.integer  "space_id"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "plans", ["location_id"], name: "index_plans_on_location_id", using: :btree
+  add_index "plans", ["space_id"], name: "index_plans_on_space_id", using: :btree
+
+  create_table "resources", force: true do |t|
+    t.string   "name"
+    t.integer  "quantity"
+    t.boolean  "unlimted"
+    t.integer  "space_id"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resources", ["location_id"], name: "index_resources_on_location_id", using: :btree
+  add_index "resources", ["space_id"], name: "index_resources_on_space_id", using: :btree
 
   create_table "spaces", force: true do |t|
     t.string   "name"

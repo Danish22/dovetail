@@ -1,0 +1,22 @@
+= form_for([@space, @resource]) do |f| 
+  .form-group{:class => has_error(@resource, :name)}
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+    = field_errors(@resource,  :name)
+  .form-group{:class => has_error(@resource, :quantity)}
+    = f.label :quantity
+    = f.text_field :quantity, class: "form-control"
+    = field_errors(@resource,  :quantity)
+  .checkbox
+    %label
+      = f.check_box :unlimted
+      Unlimited
+    = field_errors(@resource,  :unlimted)
+  .form-group{:class => has_error(@resource, :location)}
+    = f.label :location 
+    = f.collection_select :location_id, @space.locations, :id, :name, {allow_blank: false }, {class: "form-control"}
+    = field_errors(@resource, :location)
+  = f.submit class: "btn btn-primary" 
+  or 
+  = link_to "Cancel", :back
+

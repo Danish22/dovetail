@@ -45,7 +45,7 @@ module ApplicationHelper
   end
 
   def select_sub_nav
-    if ["spaces", "admins", "locations"].include? controller_name
+    if ["spaces", "admins", "locations", "resources", "plans"].include? controller_name
       return "shared/settings"
     elsif ["members"].include? controller_name
       return nil

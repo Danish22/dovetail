@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  base_price: 9.99
+  setup_fee: 9.99
+  deposit: 9.99
+  frequency: MyString
+  space_id: 
+  location_id: 
+
+two:
+  name: MyString
+  base_price: 9.99
+  setup_fee: 9.99
+  deposit: 9.99
+  frequency: MyString
+  space_id: 
+  location_id: 

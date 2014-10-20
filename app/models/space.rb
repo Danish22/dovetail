@@ -7,8 +7,9 @@ class Space < ActiveRecord::Base
   has_many :members, dependent: :destroy
 
   has_many :locations
-
   has_many :invites
+  has_many :resources
+  has_many :plans
 
   accepts_nested_attributes_for :locations
 

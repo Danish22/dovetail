@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
+
   resources :payment_methods
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-
-  get 'ok', to: "dummy#index", as: "ok"
 
   # Note most everything will be a nested resource of spaces
   resources :spaces do
@@ -20,6 +19,8 @@ Rails.application.routes.draw do
       end
     end
     resources :admins
+    resources :resources
+    resources :plans
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }
