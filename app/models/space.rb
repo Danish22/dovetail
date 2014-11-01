@@ -11,6 +11,10 @@ class Space < ActiveRecord::Base
   has_many :resources
   has_many :plans
 
+  has_many :member_invoices, :foreign_key => 'sender_id', class_name: 'MemberInvoice'
+  has_many :member_payments, :foreign_key => 'sender_id', class_name: 'MemberPayment'
+  has_many :member_credit_notes, :foreign_key => 'sender_id', class_name: 'MemberCreditNotee'
+
   accepts_nested_attributes_for :locations
 
   # Space is paid for through the connected payment_method
