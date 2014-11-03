@@ -2,7 +2,7 @@ class MembersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_space
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_member, only: [:show, :edit, :update, :destroy, :account]
   before_action :check_space_payment_method
 
   # GET /members
@@ -23,6 +23,9 @@ class MembersController < ApplicationController
 
   # GET /members/1/edit
   def edit
+  end
+
+  def account
   end
 
   # POST /members

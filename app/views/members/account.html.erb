@@ -1,0 +1,15 @@
+
+<h1>Member Billing</h1>
+
+<%= link_to "Back to Members", space_members_path(@space) -%> 
+
+<br/> 
+<br/> 
+
+<ul>
+  <li><%= link_to "New Invoice", new_space_member_invoice_path(@space, @member) -%></li>
+  <li><%= link_to "New Payment", new_space_member_payment_path(@space, @member) -%></li>
+  <li><%= link_to "New Credit Note", new_space_member_credit_note_path(@space, @member) -%></li>
+</ul>
+
+<p>TODO: List of Ledger Items</p>

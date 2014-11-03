@@ -14,6 +14,7 @@
         <td><%= member.name %></td>
         <td><%= member.email %></td>
         <td class="text-right">
+          <%= link_to 'Billing', account_space_member_path(@space, member) %>
           <%= link_to 'Edit', edit_space_member_path(@space, member) %>
           <%= link_to 'Destroy', [@space, member], method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
