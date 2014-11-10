@@ -1,1 +1,36 @@
-%p TODO: Form for invoices
+.col-md-6.col-md-offset-3
+  %h4
+    Invoice for
+    = @member.name
+  = form_for(@invoice, url: space_member_invoices_path(@space, @member, @invoice)) do |f| 
+    .form-group{:class => has_error(@invoice, :description)}
+      = f.label :description 
+      = f.text_field :description, class: "form-control"
+      = field_errors(@invoice, :description)
+    .form-group{:class => "#{has_error(@invoice, :identifier)} col-md-6", style: "padding-left:0;"}
+      = f.label :identifier, "Invoice Number"
+      = f.text_field :identifier, class: "form-control"
+      = field_errors(@invoice, :identifier)
+    .form-group{:class => "#{has_error(@invoice, :due_date)} col-md-6", style: "padding-right:0;"}
+      = f.label :due_date
+      = f.date_field :due_date, class: "form-control"
+      = field_errors(@invoice, :due_date)
+    .form-group
+      %label{class: "col-md-8", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"} Description
+      %label{class: "col-md-2", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"} Tax $
+      %label{class: "col-md-2", style: "padding-left:0;padding-right:0;"} Amount
+    = f.fields_for :line_items do |l|
+      .form-group{:class => "#{has_error(l.object, :description)} col-md-8", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"}
+        = l.text_field :description, class: "form-control"
+        = field_errors(l.object, :description)
+      .form-group{:class => "#{has_error(l.object, :tax_amount)} col-md-2", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"}
+        = l.text_field :tax_amount, class: "form-control"
+        = field_errors(l.object, :tax_amount)
+      .form-group{:class => "#{has_error(l.object, :net_amount)} col-md-2", style: "padding-right:0;padding-left:0;margin-bottom:5px;"}
+        = l.text_field :net_amount, class: "form-control"
+        = field_errors(l.object, :net_amount)
+    %br{style: "clear:both;"}
+    %div{style: "margin-top:10px;"}
+      = f.submit class: "btn btn-primary"
+      or
+      = link_to("Cancel", :back)

@@ -1,15 +1,37 @@
 
-<h1>Member Billing</h1>
+<div class="row">
+  <h2 class="col-md-6" style="padding-top:0;margin-top:0;">Member Billing: <%=@member.name -%></h2>
+  
+  <div class="btn-group col-md-6 pull-right">
+    <%= link_to "New Invoice", new_space_member_invoice_path(@space, @member), class: "btn btn-default" -%>
+    <%= link_to "New Payment", new_space_member_payment_path(@space, @member), class: "btn btn-default" -%>
+    <%= link_to "New Credit Note", new_space_member_credit_note_path(@space, @member), class: "btn btn-default"  -%>
+  </div>
+</div>
 
-<%= link_to "Back to Members", space_members_path(@space) -%> 
+<table class="table ledger-items" style="margin-top:25px;">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Type</th>
+      <th>Sent</th>
+      <th>Status</th>
+      <th>Due</th>
+      <th style="text-align:right">Amount</th>
+    </tr>
+  </thead>
 
-<br/> 
-<br/> 
+  <tbody>
+    <% @ledger_items.each do |item|-%>
+      <tr>
+        <td><%= link_to item.id, ledger_item_link(@space, @member, item) %></td>
+        <td><%= item_type_description(item) %></td>
+        <td><%= item.issue_date %></td>
+        <td><%= item.status %></td>
+        <td><%= item.is_invoice ? item.due_date : "" %></td>
+        <td style="text-align:right"><%= item.total_amount%></td>
+      </tr>
+    <% end -%>
+  </tbody>
 
-<ul>
-  <li><%= link_to "New Invoice", new_space_member_invoice_path(@space, @member) -%></li>
-  <li><%= link_to "New Payment", new_space_member_payment_path(@space, @member) -%></li>
-  <li><%= link_to "New Credit Note", new_space_member_credit_note_path(@space, @member) -%></li>
-</ul>
-
-<p>TODO: List of Ledger Items</p>
+</table>

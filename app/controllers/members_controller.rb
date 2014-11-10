@@ -26,6 +26,7 @@ class MembersController < ApplicationController
   end
 
   def account
+    @ledger_items = @member.ledger_items.order("created_at desc")
   end
 
   # POST /members

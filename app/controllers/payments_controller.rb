@@ -24,7 +24,11 @@ class PaymentsController < ApplicationController
   # POST /members.json
   def create
     @payment = @member.member_payments.new(member_params)
+
     @payment.sender = @space
+    @payment.status = "cleared"
+    @payment.issue_date = Time.now
+    @payment.currency = @member.location.currency
 
     respond_to do |format|   
       if @payment.save
@@ -83,6 +87,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:payment).permit()
+      params.require(:member_payment).permit(:description, :total_amount, :identifier)
     end
 end

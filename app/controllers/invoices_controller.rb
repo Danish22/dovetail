@@ -14,6 +14,9 @@ class InvoicesController < ApplicationController
   # GET /members/new
   def new
     @invoice = @member.member_invoices.new
+    10.times do
+      @invoice.line_items.build()
+    end
   end
 
   # GET /members/1/edit
@@ -24,7 +27,11 @@ class InvoicesController < ApplicationController
   # POST /members.json
   def create
     @invoice = @member.member_invoices.new(member_params)
+
     @invoice.sender = @space
+    @invoice.status = "open"
+    @invoice.issue_date = Time.now
+    @invoice.currency = @member.location.currency
 
     respond_to do |format|   
       if @invoice.save
@@ -83,6 +90,7 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:invoice).permit()
+      params.require(:member_invoice).permit(:description, :due_date, :identifier, 
+                                      line_items_attributes: [ :description, :tax_amount, :net_amount])
     end
 end

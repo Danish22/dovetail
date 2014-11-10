@@ -14,6 +14,9 @@ class CreditNotesController < ApplicationController
   # GET /members/new
   def new
     @credit_note = @member.member_credit_notes.new
+    5.times do
+      @credit_note.line_items.build()
+    end
   end
 
   # GET /members/1/edit
@@ -24,7 +27,11 @@ class CreditNotesController < ApplicationController
   # POST /members.json
   def create
     @credit_note = @member.member_credit_notes.new(member_params)
+
     @credit_note.sender = @space
+    @credit_note.status = "open"
+    @credit_note.issue_date = Time.now
+    @credit_note.currency = @member.location.currency
 
     respond_to do |format|   
       if @credit_note.save
@@ -83,6 +90,7 @@ class CreditNotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:credit_note).permit()
+      params.require(:member_credit_note).permit(:description, :identifier, 
+                                      line_items_attributes: [ :description, :tax_amount, :net_amount])
     end
 end
