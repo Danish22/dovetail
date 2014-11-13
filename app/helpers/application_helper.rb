@@ -99,7 +99,7 @@ module ApplicationHelper
   end
 
   def item_type_description(item)
-    return "Invoice" if item.is_invoice && !item.status == "open"
+    return "Invoice" if item.is_invoice && !(item.status == "open")
     return "Charges" if item.is_invoice && item.status == "open"
     return "Payment" if item.is_payment
     return "Credit" if item.is_credit_note

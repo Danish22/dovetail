@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 
   resources :payment_methods
@@ -32,5 +33,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }
+
+  constraints(Subdomain) do  
+    get '/' => 'member_portal#account'    
+  end 
+
   root to: 'members#index'
 end
