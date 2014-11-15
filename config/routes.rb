@@ -6,6 +6,11 @@ Rails.application.routes.draw do
 
   constraints(Portal) do  
     get '/' => 'member_portal#account'    
+    post '/' => 'member_portal#create_identity'    
+
+    # Authentication/sessions  routes
+    post '/auth/:provider/callback', to: 'sessions#create'
+    get '/logout', to: 'sessions#destroy'
   end 
 
   constraints(AppConstraint) do

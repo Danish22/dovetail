@@ -19,7 +19,19 @@
           = value
 
     .container
-      = yield
+      %div{style: "padding:20px;margin-top:20px;", class: "text-center"}
+        %h2
+          = @space.name
 
-    = yield :javascript
+      - if current_member
+        - if !current_member.provider.nil?
+          %div{style: "", class: "text-center"}         
+            = link_to "Sign out", "/logout", class: "btn btn-default"
+          = yield
+        - else
+          = render "signup"
+      - else
+        = render "signin"
+
+    =# yield :javascript
 

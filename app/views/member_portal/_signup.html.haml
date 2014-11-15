@@ -1,0 +1,15 @@
+%div{style: "padding:25px;"}
+  .col-md-6.col-md-offset-3
+    %h4 Welcome #{current_member.name}, please create a password for your account
+    %br
+    = form_for(@identity, url: "/", method: :post) do |f| 
+      .form-group{:class => has_error(@identity, :password)}
+        = f.label :password
+        = f.password_field :password, class: "form-control"
+        = field_errors(@identity, :password)
+      .form-group{:class => has_error(@identity, :password_confirmation)}
+        = f.label :password_confirmation, "Confirm Password"
+        = f.password_field :password_confirmation, class: "form-control"
+        = field_errors(@identity, :password_confirmation)
+      = f.submit "Sign up", class: "btn btn-primary"
+

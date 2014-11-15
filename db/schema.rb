@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019234644) do
+ActiveRecord::Schema.define(version: 20141115161028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 20141019234644) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "identities", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subdomain"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "invites", force: true do |t|
     t.integer  "recipient_id"
@@ -127,6 +136,9 @@ ActiveRecord::Schema.define(version: 20141019234644) do
     t.datetime "updated_at"
     t.integer  "location_id"
     t.integer  "plan_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "invite"
   end
 
   add_index "members", ["space_id"], name: "index_members_on_space_id", using: :btree
@@ -200,6 +212,7 @@ ActiveRecord::Schema.define(version: 20141019234644) do
     t.string   "plan"
     t.string   "stripe_subscription_id"
     t.integer  "payment_method_id"
+    t.string   "subdomain"
   end
 
   add_index "spaces", ["user_id"], name: "index_spaces_on_user_id", using: :btree
