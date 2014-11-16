@@ -1,0 +1,24 @@
+.col-md-6.col-md-offset-3
+  %h3 #{item_type_description(@item)} Details
+  %h5 #{@item.description} #{@item.total_amount}
+
+  - if @item.line_items.length > 0
+    %table.table.line-items{style: "margin-top:25px;"}
+      %thead
+        %tr
+          %th Description
+          %th{style: "text-align:right"} Tax Amount
+          %th{style: "text-align:right"} Total Amount
+          
+        %tbody
+          - @item.line_items.each do |item|
+            - next if item.description.blank?
+            %tr
+              %td= item.description
+              %td{style: "text-align:right"}= item.tax_amount
+              %td{style: "text-align:right"}= (item.net_amount || 0) + (item.tax_amount || 0)
+
+  = link_to "Back to account", "/"
+
+.col-md-5
+  &nbsp;

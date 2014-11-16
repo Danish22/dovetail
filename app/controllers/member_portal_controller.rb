@@ -4,7 +4,16 @@
 class MemberPortalController < PortalApplicationController
 
   def account
-    @identity = MemberIdentity.new
+
+    if current_member
+      @ledger_items = current_member.ledger_items.in_effect.order("issue_date DESC")
+    end
+
+    @identity = MemberIdentity.new # Really only used on signup
+  end
+
+  def details
+    @item = current_member.ledger_items.find(params[:ledger_item_id])
   end
 
   def create_identity

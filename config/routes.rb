@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   constraints(Portal) do  
+
     get '/' => 'member_portal#account'    
+    get ':ledger_item_id/details' => 'member_portal#details'
+
     post '/' => 'member_portal#create_identity'    
 
     # Authentication/sessions  routes

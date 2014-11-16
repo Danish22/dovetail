@@ -1,0 +1,26 @@
+.col-md-7
+  %h3 History
+
+  - if !@ledger_items.nil? && @ledger_items.length == 0
+    .text-center
+      %em There are no payments or invoices to display
+  - elsif !@ledger_items.nil? && @ledger_items.length > 0
+    %table.table.ledger-items{style: "margin-top:25px;"}
+      %thead
+        %tr
+          %th Type
+          %th Issued
+          %th Due
+          %th{style: "text-align:right"} Amount
+          
+        %tbody
+          - @ledger_items.each do |item|
+            %tr
+              %td= link_to item_type_description(item), "/#{item.id}/details"
+              %td= item.issue_date
+              %td= item.is_invoice ? item.due_date : "&nbsp".html_safe
+              %td{style: "text-align:right"}= item.total_amount
+
+.col-md-5
+  %h3 Credit Card
+

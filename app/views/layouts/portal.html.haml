@@ -23,9 +23,10 @@
         %h2
           = @space.name
 
-      - if current_member
+      - if !current_member.nil?
         - if !current_member.provider.nil?
           %div{style: "", class: "text-center"}         
+            Welcome #{current_member.name}
             = link_to "Sign out", "/logout", class: "btn btn-default"
           = yield
         - else
@@ -33,5 +34,5 @@
       - else
         = render "signin"
 
-    =# yield :javascript
+    = yield :javascript
 
