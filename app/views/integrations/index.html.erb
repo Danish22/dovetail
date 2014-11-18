@@ -1,0 +1,49 @@
+<div class="row">
+
+  <div class="col-md-12">
+    
+    <div class="panel padded" style="">
+      
+      <!-- left column -->
+      <div class="container row"  style="margin-top:25px;">
+        
+        <% integrations(@space).each do |integration| -%>
+          
+          <div class="text-center col-md-3 integrations-list" style="margin-bottom:30px;">
+            <div class="well" style="">
+              <img class="" src="/img/integrations/<%= integration.icon%>" style="height:50px;margin:auto auto;margin-bottom:20px;" alt="">
+              <p>
+                <small><%= integration.description -%> </small>
+              </p>
+
+              <% if defined? integration.impl.constantize.class -%>
+                <% integration_impl = @space.integrations.where(type: integration.impl).first -%>
+                <% if integration_impl && integration_impl.connected? -%>
+                  <div class="integration-status integration-installed rounded">
+                    <% if integration_impl.configured? -%>
+                      <i class="icon-check-sign" style="font-size:4.5em;"></i>
+                    <% else -%>
+                      <i class="icon-check-empty" style="font-size:4.5em;"></i>
+                    <% end -%>
+                  </div>
+                  <a href="<%=integration.path-%>" class="btn btn-success btn-block">Settings</a>
+                <% else -%>
+                  <div class="integration-status integration-available rounded">
+                    <i class="icon-minus-sign-alt" style="font-size:4.5em;"></i>
+                  </div>
+                  <a href="<%=integration.path-%>" class="btn btn-success btn-block">Connect <%= integration.label -%></a>
+                <% end -%>
+              <% else -%>
+                  <div class="integration-status integration-available rounded">
+                    <i class="icon-minus-sign-alt" style="font-size:4.5em;"></i>
+                  </div>
+                <a href="#comingsoon" class="btn btn-default btn-block" disabled="disabled">Coming Soon</a>
+              <% end -%>
+            </div>
+          </div>
+        <% end -%>
+      
+      </div>
+    </div>
+  </div>
+</div>

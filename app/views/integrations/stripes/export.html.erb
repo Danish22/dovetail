@@ -1,0 +1,57 @@
+
+<div class="row with-margin">
+  <div class="pull-left">
+    <h4>  
+      MailChimp Integration
+    </h4>
+  </div>
+  <div class="pull-right text-right clearfix">
+    <%= link_to "<i class='icon-chevron-sign-left' style='margin-right:6px;'></i> Back".html_safe, integrations_mailchimp_path, :class => "btn btn-default" %>
+  </div>
+</div>
+
+<hr style="border-color:#ddd;"/>
+
+<div class="container row">
+
+  <div class="col-md-9">
+    
+    <div class="panel padded text-center clearfix" style="padding-top:25px;">
+
+      <p class="lead" style="margin:0;"><strong>Export Dovetail member records into MailChimp </strong></p>
+      <p style="line-height:1.4em;margin:5px;font-size:15px;">
+        Select a list and start marketing to your users!
+      </p>
+
+      <div class="col-md-6 col-md-offset-3" style="margin-top:70px;margin-bottom:100px;">
+        
+        <%= simple_form_for(@integration, 
+                            url: export_integrations_mailchimp_path,
+                            method: :put,
+                            wrapper: :bootstrap_vertical,	
+                            :html => {:class =>"bootstrap-vertical"}) do |f| %>
+          
+          <%= f.input :export_list, collection: @integration.available_lists, 
+              prompt: "Select a list to export to", 
+              label: false
+              %>         
+          
+          <input type="submit" value="Start Export" class="btn btn-primary" />
+          
+        <% end %>
+
+      </div>
+                  
+    </div>
+  </div>
+
+  <div class="col-md-3">
+
+    <div class="" style="margin-top:45px;">
+
+      <%= render partial: "sidebar" -%>
+
+    </div>
+  
+  </div>
+</div>

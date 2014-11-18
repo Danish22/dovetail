@@ -1,0 +1,21 @@
+      <p><strong>Import Member Data</strong></p>
+      <hr style="border-color:#ddd;margin:0;margin-bottom:10px;">
+      <span style="color:#999;">
+        New to Dovetail? Reduce setup time by importing existing member records from MailChimp.
+      </span>
+      <br/>
+      <a href="<%=import_integrations_mailchimp_path-%>" <%= disabled_unless(@connected) -%> class="btn btn-default", style="margin-top:15px;"> 
+        <i class='icon-download-alt' style='margin-right:6px;'></i> Import Members
+      </a>
+
+
+      <p style="margin-top:45px;"><strong>Export Member Data</strong></p>
+      <hr style="border-color:#ddd;margin:0;margin-bottom:10px;">
+
+      <span style="color:#999;">
+        New to MailChimp? Populate your mailing list by exporting member records from Dovetail. 
+      </spanl>
+      <br/>
+      <a href="<%=export_integrations_mailchimp_path-%>" <%= disabled_unless(@connected) -%> class="btn btn-default", style="margin-top:15px"> 
+        <i class='icon-upload-alt' style='margin-right:6px;'></i> Export Members
+      </a>

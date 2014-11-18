@@ -45,7 +45,7 @@ module ApplicationHelper
   end
 
   def select_sub_nav
-    if ["spaces", "admins", "locations", "resources", "plans"].include? controller_name
+    if ["spaces", "admins", "locations", "resources", "plans", "integrations", "stripes"].include? controller_name
       return "shared/settings"
     elsif ["members"].include? controller_name
       return nil
@@ -103,6 +103,54 @@ module ApplicationHelper
     return "Charges" if item.is_invoice && item.status == "open"
     return "Payment" if item.is_payment
     return "Credit" if item.is_credit_note
+  end
+
+  ThirdPartyApp = Struct.new(:impl, :label, :path, :icon, :description)
+
+  def integrations(space)
+    [
+     ThirdPartyApp.new("StripeIntegration", "Stripe", 
+                       space_integrations_stripe_path(space), 
+                       "stripe.png", 
+                       "Get paid using your Stripe account."),
+
+     # ThirdPartyApp.new("MailchimpIntegration", "Mailchimp", 
+     #                   integrations_mailchimp_path,
+     #                   "mailchimp.png", 
+     #                   "Automatically add members to your mailing list(s)."),     
+
+     # ThirdPartyApp.new("CampaingMonitor", "Campaign", 
+     #                   "integrations/campaignmonitors/status", 
+     #                   "campaignmonitor.png", 
+     #                   "Automatically add members to your mailing list(s)."),
+
+#     ThirdPartyApp.new("Freshbooks", "Freshbooks", 
+#                       "integrations/freshbooks/status", 
+#                       "freshbooks.png",                      
+#                       "Automatically add members as clients in Freshbooks."),     
+
+
+     # ThirdPartyApp.new("MadMimi", "Mad Mimi", 
+     #                   "integrations/madmimis/status", 
+     #                   "madmimi.png", 
+     #                   "Automatically add members to your mailing list(s)."),
+
+     # ThirdPartyApp.new("GoogleAnalytics", "Analytics", 
+     #                   "integrations/googleanalytics/status", 
+     #                   "googleanalytics.png", 
+     #                   "View analytics data from your space's marketing site."),
+
+#     ThirdPartyApp.new("Quickbooks","Quickbooks", 
+#                       "integrations/mailchimps/status", 
+#                       "quickbooks.png", 
+#                       "Automatically add members as clients in Quickbooks."),
+
+
+#     ThirdPartyApp.new("Xero", "Xero", 
+#                       "integrations/xeros/status", 
+#                       "xero.png", 
+#                       "Automatically add members as clients in Xero."),
+    ]
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141115161028) do
+ActiveRecord::Schema.define(version: 20141118130444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,19 @@ ActiveRecord::Schema.define(version: 20141115161028) do
     t.string   "email"
     t.string   "subdomain"
     t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "integrations", force: true do |t|
+    t.string   "type"
+    t.string   "api_key"
+    t.string   "api_secret"
+    t.string   "oauth_access_token"
+    t.string   "oauth_refresh_token"
+    t.string   "remote_account_id"
+    t.text     "settings"
+    t.integer  "space_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,111 @@
+
+<div class="row with-margin">
+  <div class="pull-left">
+    <h4>  
+      MailChimp Integration
+    </h4>
+  </div>
+  <div class="pull-right text-right clearfix">
+    <%= link_to "<i class='icon-chevron-sign-left' style='margin-right:6px;'></i> Back".html_safe, integrations_path, :class => "btn btn-default" %>
+  </div>
+</div>
+
+<hr style="border-color:#ddd;"/>
+
+<div class="container row">
+
+  <div class="col-md-9">
+    
+    <div class="panel padded" style="">
+
+      <div class="well clearfix"  style="margin:15px;">
+
+        <div class="media"  style="padding:5px;">
+          <div class="pull-left text-center" style="margin-right:25px;">
+            <img class="media-object" src="/img/integrations/mailchimpshow.png" alt="">
+          </div>
+          <div class="media-body">
+            <div class="media-heading">
+              <p class="lead" style="margin:0;"><strong>Automatically add/update subscribers...</strong></p>
+              <p style="line-height:1.4em;font-size:15px;">
+                ...whenever new members are added in Dovetail or existing member records are updated. To allow for useful <a href="http://kb.mailchimp.com/article/how-can-i-send-to-a-segment-of-my-list/">list segmentation</a>, log into MailChimp and ensure the following <a href="http://kb.mailchimp.com/article/where-can-i-find-my-lists-merge-tags">merge tags</a> are present in your selected list:<br><br> *|EMAIL|*, *|FNAME|*, *|LNAME|*, *|MTYPE|* and *|MSTATUS|*
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="row" style="margin-top:45px;margin-bottom:65px;">
+
+        <div class="col-md-3 text-right">
+          <h6 class="text-right">Step 1 of 2</h6>
+        </div>
+
+        <div class="col-md-8" style="padding-right:8px;">
+
+          <%= bootstrap_form_for(@integration, 
+                                url: integrations_mailchimp_path) do |f| %>
+              
+            <%= f.text_field :api_key, {
+                hide_label: true,
+                placeholder: "Enter your MailChimp API Key here", 
+                disabled: @connected} %>
+                        
+            <% if @connected -%>
+              <%= link_to "<i class='icon-unlink' style='margin-right:6px;'></i> Disconnect".html_safe, integrations_mailchimp_path, 
+                  method: :delete, class: "btn btn-inverse" %>
+            <% else -%>
+              <input type="submit" value="Connect" class="btn btn-primary"/>
+            <% end -%>
+          <% end %>          
+        </div>
+        <div class="col-md-1" style="padding-left:5px;">
+          <% if @connected -%>
+            <i class="icon-check-sign integration-installed" style="font-size:3em;"></i>
+          <% else -%>
+            <i class="icon-minus-sign-alt integration-available" style="font-size:3em;"></i>
+          <% end -%>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom:45px;">
+
+        <div class="col-md-3 text-right">
+          <h6 class="text-right">Step 2 of 2</h6>
+        </div>
+
+        <div class="col-md-8" style="padding-right:5px;">
+          <%= bootstrap_form_for(@integration, 
+                                 url: integrations_mailchimp_path) do |f| %>
+            
+          <%= f.select :default_list, @integration.available_lists, {prompt: "Select your defaulty mailing list"}, 
+            {class: "form-control", disabled: !@connected, hide_label: true} %>
+            <input type="submit" value="Set Default List" class="btn btn-primary" <%= disabled_unless(@connected) -%> />
+            
+          <% end %>
+
+        </div>
+
+        <div class="col-md-1" style="padding-left:8px;">
+          <% if @configured -%>
+            <i class="icon-check-sign integration-installed" style="font-size:3em;"></i>
+          <% else -%>
+            <i class="icon-minus-sign-alt integration-available" style="font-size:3em;"></i>
+          <% end -%>
+        </div>
+      </div>
+                  
+    </div>
+  </div>
+
+  <div class="col-md-3">
+
+    <div class="" style="margin-top:45px;">
+
+      <%= render partial: "sidebar" -%>
+
+    </div>
+  
+  </div>
+</div>

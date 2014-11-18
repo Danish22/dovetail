@@ -1,0 +1,56 @@
+
+<div class="container row">
+
+  <div class="col-md-12">
+    
+    <div class="panel padded" style="">
+
+      <div class="well clearfix"  style="margin:15px;">
+
+        <div class="media"  style="padding:5px;">
+          <div class="pull-left text-center" style="margin-right:25px;">
+            <img class="media-object" src="/img/integrations/stripe.png" alt="">
+          </div>
+          <div class="media-body">
+            <div class="media-heading">
+              <p class="lead" style="margin:0;"><strong>Get paid using Stripe payments.</strong></p>
+              <p style="line-height:1.4em;font-size:15px;">
+                We make membership payments and one-off charges easy and automated.
+              </p>
+              <p style="line-height:1.4em;font-size:15px;">                
+                Funds are deposited into your account on a <a href="https://stripe.com/help/transfers">7-day rolling basis</a>, minus <a href="https://stripe.com/us/help/pricing">card processing fees charged by Stripe</a>. We don't take a cut of any transaction.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row" style="margin-top:45px;margin-bottom:65px;">
+
+        <div class="col-md-3 text-right">
+          <h6 class="text-right">&nbsp;</h6>
+        </div>
+
+        <div class="col-md-8" style="padding-right:8px;">
+
+          <% if @connected -%>
+            <%= link_to "<i class='icon-unlink' style='margin-right:6px;'></i> Disconnect".html_safe, integrations_stripe_path, 
+                method: :delete, class: "btn btn-inverse" %>
+          <% else -%>
+            <a href="<%= authorize_space_integrations_stripe_path(@space) -%>" class="btn btn-lg btn-primary"><span>Connect Your Stripe Account</span></a> or <%= link_to("Cancel", space_integrations_path(@space)) -%>
+          <% end -%>
+
+        </div>
+
+        <div class="col-md-1" style="padding-left:5px;">
+          <% if @connected -%>
+            <i class="icon-check-sign integration-installed" style="font-size:3em;"></i>
+          <% else -%>
+            <i class="icon-minus-sign-alt integration-available" style="font-size:3em;"></i>
+          <% end -%>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

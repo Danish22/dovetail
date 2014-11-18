@@ -8,3 +8,5 @@
   = link_to "Plans", space_plans_path(@space)
 %li{:class => active_tab("admins")}
   = link_to "Managers", space_admins_path(@space)
+%li{:class => active_tab(["integrations", "stripes"])}
+  = link_to "Integrations", space_integrations_path(@space)

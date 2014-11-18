@@ -7,10 +7,6 @@
     = f.label :website 
     = f.text_field :website , class: "form-control"
     = field_errors(@space, :website)
-  .form-group{:class => has_error(@space, :slug)}
-    = f.label :slug 
-    = f.text_field :slug, class: "form-control" 
-    = field_errors(@space, :slug)
   .form-group{:class => has_error(@space, :subdomain)}
     = f.label :subdomain
     .input-group

@@ -43,6 +43,16 @@ Rails.application.routes.draw do
       resources :admins
       resources :resources
       resources :plans
+
+      get 'integrations', to: 'integrations#index'
+      namespace :integrations do
+        resource :mailchimp, only: [:show, :create, :update, :destroy]        
+        resource :stripe, only: [:show, :destroy] do
+          get 'authorize', on: :member
+          get 'callback', on: :member
+        end
+      end
+
     end
     
     devise_for :users, :controllers => { :registrations => "registrations" }    

@@ -1,0 +1,60 @@
+
+<div class="row with-margin">
+  <div class="pull-left">
+    <h4>  
+      MailChimp Integration
+    </h4>
+  </div>
+  <div class="pull-right text-right clearfix">
+    <%= link_to "<i class='icon-chevron-sign-left' style='margin-right:6px;'></i> Back".html_safe, integrations_mailchimp_path, :class => "btn btn-default" %>
+  </div>
+</div>
+
+<hr style="border-color:#ddd;"/>
+
+<div class="container row">
+
+  <div class="col-md-9">
+    
+    <div class="panel padded text-center clearfix" style="padding-top:25px;">
+
+      <p class="lead" style="margin:0;"><strong>Import MailChimp subscribers into Dovetail </strong></p>
+      <p style="line-height:1.4em;margin:5px;font-size:15px;">
+        A couple of clicks = some new member records. Sweet.
+      </p>
+
+      <div class="col-md-6 col-md-offset-3" style="margin-top:50px;margin-bottom:70px;">
+        
+        <%= bootstrap_form_for(@integration, 
+                            url: import_integrations_mailchimp_path,
+                            method: :put,
+                            wrapper: :bootstrap_vertical,	
+                            :html => {:class =>"bootstrap-vertical"}) do |f| %>
+          
+          <%= f.select :import_list, @integration.available_lists, {prompt: "Select a list to import from"}, 
+          {class: "form-control",  hide_label: true} %>
+
+          <%= f.select :default_status, User.statuses, {prompt: "Select your default member status"}, {class: "form-control",  hide_label: true} %>
+
+          <%= f.collection_select :default_type, current_account.member_types, :id, :name, 
+          {prompt: "Select your default member type"}, {class: "form-control",  hide_label: true} %>
+          
+          <input type="submit" value="Start Import" class="btn btn-primary" />
+          
+        <% end %>
+
+      </div>
+                  
+    </div>
+  </div>
+
+  <div class="col-md-3">
+
+    <div class="" style="margin-top:45px;">
+
+      <%= render partial: "sidebar" -%>
+
+    </div>
+  
+  </div>
+</div>
