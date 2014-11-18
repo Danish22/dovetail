@@ -38,12 +38,6 @@
                     %i.entypo-users
                     %span
                       Community
-              %li{:class => active_tab("payments")}
-                - if @space
-                  %a
-                    %i.entypo-credit-card
-                    %span
-                      Payments
               %li{:class => active_tab(["spaces", "admins", "locations", "resources", "plans"])}
                 - if @space
                   %a{:href => edit_space_path(@space)}

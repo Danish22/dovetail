@@ -11,6 +11,13 @@
     = f.label :slug 
     = f.text_field :slug, class: "form-control" 
     = field_errors(@space, :slug)
+  .form-group{:class => has_error(@space, :subdomain)}
+    = f.label :subdomain
+    .input-group
+      %span{class: "input-group-addon"} https://
+      = f.text_field :subdomain, class: "form-control" 
+      %span{class: "input-group-addon"} .membrs.co
+    = field_errors(@space, :subdomain)
   .form-group{:class => has_error(@space, :plan)}
     = f.label :plan 
     = f.select(:plan, Space.plans, {}, {class: "form-control"})
