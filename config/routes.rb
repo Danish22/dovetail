@@ -54,8 +54,10 @@ Rails.application.routes.draw do
       end
 
     end
-    
+
+    get '/integrations/stripe/callback', to: "integrations/stripes#callback"
     devise_for :users, :controllers => { :registrations => "registrations" }    
+
   end
   root to: 'members#index'
 end

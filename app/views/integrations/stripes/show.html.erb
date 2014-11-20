@@ -34,8 +34,8 @@
         <div class="col-md-8" style="padding-right:8px;">
 
           <% if @connected -%>
-            <%= link_to "<i class='icon-unlink' style='margin-right:6px;'></i> Disconnect".html_safe, integrations_stripe_path, 
-                method: :delete, class: "btn btn-inverse" %>
+            <%= link_to "<i class='icon-unlink' style='margin-right:6px;'></i> Disconnect".html_safe, space_integrations_stripe_path(@space), 
+                method: :delete, class: "btn btn-default" %>
           <% else -%>
             <a href="<%= authorize_space_integrations_stripe_path(@space) -%>" class="btn btn-lg btn-primary"><span>Connect Your Stripe Account</span></a> or <%= link_to("Cancel", space_integrations_path(@space)) -%>
           <% end -%>

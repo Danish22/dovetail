@@ -2,6 +2,7 @@ class Integrations::StripesController < Integrations::BaseController
 
   skip_before_filter :authenticate_user!, :only => [:callback]
   skip_before_filter :prepare_integration, :only => [:callback]
+  skip_before_filter :set_space, :only => [:callback]
 
   def authorize
     params = {
@@ -32,13 +33,13 @@ class Integrations::StripesController < Integrations::BaseController
         @integration.space = space
         @integration.save
 
-        redirect_to integrations_stripe_url(notice: "Connection to Stripe established")
+        redirect_to space_integrations_stripe_url(space, notice: "Connection to Stripe established")
       rescue Exception => e
         Rails.logger.info("Stripe exception: #{e.inspect}")
         redirect_to integrations_stripe_url(alert: "There was an error while getting token.")
       end
     else
-      redirect_to integrations_stripe_url(subdomain: acc.subdomain, alert: "There was an error: #{params[:error_description]}")
+      redirect_to space_integrations_stripe_url(space, alert: "There was an error: #{params[:error_description]}")
     end
 
   end
