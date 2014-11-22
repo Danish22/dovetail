@@ -19,4 +19,6 @@ class Member < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true
 
+  attr_accessor :payment_system_token # Represents the card, only present when setting up or updating subscription
+
 end

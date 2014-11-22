@@ -56,4 +56,23 @@ class Space < ActiveRecord::Base
     end
   end
 
+  def update_payment_system_customer(member)
+    gw = payment_gateway
+    raise "No payment gateway has been configured for this space" if gw.nil?
+    gw.update_customer(member)
+  end
+
+  def charge_member(member, amount, description = "")
+    gw = payment_gateway
+    raise "No payment gateway has been configured for this space" if gw.nil?
+
+    charge_member(member, amount, member.location.currency, description)
+
+    # TODO Add payment ledger item stuff (create, set state, update when back from call catch exceptions, etc)
+  end
+
+  def payment_gateway
+     @payment_gateway ||= integrations.where(type: ['StripeIntegration']).first  
+  end
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118130444) do
+ActiveRecord::Schema.define(version: 20141122153856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,8 @@ ActiveRecord::Schema.define(version: 20141118130444) do
     t.string   "provider"
     t.string   "uid"
     t.string   "invite"
+    t.string   "payment_system_customer_id"
+    t.string   "last_4_digits"
   end
 
   add_index "members", ["space_id"], name: "index_members_on_space_id", using: :btree
