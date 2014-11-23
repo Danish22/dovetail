@@ -2,7 +2,7 @@ class MembersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_space
-  before_action :set_member, only: [:show, :edit, :update, :destroy, :account]
+  before_action :set_member, only: [:show, :edit, :update, :destroy, :account, :invite]
   before_action :check_space_payment_method
 
   # GET /members
@@ -68,6 +68,24 @@ class MembersController < ApplicationController
     @member.destroy
     respond_to do |format|
       format.html { redirect_to space_members_url(@space), notice: 'Member was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def invite
+
+    raise "Member is already signed up" unless @member.provider.blank?
+
+    @member.invite = Digest::SHA1.hexdigest([@space.id, Time.now, rand].join)
+    @member.save
+    
+    host = ENV["PORTAL_BASE_HOST"] || Rails.application.config.action_mailer.default_url_options[:host]
+    url = portal_account_url(host: host, subdomain: @space.subdomain, invite: @member.invite)
+
+    InvitesMailer.member_invite(current_user, @member, url).deliver
+
+    respond_to do |format|
+      format.html { redirect_to space_members_url(@space), notice: 'Member invite sent' }
       format.json { head :no_content }
     end
   end

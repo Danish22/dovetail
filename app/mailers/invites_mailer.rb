@@ -22,4 +22,14 @@ class InvitesMailer < ActionMailer::Base
          )
   end
 
+  def member_invite(user, member, url)
+    @member = member
+    @space = member.space
+    @url = url
+
+    mail(to: @member.email, 
+         from: user.email,
+         subject: "Invitation to sign up for #{@space.name}"
+         )
+  end
 end

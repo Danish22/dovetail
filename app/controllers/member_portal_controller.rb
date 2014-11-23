@@ -60,4 +60,8 @@ class MemberPortalController < PortalApplicationController
     params.require(:member).permit(:payment_system_token)
   end
 
+  def identity_params
+    params.require(:member_identity).permit(:password, :password_confirmation)
+  end
+
 end

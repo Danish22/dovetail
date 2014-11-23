@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   constraints(Portal) do  
 
-    get '/' => 'member_portal#account'    
+    get '/' => 'member_portal#account', as: 'portal_account'
     post '/' => 'member_portal#create_identity'    
 
     # Account history 
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       resources :members do
         member do 
           get 'account'  # Account is the 'index' page for invoices, payments and credit notes.
+          post 'invite'  # Send the invite email with the sign up token to the member
         end
         resources :invoices, except: [:index]
         resources :payments, except: [:index]
