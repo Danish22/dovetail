@@ -20,5 +20,5 @@ class Member < ActiveRecord::Base
   validates :email, presence: true
 
   attr_accessor :payment_system_token # Represents the card, only present when setting up or updating subscription
-
+  attr_accessor :gateway_error        # Holds any error from the payment gateway
 end

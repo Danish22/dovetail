@@ -7,9 +7,14 @@ Rails.application.routes.draw do
   constraints(Portal) do  
 
     get '/' => 'member_portal#account'    
-    get ':ledger_item_id/details' => 'member_portal#details'
-
     post '/' => 'member_portal#create_identity'    
+
+    # Account history 
+    get '/:ledger_item_id/details' => 'member_portal#details'
+
+    # Credit card stuff
+    get '/credit_card' => 'member_portal#credit_card'
+    patch '/update_card' => 'member_portal#update_card'
 
     # Authentication/sessions  routes
     post '/auth/:provider/callback', to: 'sessions#create'

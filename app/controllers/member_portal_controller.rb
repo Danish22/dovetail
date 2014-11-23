@@ -36,14 +36,28 @@ class MemberPortalController < PortalApplicationController
         format.html { render :account}
       end
     end
+  end
 
+  def credit_card
+    @member = current_member
+  end
+
+  def update_card
+    @member = current_member
+    respond_to do |format|   
+      if @member.update(credit_card_params) && @space.update_payment_system_customer(@member)
+        format.html { redirect_to "/", notice: 'Card details saved' }
+      else
+        flash[:notice]= "There was a problem processing your card: #{@member.gateway_error}"
+        format.html { render :credit_card}
+      end
+    end
   end
 
   protected
   # Never trust parameters from the scary internet, only allow the white list through.
-  def identity_params
-    params.require(:identity).permit(:password, :password_confirmation)
+  def credit_card_params
+    params.require(:member).permit(:payment_system_token)
   end
-
 
 end

@@ -59,7 +59,14 @@ class Space < ActiveRecord::Base
   def update_payment_system_customer(member)
     gw = payment_gateway
     raise "No payment gateway has been configured for this space" if gw.nil?
-    gw.update_customer(member)
+
+    begin
+      gw.update_customer(member)
+      return true
+    rescue Exception => e
+      member.gateway_error = e.message
+      return false
+    end
   end
 
   def charge_member(member, amount, description = "")
@@ -73,6 +80,7 @@ class Space < ActiveRecord::Base
                                     total_amount: amount, 
                                     issue_date: Time.now)
     rescue Exception => e
+      # TODO We may wish to log these into a db table/gather metrics on these to help troubleshoot
       Rails.logger.info("Exception from charge member: #{e.inspect}")
       member.member_payments.create(status: "failed", 
                                     description: "Charge failed: #{e.message}", 

@@ -22,5 +22,11 @@
               %td{style: "text-align:right"}= item.total_amount
 
 .col-md-5
-  %h3 Credit Card
-
+  - if @gateway
+    %h3 Credit Card
+    - if current_member.payment_system_customer_id.blank?
+      No card on file, <a href="/credit_card">please enter one.</a>
+    - else
+      Card one file, ending in: #{current_member.last_4_digits}. <a href="/credit_card">Change card</a>
+  - else
+    &nbsp;

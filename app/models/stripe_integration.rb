@@ -11,7 +11,7 @@ class StripeIntegration < Integration
                                   currency: currency,
                                   description: description,
                                   customer: member.payment_system_customer_id}, 
-                                access_token)    
+                                oauth_access_token)    
   end
 
   def update_customer(member)
@@ -24,11 +24,11 @@ class StripeIntegration < Integration
         :email => member.email,
         :description => stripe_description(member),
         :card => member.payment_system_token
-      }, access_token)
+      }, oauth_access_token)
 
       member.last_4_digits = customer.cards.retrieve(customer.default_card).last4
     else
-      customer = Stripe::Customer.retrieve(member.payment_system_customer_id, access_token)
+      customer = Stripe::Customer.retrieve(member.payment_system_customer_id, oauth_access_token)
 
       if member.payment_system_token.present?
         customer.card = member.payment_system_token
@@ -57,7 +57,7 @@ class StripeIntegration < Integration
   end
 
   def configured?
-    connected? && settings.has_key?("access_token")
+    connected? && !oauth_access_token.blank?
   end
 
   def user_added(user)

@@ -4,6 +4,7 @@
 class PortalApplicationController < ActionController::Base
 
   before_action :current_space
+  before_action :set_payment_gateway
   before_action :login_from_invite
 
   # Prevent CSRF attacks by raising an exception.
@@ -44,6 +45,10 @@ class PortalApplicationController < ActionController::Base
       m = @space.members.where(invite: params[:invite]).first
       session[:member_id] = m.id unless m.nil?
     end 
+  end
+
+  def set_payment_gateway
+    @gateway = @space.payment_gateway
   end
 
   def not_found
