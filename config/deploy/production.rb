@@ -8,6 +8,7 @@ role :app, %w{deploy@app.dovetail.io}
 role :web, %w{deploy@app.dovetail.io}
 role :db,  %w{deploy@app.dovetail.io}
 
+set :rails_env, 'production'
 
 # Extended Server Syntax
 # ======================

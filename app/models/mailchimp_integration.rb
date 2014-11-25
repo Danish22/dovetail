@@ -20,8 +20,6 @@ class MailchimpIntegration < Integration
   attr_accessor :export_list
   attr_accessor :import_list
 
-  attr_accessible :api_key, :default_list
-
   def default_list
     settings['default_list']
   end
