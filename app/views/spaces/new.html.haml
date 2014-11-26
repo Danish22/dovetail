@@ -16,13 +16,13 @@
       = s.label :website 
       = s.text_field :website , class: "form-control"
       = field_errors(@newspace, :website)
-  .form-group{:class => has_error(@newspace, :subdomain)}
-    = s.label :subdomain
-    .input-group
-      %span{class: "input-group-addon"} https://
-      = s.text_field :subdomain, class: "form-control" 
-      %span{class: "input-group-addon"} .membrs.co
-    = field_errors(@newspace, :subdomain)
+    .form-group{:class => has_error(@newspace, :subdomain)}
+      = s.label :subdomain
+      .input-group
+        %span{class: "input-group-addon"} https://
+        = s.text_field :subdomain, class: "form-control" 
+        %span{class: "input-group-addon"} .membrs.co
+      = field_errors(@newspace, :subdomain)
     .form-group{:class => has_error(@newspace, :plan)}
       = s.label :plan 
       = s.select(:plan, Space.plans, {}, {class: "form-control"})
