@@ -31,7 +31,7 @@ class SpacesController < ApplicationController
     @newspace = current_user.created_spaces.new(space_params)
 
     respond_to do |format|
-      if @newspace.save && update_subscription
+      if @newspace.save && update_subscription(@newspace)
 
         current_user.spaces << @newspace  # Creates the join record to add the admin to this space
 
@@ -48,7 +48,7 @@ class SpacesController < ApplicationController
   # PATCH/PUT /spaces/1.json
   def update
     respond_to do |format|
-      if @space.update(space_params) && update_subscription
+      if @space.update(space_params) && update_subscription(@space)
         format.html { redirect_to @space, notice: 'Space was successfully updated.' }
         format.json { render :show, status: :ok, location: @space }
       else
@@ -91,24 +91,24 @@ class SpacesController < ApplicationController
     end
 
     # Updates the payment method, plan and subscription
-    def update_subscription
-      if params[:payment_method] && !params[:payment_method].blank? && @space.payment_method.nil?
+    def update_subscription(space)
+      if params[:payment_method] && !params[:payment_method].blank? && space.payment_method.nil?
         pm = current_user.payment_methods.find(params[:payment_method]) # Create
       else
-        pm = @space.payment_method  # Update
+        pm = space.payment_method  # Update
       end
 
       begin
-        pm.update_subscription(@space, params[:coupon]) unless pm.nil?
+        pm.update_subscription(space, params[:coupon]) unless pm.nil?
       rescue Stripe::CardError => e
         Rails.logger.info("Card error #{e.message}")
-        @space.errors.add :base, e.message
-        @space.stripe_token = nil
+        space.errors.add :base, e.message
+        space.stripe_token = nil
         return false
       rescue Stripe::StripeError => e
         Rails.logger.error "StripeError: " + e.message
-        @space.errors.add :base, "There was a problem with your credit card"
-        @space.stripe_token = nil
+        space.errors.add :base, "There was a problem with your credit card"
+        space.stripe_token = nil
         return false
       end
 
