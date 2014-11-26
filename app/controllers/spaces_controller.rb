@@ -49,7 +49,7 @@ class SpacesController < ApplicationController
   def update
     respond_to do |format|
       if @space.update(space_params) && update_subscription(@space)
-        format.html { redirect_to @space, notice: 'Space was successfully updated.' }
+        format.html { redirect_to edit_space_url(@space), notice: 'Space was successfully updated.' }
         format.json { render :show, status: :ok, location: @space }
       else
         format.html { render :edit }
@@ -86,7 +86,7 @@ class SpacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def space_params
-      params.require(:space).permit(:name, :address, :phone, :fax, :website, :country, :postal, :timezone, :currency, :slug, :user_id, :plan, 
+      params.require(:space).permit(:name, :address, :phone, :fax, :website, :country, :postal, :timezone, :currency, :subdomain, :user_id, :plan, 
                                     locations_attributes: [ :name, :address, :city, :state, :postal_code, :country, :timezone, :currency, :tax_rate ])
     end
 
