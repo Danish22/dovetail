@@ -17,10 +17,10 @@
       = s.text_field :website , class: "form-control"
       = field_errors(@newspace, :website)
   .form-group{:class => has_error(@newspace, :subdomain)}
-    = f.label :subdomain
+    = s.label :subdomain
     .input-group
       %span{class: "input-group-addon"} https://
-      = f.text_field :subdomain, class: "form-control" 
+      = s.text_field :subdomain, class: "form-control" 
       %span{class: "input-group-addon"} .membrs.co
     = field_errors(@newspace, :subdomain)
     .form-group{:class => has_error(@newspace, :plan)}
