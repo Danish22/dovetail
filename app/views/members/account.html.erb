@@ -2,34 +2,47 @@
 <div class="row">
   <h2 class="col-md-6" style="padding-top:0;margin-top:0;">Member Billing: <%=@member.name -%></h2>
   
-  <div class="btn-group col-md-6 pull-right">
-    <%= link_to "New Invoice", new_space_member_invoice_path(@space, @member), class: "btn btn-default" -%>
-    <%= link_to "New Payment", new_space_member_payment_path(@space, @member), class: "btn btn-default" -%>
-    <%= link_to "New Credit Note", new_space_member_credit_note_path(@space, @member), class: "btn btn-default"  -%>
+  <div class="col-md-6">
+    <%= link_to "New Invoice", new_space_member_invoice_path(@space, @member), class: "btn btn-default pull-right" -%>
   </div>
 </div>
+
+<!--
+-->
 
 <table class="table ledger-items" style="margin-top:25px;">
   <thead>
     <tr>
-      <th>Number</th>
-      <th>Type</th>
-      <th>Sent</th>
-      <th>Status</th>
-      <th>Due</th>
-      <th style="text-align:right">Amount</th>
+      <th class="col-md-1">Type</th>
+      <th class="col-md-1">Issued</th>
+      <th class="col-md-1">Due</th>
+      <th class="col-md-3">Status</th>
+      <th>Description</th>      
+      <th  class="col-md-1" style="text-align:right">Amount</th>
     </tr>
   </thead>
 
   <tbody>
     <% @ledger_items.each do |item|-%>
       <tr>
-        <td><%= link_to item.id, ledger_item_link(@space, @member, item) %></td>
-        <td><%= item_type_description(item) %></td>
-        <td><%= item.issue_date %></td>
-        <td><%= item.status %></td>
-        <td><%= item.is_invoice ? item.due_date : "" %></td>
-        <td style="text-align:right"><%= item.total_amount%></td>
+        <td><%= link_to item_type_description(item), ledger_item_link(@space, @member, item) %></td>
+        <td><%= item.issue_date.strftime("%b %e, %Y") %></td>
+        <td><%= item.is_invoice ? item.due_date.strftime("%b %e, %Y") : "" %></td>
+        <td>
+          <%= item.status %>
+          <% if item.is_invoice -%>
+            <% if item.paid? -%>
+              <span class="label label-success">Paid</span>
+            <% else -%>
+              <span class="label label-danger"><b>Not Paid</b></span> Add
+              <%= link_to "Payment", new_space_member_payment_path(@space, @member, invoice_id: item.id), class: "" -%> /
+              <%= link_to "Credit Note", new_space_member_credit_note_path(@space, @member, invoice_id: item.id), class: ""  -%>
+            <% end -%>
+          <% else -%>
+          <% end -%>
+        </td>
+        <td><%= truncate(item.description, length: 40) %></td>
+        <td style="text-align:right"><%= item.total_amount_formatted%></td>
       </tr>
     <% end -%>
   </tbody>

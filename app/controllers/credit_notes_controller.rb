@@ -17,6 +17,8 @@ class CreditNotesController < ApplicationController
     5.times do
       @credit_note.line_items.build()
     end
+    @invoice = @member.member_invoices.find(params[:invoice_id])
+    @credit_note.invoice_id = @invoice.id
   end
 
   # GET /members/1/edit
@@ -27,14 +29,17 @@ class CreditNotesController < ApplicationController
   # POST /members.json
   def create
     @credit_note = @member.member_credit_notes.new(member_params)
+    @invoice = @member.member_invoices.find(@credit_note.invoice_id)
 
     @credit_note.sender = @space
-    @credit_note.status = "open"
+    @credit_note.status = "closed"
     @credit_note.issue_date = Time.now
     @credit_note.currency = @member.location.currency
 
     respond_to do |format|   
       if @credit_note.save
+        @invoice.children << @credit_note
+
         format.html { redirect_to account_space_member_url(@space, @member), notice: 'CreditNote was successfully created.' }
         format.json { render :show, status: :created, location: [@space, @member, @credit_note] }
       else

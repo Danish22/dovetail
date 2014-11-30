@@ -54,6 +54,26 @@ class MemberPortalController < PortalApplicationController
     end
   end
 
+  # Stripe, Braintree, Authorize.net, etc
+  def make_payment 
+    @member = current_member
+    @invoice = current_member.member_invoices.find(params[:ledger_item_id])
+
+    raise "Invoice is already paid" if @invoice.paid?
+
+    respond_to do |format|   
+      payment = @space.charge_member(@member, @invoice.total_amount, @invoice.description)
+      @invoice.children << payment
+
+      if payment.status == "cleared"
+        format.html { redirect_to "/", notice: 'Payment succeeded' }
+      else
+        flash[:notice]= payment.description
+        format.html { redirect_to "/", notice: payment.description }
+      end
+    end
+  end
+
   protected
   # Never trust parameters from the scary internet, only allow the white list through.
   def credit_card_params

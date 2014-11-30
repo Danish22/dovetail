@@ -16,4 +16,10 @@ class InvoicingLedgerItem < ActiveRecord::Base
   def is_credit_note
     self.class.is_credit_note
   end
+
+  # In Dovetail we'll track invoice payments.  Credit notes may be applied to an invoice.
+  # To do this we store the invoice id and reference them as child/parents.
+  has_many :children, class_name: 'InvoicingLedgerItem', foreign_key: :parent_id
+  belongs_to :parent, class_name: 'InvoicingLedgerItem', foreign_key: :parent_id
+
 end

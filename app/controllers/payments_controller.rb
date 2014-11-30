@@ -14,6 +14,8 @@ class PaymentsController < ApplicationController
   # GET /members/new
   def new
     @payment = @member.member_payments.new
+    @invoice = @member.member_invoices.find(params[:invoice_id])
+    @payment.invoice_id = @invoice.id
   end
 
   # GET /members/1/edit
@@ -24,6 +26,7 @@ class PaymentsController < ApplicationController
   # POST /members.json
   def create
     @payment = @member.member_payments.new(member_params)
+    @invoice = @member.member_invoices.find(@payment.invoice_id)
 
     @payment.sender = @space
     @payment.status = "cleared"
@@ -32,6 +35,8 @@ class PaymentsController < ApplicationController
 
     respond_to do |format|   
       if @payment.save
+        @invoice.children << @payment
+
         format.html { redirect_to account_space_member_url(@space, @member), notice: 'Payment was successfully created.' }
         format.json { render :show, status: :created, location: [@space, @member, @payment] }
       else
@@ -87,6 +92,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member_payment).permit(:description, :total_amount, :identifier)
+      params.require(:member_payment).permit(:description, :total_amount, :identifier, :invoice_id)
     end
 end

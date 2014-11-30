@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
     # Account history 
     get '/:ledger_item_id/details' => 'member_portal#details'
+    post '/:ledger_item_id/makepayment' => 'member_portal#make_payment'
 
     # Credit card stuff
     get '/credit_card' => 'member_portal#credit_card'

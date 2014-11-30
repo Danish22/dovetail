@@ -105,6 +105,21 @@ module ApplicationHelper
     return "Credit" if item.is_credit_note
   end
 
+  def paid(item)
+    if item.is_invoice
+      return (item.paid? ? "Paid" : payment_link(item))
+    else
+      return ""
+    end
+  end
+
+  def payment_link(item)
+    raise "Can only pay invoices" unless item.is_invoice
+    raise "Can only pay unpaid invoices" if item.paid?
+
+    link_to("Make payment", "/#{item.id}/makepayment", method: :post)
+  end
+
   ThirdPartyApp = Struct.new(:impl, :label, :path, :icon, :description)
 
   def integrations(space)
@@ -118,38 +133,6 @@ module ApplicationHelper
      #                   integrations_mailchimp_path,
      #                   "mailchimp.png", 
      #                   "Automatically add members to your mailing list(s)."),     
-
-     # ThirdPartyApp.new("CampaingMonitor", "Campaign", 
-     #                   "integrations/campaignmonitors/status", 
-     #                   "campaignmonitor.png", 
-     #                   "Automatically add members to your mailing list(s)."),
-
-#     ThirdPartyApp.new("Freshbooks", "Freshbooks", 
-#                       "integrations/freshbooks/status", 
-#                       "freshbooks.png",                      
-#                       "Automatically add members as clients in Freshbooks."),     
-
-
-     # ThirdPartyApp.new("MadMimi", "Mad Mimi", 
-     #                   "integrations/madmimis/status", 
-     #                   "madmimi.png", 
-     #                   "Automatically add members to your mailing list(s)."),
-
-     # ThirdPartyApp.new("GoogleAnalytics", "Analytics", 
-     #                   "integrations/googleanalytics/status", 
-     #                   "googleanalytics.png", 
-     #                   "View analytics data from your space's marketing site."),
-
-#     ThirdPartyApp.new("Quickbooks","Quickbooks", 
-#                       "integrations/mailchimps/status", 
-#                       "quickbooks.png", 
-#                       "Automatically add members as clients in Quickbooks."),
-
-
-#     ThirdPartyApp.new("Xero", "Xero", 
-#                       "integrations/xeros/status", 
-#                       "xero.png", 
-#                       "Automatically add members as clients in Xero."),
     ]
   end
 

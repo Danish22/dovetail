@@ -3,6 +3,8 @@
     New Payment from 
     = @member.name
   = form_for(@payment, url: space_member_payments_path(@space, @member, @payment)) do |f| 
+    = f.hidden_field :invoice_id
+
     .form-group{:class => "#{has_error(@payment, :description)} col-md-7", style: "padding-left:0;"}
       = f.label :description 
       = f.text_field :description, class: "form-control"

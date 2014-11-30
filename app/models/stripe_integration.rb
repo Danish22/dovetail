@@ -3,7 +3,7 @@ class StripeIntegration < Integration
   def charge_member(member, amount, currency, description = "")
 
     if member.payment_system_customer_id.blank?
-      raise "Something's not right, attempting to charge a member with no stripe customer id associated with them" 
+      raise Exception.new("Charge failed: no credit card on file.")
     end
 
     # Charge the Customer, if this raises an exception, the caller will deal with it.

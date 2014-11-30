@@ -74,19 +74,25 @@ class Space < ActiveRecord::Base
     raise "No payment gateway has been configured for this space" if gw.nil?
 
     begin
-      charge_member(member, amount, member.location.currency, description)
-      member.member_payments.create(status: "cleared", 
-                                    description: "Charge succeeded", 
-                                    total_amount: amount, 
-                                    issue_date: Time.now)
+      gw.charge_member(member, amount, member.location.currency, description)
+      p = member.member_payments.create(status: "cleared", 
+                                        currency: member.location.currency,
+                                        sender: self,
+                                        description: "Charge succeeded", 
+                                        total_amount: amount, 
+                                        issue_date: Time.now)
     rescue Exception => e
       # TODO We may wish to log these into a db table/gather metrics on these to help troubleshoot
       Rails.logger.info("Exception from charge member: #{e.inspect}")
-      member.member_payments.create(status: "failed", 
-                                    description: "Charge failed: #{e.message}", 
-                                    total_amount: amount,
-                                    issue_date: Time.now)
+      p = member.member_payments.create(status: "failed", 
+                                        currency: member.location.currency,
+                                        sender: self,
+                                        description: "Charge failed: #{e.message}", 
+                                        total_amount: amount,
+                                        issue_date: Time.now)
     end
+
+    return p
   end
 
   def payment_gateway
