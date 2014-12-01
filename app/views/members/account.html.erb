@@ -25,7 +25,10 @@
   <tbody>
     <% @ledger_items.each do |item|-%>
       <tr>
-        <td><%= link_to item_type_description(item), ledger_item_link(@space, @member, item) %></td>
+        <td>
+          <%#= link_to item_type_description(item), ledger_item_link(@space, @member, item) %>
+          <%=  item_type_description(item) %>
+        </td>
         <td><%= item.issue_date.strftime("%b %e, %Y") %></td>
         <td><%= item.is_invoice ? item.due_date.strftime("%b %e, %Y") : "" %></td>
         <td>
