@@ -9,6 +9,7 @@
       %thead
         %tr
           %th Type
+          %th Description
           %th Issued
           %th Due
           %th{style: "text-align:right"} Amount
@@ -18,8 +19,9 @@
           - @ledger_items.each do |item|
             %tr
               %td= link_to item_type_description(item), "/#{item.id}/details"
-              %td= item.issue_date
-              %td= item.is_invoice ? item.due_date : "&nbsp".html_safe
+              %td= truncate(item.description, length: 30)
+              %td= item.issue_date.strftime("%b %e, %Y")
+              %td= item.is_invoice ? item.due_date.strftime("%b %e, %Y") : "&nbsp".html_safe
               %td{style: "text-align:right"}= item.total_amount_formatted
               %td= paid(item)
 
