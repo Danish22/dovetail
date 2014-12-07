@@ -34,14 +34,17 @@
         <td>
           <%= item.status %>
           <% if item.is_invoice -%>
-            <% if item.paid? -%>
-              <span class="label label-success">Paid</span>
+            <% if item.status == "open" -%>
+               - <%= link_to "Close and Send", deliver_space_member_invoice_path(@space, @member, item), method: "post" -%> 
             <% else -%>
-              <span class="label label-danger"><b>Not Paid</b></span> Add
-              <%= link_to "Payment", new_space_member_payment_path(@space, @member, invoice_id: item.id), class: "" -%> /
-              <%= link_to "Credit Note", new_space_member_credit_note_path(@space, @member, invoice_id: item.id), class: ""  -%>
+              <% if item.paid? -%>
+                <span class="label label-success">Paid</span>
+              <% else -%>
+                <span class="label label-danger"><b>Not Paid</b></span> Add
+                <%= link_to "Payment", new_space_member_payment_path(@space, @member, invoice_id: item.id), class: "" -%> /
+                <%= link_to "Credit Note", new_space_member_credit_note_path(@space, @member, invoice_id: item.id), class: ""  -%>
+              <% end -%>
             <% end -%>
-          <% else -%>
           <% end -%>
         </td>
         <td><%= truncate(item.description, length: 40) %></td>

@@ -3,7 +3,7 @@ class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_space
   before_action :set_member
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_invoice, only: [:show, :edit, :update, :destroy, :deliver]
   before_action :check_space_payment_method
 
   # GET /members/1
@@ -55,6 +55,27 @@ class InvoicesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def deliver
+    respond_to do |format|
+      @invoice.update_attribute(:status, "closed")
+
+      host = ENV["PORTAL_BASE_HOST"] || Rails.application.config.action_mailer.default_url_options[:host]
+      needs_account = (@member.uid.blank? && @member.provider.blank?)
+      if needs_account
+        @member.invite = Digest::SHA1.hexdigest([@space.id, Time.now, rand].join)
+        @member.save
+        url = portal_account_url(host: host, subdomain: @space.subdomain, invite: @member.invite)      
+      else
+        url = portal_account_url(host: host, subdomain: @space.subdomain)      
+      end
+
+      PaymentMailer.invoice(curent_user, @member, @invoice, url, needs_account).deliver
+
+      format.html { redirect_to account_space_member_url(@space, @member), notice: 'Invoice has been sent' }
+      format.json { render :show, status: :ok, location: [@space, @member, @invoice] }
     end
   end
 

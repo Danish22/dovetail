@@ -36,7 +36,11 @@ Rails.application.routes.draw do
           get 'account'  # Account is the 'index' page for invoices, payments and credit notes.
           post 'invite'  # Send the invite email with the sign up token to the member
         end
-        resources :invoices, except: [:index]
+        resources :invoices, except: [:index] do
+          member do
+            post 'deliver'
+          end
+        end
         resources :payments, except: [:index]
         resources :credit_notes, except: [:index]
       end

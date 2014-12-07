@@ -1,0 +1,13 @@
+
+Hi there,
+
+We have received a payment of <%= @payment.total_amount_formatted -%>, thank you.  
+
+<% if @needs_account -%>
+  You can review your account by registering using the following link:
+<% else -%>
+  You can review your account at:
+<% end -%>
+
+<%= @url -%>
+
