@@ -72,7 +72,7 @@ class InvoicesController < ApplicationController
         url = portal_account_url(host: host, subdomain: @space.subdomain)      
       end
 
-      PaymentMailer.invoice(curent_user, @member, @invoice, url, needs_account).deliver
+      PaymentMailer.invoice(current_user, @member, @invoice, url, needs_account).deliver
 
       format.html { redirect_to account_space_member_url(@space, @member), notice: 'Invoice has been sent' }
       format.json { render :show, status: :ok, location: [@space, @member, @invoice] }
