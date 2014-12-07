@@ -5,14 +5,10 @@
   = form_for(@payment, url: space_member_payments_path(@space, @member, @payment)) do |f| 
     = f.hidden_field :invoice_id
 
-    .form-group{:class => "#{has_error(@payment, :description)} col-md-7", style: "padding-left:0;"}
+    .form-group{:class => "#{has_error(@payment, :description)} col-md-9", style: "padding-left:0;"}
       = f.label :description 
       = f.text_field :description, class: "form-control"
       = field_errors(@payment, :description)
-    .form-group{:class => "#{has_error(@payment, :identifier)} col-md-2", style: "padding-left:0;padding-right:0;"}
-      = f.label :identifier, "Receipt Num."
-      = f.text_field :identifier, class: "form-control"
-      = field_errors(@payment, :identifier)
     .form-group{:class => "#{has_error(@payment, :due_date)} col-md-3", style: "padding-right:0;"}
       = f.label :total_amount, "Amount"
       = f.text_field :total_amount, class: "form-control"

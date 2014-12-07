@@ -4,14 +4,6 @@
     = @member.name
   = form_for(@credit_note, url: space_member_credit_notes_path(@space, @member, @credit_note)) do |f| 
     = f.hidden_field :invoice_id
-    .form-group{:class => "#{has_error(@credit_note, :description)} col-md-8", style: "padding-left:0;"}
-      = f.label :description 
-      = f.text_field :description, class: "form-control"
-      = field_errors(@credit_note, :description)
-    .form-group{:class => "#{has_error(@credit_note, :identifier)} col-md-4", style: "padding-right:0;"}
-      = f.label :identifier, "Credit Note Number"
-      = f.text_field :identifier, class: "form-control"
-      = field_errors(@credit_note, :identifier)
     .form-group
       %label{class: "col-md-8", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"} Description
       %label{class: "col-md-2", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"} Tax $

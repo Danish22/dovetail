@@ -1,17 +1,10 @@
 .col-md-6.col-md-offset-3
-  %h4
-    Invoice for
-    = @member.name
   = form_for(@invoice, url: space_member_invoices_path(@space, @member, @invoice)) do |f| 
-    .form-group{:class => has_error(@invoice, :description)}
-      = f.label :description 
-      = f.text_field :description, class: "form-control"
-      = field_errors(@invoice, :description)
-    .form-group{:class => "#{has_error(@invoice, :identifier)} col-md-6", style: "padding-left:0;"}
-      = f.label :identifier, "Invoice Number"
-      = f.text_field :identifier, class: "form-control"
-      = field_errors(@invoice, :identifier)
-    .form-group{:class => "#{has_error(@invoice, :due_date)} col-md-6", style: "padding-right:0;"}
+    .col-md-8{style: "padding-left:0;"}
+      %h3
+        New Invoice for
+        = @member.name
+    .form-group{:class => "#{has_error(@invoice, :due_date)} col-md-4", style: "padding-right:0;"}
       = f.label :due_date
       = f.date_field :due_date, class: "form-control"
       = field_errors(@invoice, :due_date)

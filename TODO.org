@@ -2,28 +2,14 @@
 * Current Release (MVP)
   * Member list
     * Lots to do - will break out soon
-  * Change member password
-  * Member password recovery
-    * Can also/do instead password reset on admin site (would resend invite basically)
-  * Add 'Send Invoice' link button to member invoices if open
-  * Email new, closed invoices to member
-    * Include invite link on invoice first email (so they can sign up) (or if not signed up)
-  * Email payment receipts
-  * Remove invoice # field from:
-    * Invoices
-    * Payments
-    * Credit notes
-  * Reference payments on invoice display
-  * Reference invoice on payments and credit notes
   * Scheduled invoices (subsciptions auto generate)
   * Scheduled payments (auto payment for subscriptions)
-  * Attendance tracking (check in, out)
+    * Email payment receipts - Mailer done, will call when doing subscription payments
   * Onboarding, take to new member invoice with plan and prefil invoice.
-  * Add Paid and Remaining columns to Member account history.
+  * New UI/Navigation (Rip out stupid theme)
 * Next Release (MVP + 1)
 * Backlog
   * Add 'Social' Signup/Login for Member portal (FB, Twitter, G+)?
-  * New UI/Navigation (Rip out stupid theme)
   * Events/Notifcations
   * Maybe add Tags to members to allow arbitrary groupings
   * Add team support
@@ -46,6 +32,15 @@
       * billing
       * member auth
   * API Client side (restful, ruby, golang? python?, etc?)
+  * Reference payments on invoice display
+  * Reference invoice on payments and credit notes
+  * Attendance tracking (check in, out)
+  * Add Paid and Remaining columns to Member account history.
+  * Edit invoice/credit note links
+  * Delete invoice/credit note links
+  * Change member password
+  * Member password recovery
+    * Can also/do instead password reset on admin site (would resend invite basically)
 * For Matt
   * Screens
     * Lots, need to make list
