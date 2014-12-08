@@ -1,30 +1,69 @@
+* For Vince
+  * List of screens for Matt
+  * List of flows/states (ie trialling, end of trial, etc)
+  * Production certs for dovetail.io and membrs.co
+
+
+* For Matt
+  * Screens
+    * Lots, need to make list
+  * Navigation Design - In Progress
+  * Marketing site changes
+  * Pre-Order?
+
+
 * Questions
-* Current Release (MVP)
+
+* Alpha (Demoable/guided)
+  * New UI/Navigation (Rip out stupid theme)
   * Member list
     * Lots to do - will break out soon
+
+* Beta (5-10 early adopters)
   * Scheduled invoices (subsciptions auto generate)
   * Scheduled payments (auto payment for subscriptions)
     * Email payment receipts - Mailer done, will call when doing subscription payments
   * Onboarding, take to new member invoice with plan and prefil invoice.
-  * New UI/Navigation (Rip out stupid theme)
-* Next Release (MVP + 1)
-* Backlog
-  * Add 'Social' Signup/Login for Member portal (FB, Twitter, G+)?
-  * Events/Notifcations
-  * Maybe add Tags to members to allow arbitrary groupings
-  * Add team support
+  * Edit invoice/credit note links  (But only for open)
+  * Delete invoice/credit note links (Same)
+
+* 2.0 (MVP, ship in January, available to all, for money)
   * Space Branding for member portal
-  * Show pages for (Depends on design question/direction) - currently not linking to these:
+  * Change member password
+  * Member password recovery
+    * Can also/do instead password reset on admin site (would resend invite basically)
+
+
+* 2.1
+
+* 2.2
+
+* Backlog
+  * Events/Notifcations (Activity Tab in New navigation)
+  * Maybe add Tags to members to allow arbitrary groupings
+  * Add 'Social' Signup/Login for Member portal (FB, Twitter, G+)?
+  * Add team support
+
+  * Add Paid and Remaining columns to Member account history.
+  * Reference payments on invoice display
+  * Reference invoice on payments and credit notes
+  * Show pages for (Depends on design question/direction) - currently not linking to these:?
     * Invoice
     * Payment
     * Credit note
+
+  * Attendance tracking (check in, out)
   * Attendance tracking API (remote systems updating)
   * Attendance tracking self checking kiosk mode (use attendance tracking api?)
+
   * Punch cards
+
   * Braintree payment gateway
   * Paypal payments (offsite)
+
   * Attendance analytics
   * Vanity analytics (# members, etc - probably 'built-in' to each screen)
+
   * API Server side
     * Api authentication
     * Api implementation (Per space)
@@ -32,18 +71,4 @@
       * billing
       * member auth
   * API Client side (restful, ruby, golang? python?, etc?)
-  * Reference payments on invoice display
-  * Reference invoice on payments and credit notes
-  * Attendance tracking (check in, out)
-  * Add Paid and Remaining columns to Member account history.
-  * Edit invoice/credit note links
-  * Delete invoice/credit note links
-  * Change member password
-  * Member password recovery
-    * Can also/do instead password reset on admin site (would resend invite basically)
-* For Matt
-  * Screens
-    * Lots, need to make list
-  * Navigation Design - In Progress
-  * Marketing site changes
-  * Pre-Order?
+
