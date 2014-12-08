@@ -27,7 +27,7 @@
   * Edit invoice/credit note links  (But only for open)
   * Delete invoice/credit note links (Same)
 
-* 2.0 (MVP, ship in January, available to all, for money)
+* 2.0 (MVP, ship in January-february time frame, available to all, for money)
   * Space Branding for member portal
   * Change member password
   * Member password recovery
@@ -55,14 +55,14 @@
   * Attendance tracking (check in, out)
   * Attendance tracking API (remote systems updating)
   * Attendance tracking self checking kiosk mode (use attendance tracking api?)
+  * Attendance analytics
+
+  * Vanity analytics (# members, etc - probably 'built-in' to each screen)
 
   * Punch cards
 
   * Braintree payment gateway
   * Paypal payments (offsite)
-
-  * Attendance analytics
-  * Vanity analytics (# members, etc - probably 'built-in' to each screen)
 
   * API Server side
     * Api authentication

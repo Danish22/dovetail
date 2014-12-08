@@ -1,28 +1,25 @@
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col-md-6">&nbsp;</div>
+  
+  <div class="col-md-6">
+    <%= link_to "New Member", new_space_member_path(@space), class: "btn btn-default pull-right" -%>
+  </div>
+</div>
 
-  <tbody>
-    <% @members.each do |member| %>
-      <tr>
-        <td><%= member.name %></td>
-        <td><%= member.email %></td>
-        <td class="text-right">
-          <%= link_to 'Billing', account_space_member_path(@space, member) %>
-          <%= link_to 'Edit', edit_space_member_path(@space, member) %>
-          <%= link_to 'Destroy', [@space, member], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+<div id="members">
+  <% @members.each do |member| %>
+    <div class="col-md-2 text-center">
+      <div class="well" style="padding:12px;background:#FFF;border:0;">
+      <img style="margin-bottom:10px;" src="<%= member.gravatar_url(:size =>80, :rating => 'G', :secure => true, :default => 'identicon') -%>"/><br/>
+      <%= member.name %><br/>
+      <%= member.email %><br/>
+      <%= link_to 'Billing', account_space_member_path(@space, member) %>
+      <%= link_to 'Edit', edit_space_member_path(@space, member) %>
+      </div>
+    </div>
+    
+  <% end %>
+</div>
 
-<%= link_to 'New Member', new_space_member_path(@space) %>
