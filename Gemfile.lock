@@ -120,6 +120,8 @@ GEM
       rails (>= 3, < 5)
     formtastic (3.0.0)
       actionpack (>= 3.2.13)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     gravtastic (3.2.6)
     haml (4.0.5)
       tilt
@@ -331,6 +333,7 @@ DEPENDENCIES
   country_select
   devise
   figaro
+  friendly_id (~> 5.0.0)
   gravtastic
   haml
   haml-rails

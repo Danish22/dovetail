@@ -1,21 +1,11 @@
-%h1 Create a new space...
-
-%p First, we need some basic information about you space, then you can start creating plans and adding members
-
-%hr
-
-.col-md-6.col-md-offset-3
+.col-md-7
 
   = form_for(@newspace) do |s| 
-    %h3 Space Info
+    %h3 Basic Information
     .form-group{:class => has_error(@newspace, :name)}
       = s.label :name 
       = s.text_field :name, class: "form-control"
       = field_errors(@newspace, :name)
-    .form-group{:class => has_error(@newspace, :website)}
-      = s.label :website 
-      = s.text_field :website , class: "form-control"
-      = field_errors(@newspace, :website)
     .form-group{:class => has_error(@newspace, :subdomain)}
       = s.label :subdomain
       .input-group
@@ -23,11 +13,11 @@
         = s.text_field :subdomain, class: "form-control" 
         %span{class: "input-group-addon"} .membrs.co
       = field_errors(@newspace, :subdomain)
-    .form-group{:class => has_error(@newspace, :plan)}
-      = s.label :plan 
-      = s.select(:plan, Space.plans, {}, {class: "form-control"})
-      = field_errors(@newspace, :plan)
     - unless current_user.trialing?
+      .form-group{:class => has_error(@newspace, :plan)}
+        = s.label :plan 
+        = s.select(:plan, Space.plans, {}, {class: "form-control"})
+        = field_errors(@newspace, :plan)
       .form-group{:class => has_error(@newspace, :coupon)}
         = s.label :coupon 
         = text_field_tag(:coupon, class: "form-control") 

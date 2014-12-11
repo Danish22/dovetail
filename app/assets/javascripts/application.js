@@ -16,10 +16,7 @@
 //= require bootstrap.min
 //= require joinable
 //= require resizeable
-//= require neon-api
 //= require jquery.validate.min.js
-//= require neon-register
 //= require jquery.inputmask.bundle.min.js
-//= require neon-custom
 // require_tree . #NOTE: Requiring tree is not a good idea!
 // stub active_admin

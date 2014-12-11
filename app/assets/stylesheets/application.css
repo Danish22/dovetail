@@ -12,37 +12,22 @@
  *
  * require_tree . #Not a good idea with this theme
  *
- *= require font-icons/entypo/css/entypo
  *= require bootstrap
- *= require neon-core
- *= require neon-theme
- *= require neon-forms
  *= require custom
  *= stub active_admin
  *= require_self
  */
 
-
-@font-face {
-  font-family: 'Noto Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Noto Sans'), local('NotoSans'), url(http://themes.googleusercontent.com/static/fonts/notosans/v4/LeFlHvsZjXu2c3ZRgBq9nD8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
-}
-@font-face {
-  font-family: 'Noto Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Noto Sans Bold'), local('NotoSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/notosans/v4/PIbvSEyHEdL91QLOQRnZ13hCUOGz7vYGh680lGh-uXM.woff) format('woff');
-}
-@font-face {
-  font-family: 'Noto Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Noto Sans Italic'), local('NotoSans-Italic'), url(http://themes.googleusercontent.com/static/fonts/notosans/v4/ByLA_FLEa-16SpQuTcQn4IbN6UDyHWBl620a-IRfuBk.woff) format('woff');
-}
-
 .command-bar {
     text-align:right;
 }
 
+header li.active a {
+    color:#4273CB;
+    /*rgba(66, 115, 203, 1)*/
+}
+
+header ul#main-menu li a {
+    margin-left: 5px;
+    margin-right: 5px;
+}

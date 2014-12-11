@@ -3,10 +3,6 @@
     = f.label :name 
     = f.text_field :name, class: "form-control"
     = field_errors(@space, :name)
-  .form-group{:class => has_error(@space, :website)}
-    = f.label :website 
-    = f.text_field :website , class: "form-control"
-    = field_errors(@space, :website)
   .form-group{:class => has_error(@space, :subdomain)}
     = f.label :subdomain
     .input-group

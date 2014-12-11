@@ -1,12 +1,13 @@
-%li{:class => active_tab("spaces")}
-  = link_to "Space", edit_space_path(@space)
-%li{:class => active_tab("locations")}
-  = link_to "Locations", space_locations_path(@space)
-%li{:class => active_tab("resources")}
-  = link_to "Resources", space_resources_path(@space)
-%li{:class => active_tab("plans")}
-  = link_to "Plans", space_plans_path(@space)
-%li{:class => active_tab("admins")}
-  = link_to "Managers", space_admins_path(@space)
-%li{:class => active_tab(["integrations", "stripes"])}
-  = link_to "Integrations", space_integrations_path(@space)
+%ul.nav.nav-pills.nav-stacked{}
+  %li{:class => active_tab("spaces")}
+    = link_to "Space", edit_space_path(@space)
+  %li{:class => active_tab("locations")}
+    = link_to "Locations", space_locations_path(@space)
+  %li{:class => active_tab("resources")}
+    = link_to "Resources", space_resources_path(@space)
+  %li{:class => active_tab("plans")}
+    = link_to "Plans", space_plans_path(@space)
+  %li{:class => active_tab("admins")}
+    = link_to "Managers", space_admins_path(@space)
+  %li{:class => active_tab(["integrations", "stripes"])}
+    = link_to "Integrations", space_integrations_path(@space)

@@ -1,5 +1,4 @@
-class IntegrationsController < ApplicationController
-
+class InsightsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_space
   before_action :check_space_payment_method
@@ -9,6 +8,4 @@ class IntegrationsController < ApplicationController
       format.html # index.html.erb
     end
   end
-
-  protected
 end

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_payment_method
   before_action :force_space_creation
-  before_action :set_default_space
+  #before_action :set_default_space
 
   layout :layout_by_resource
 
@@ -30,11 +30,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def layout_by_resource
-    if devise_controller?
-      "devise"
-    else
-      "application"
-    end
+    # if devise_controller?
+    #   "devise"
+    # else
+    #   "application"
+    # end
+    "application"
   end
 
   def has_timezone
@@ -77,6 +78,10 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+  end
+
+  def set_space
+    @space = current_user.spaces.friendly.find(params[:space_id])
   end
 
 end

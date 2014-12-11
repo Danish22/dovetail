@@ -1,4 +1,4 @@
-.col-md-6.col-md-offset-3
+.col-md-7
   = form_for(@payment_method, html: { class: "payment_method_form"}) do |f|
     .form-group{:class => has_error(@payment_method, :billing_name)}
       = f.label :billing_name
@@ -47,7 +47,7 @@
         %input{:type => "text", :size => "4", "data-stripe" =>"cvc", :class => "form-control", :style => "width:100%;"}
 
     - if @payment_method.new_record? && current_user.created_spaces.missing_payment_method.count > 0
-      %h4 Use this payment method for:
+      %h4 Use this credit card for:
       - current_user.created_spaces.missing_payment_method.each do |space|
         .checkbox
           %label
@@ -68,7 +68,7 @@
       All payments are securely processed by Stripe. No credit card data is stored on our servers. Once a month, you'll receive a payment
       receipt when your credit card is charged.  
 
-    = f.submit class: "btn btn-primary"
+    = f.submit "Add Credit Card", class: "btn btn-primary"
     or
     = link_to "Cancel", payment_methods_path
 

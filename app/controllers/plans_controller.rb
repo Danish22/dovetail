@@ -70,10 +70,6 @@ class PlansController < ApplicationController
       @plan = @space.plans.find(params[:id])
     end
 
-    def set_space
-      @space = current_user.spaces.find(params[:space_id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
       params.require(:plan).permit(:name, :base_price, :setup_fee, :deposit, :frequency, :location_id)

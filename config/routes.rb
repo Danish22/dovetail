@@ -23,10 +23,16 @@ Rails.application.routes.draw do
   end 
 
   constraints(AppConstraint) do
-    resources :payment_methods
+
+    root to: 'members#index'
+
+    resources :payment_methods, path: "billing"
+
+    get '/integrations/stripe/callback', to: "integrations/stripes#callback"
+    devise_for :users, :controllers => { :registrations => "registrations" }    
         
     # Note most everything will be a nested resource of spaces
-    resources :spaces do
+    resources :spaces, path: "" do
       member do
         post 'cancel_subscription'
       end
@@ -55,6 +61,9 @@ Rails.application.routes.draw do
       resources :resources
       resources :plans
 
+      get 'activities', to: 'activities#index'
+      get 'insights', to: 'insights#index'
+
       get 'integrations', to: 'integrations#index'
       namespace :integrations do
         resource :mailchimp, only: [:show, :create, :update, :destroy]        
@@ -66,9 +75,5 @@ Rails.application.routes.draw do
 
     end
 
-    get '/integrations/stripe/callback', to: "integrations/stripes#callback"
-    devise_for :users, :controllers => { :registrations => "registrations" }    
-
   end
-  root to: 'members#index'
 end

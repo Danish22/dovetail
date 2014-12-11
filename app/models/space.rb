@@ -25,6 +25,9 @@ class Space < ActiveRecord::Base
 
   scope :missing_payment_method, -> { where(payment_method_id: nil) }
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   before_destroy :cancel_subscription
 
   validates :name, presence: true

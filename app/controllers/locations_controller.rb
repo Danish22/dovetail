@@ -72,10 +72,6 @@ class LocationsController < ApplicationController
       @location = @space.locations.find(params[:id])
     end
 
-    def set_space
-      @space = current_user.spaces.find(params[:space_id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
       params.require(:location).permit(:name, :city, :state, :postal_code, :country, :timezone, :currency, :tax_rate)

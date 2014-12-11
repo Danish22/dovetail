@@ -18,6 +18,7 @@
   * New UI/Navigation (Rip out stupid theme)
   * Member list
     * Lots to do - will break out soon
+  * Update Issued Date on invoices when closing
 
 * Beta (5-10 early adopters)
   * Scheduled invoices (subsciptions auto generate)

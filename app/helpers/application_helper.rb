@@ -45,10 +45,16 @@ module ApplicationHelper
   end
 
   def select_sub_nav
-    if ["spaces", "admins", "locations", "resources", "plans", "integrations", "stripes"].include? controller_name
+    if ["spaces"].include? controller_name
+      if action_name == "new"
+        return "shared/user_account"
+      else
+        return "shared/settings"
+      end      
+    elsif ["admins", "locations", "resources", "plans", "integrations", "stripes"].include? controller_name
       return "shared/settings"
-    elsif ["members"].include? controller_name
-      return nil
+    elsif ["payment_methods", "registrations", "passwords"].include? controller_name
+      return "shared/user_account"
     end
   end
 

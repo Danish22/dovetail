@@ -10,144 +10,81 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
+    %link{href: "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", rel: "stylesheet"}
 
-  %body.page-body
-    -#%p.notice= notice
-    -#%p.alert= alert
+  %body{style: "background-color:#ffffff;padding-bottom:15px;"}
 
-    .page-container.horizontal-menu
-      %header.navbar.navbar-fixed-top
+    .container
 
-        .navbar-inner.row
-          -# LOGO
-          .navbar-brand.col-sm-1
-            %a.nav-logo{:href => "/",:style=>"color:#f1f1f1;"}
-              = image_tag "logomark.png", height: 30
+      %header.row{style: "margin-top:10px;padding-bottom:0px;border-bottom:3px solid #e1e1e1;padding-left:0;padding-right:0;"}
 
-          .col-sm-2
-            %h3{:style=>"color:#f1f1f1;margin-top:14px;"}
+        .col-xs-3{style: "padding-left:0;"}
+          %a{:href => "/"}
+            %img{'src' => "/img/Dovetail_v2_logo.png", 'width' => '36'}
+
+        .col-xs-6.text-center{style: "padding-top:2px;"}
+          %ul#main-menu.list-inline{:style=>"margin-top:15px;font-size:16px;"}
+            %li{:class => active_tab("members")}
               - if @space
-                = @space.name
+                %a{:href => space_members_path(@space)}
+                  %i.fa.fa-users
+                    %span.hidden-xs
+                      Members
+                      
+            %li{:class => active_tab("activities")}
+              - if @space
+                %a{:href => space_activities_path(@space)}
+                  %i.fa.fa-bolt
+                    %span.hidden-xs
+                      Activity
+                      
+            %li{:class => active_tab("insights")}
+              - if @space
+                %a{:href => space_insights_path(@space)}
+                  %i.fa.fa-bar-chart
+                    %span.hidden-xs
+                      Insights
 
-          -# MAIN MENU
-          .col-sm-6.centered
-            %ul.navbar-nav
-              %li{:class => active_tab("members")}
-                - if @space
-                  %a{:href => space_members_path(@space)}
-                    %i.entypo-users
-                    %span
-                      Community
-              %li{:class => active_tab(["spaces", "admins", "locations", "resources", "plans", "integrations", "stripes"])}
-                - if @space
-                  %a{:href => edit_space_path(@space)}
-                    %i.entypo-cog
-                    %span
-                      Settings
+        .col-xs-3{style: "padding-right:0;"}
+          %ul.list-inline.pull-right.pull-none-xsm
+            %li.dropdown
+              %a.dropdown-toggle{'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-close-others' => 'true'}
+                %img.img-rounded{'src' => current_user.gravatar_url(:size =>44, :rating => 'G', :secure => true, :default => 'mm'), 'width' => '44'}
+                %i.fa.fa-caret-down
+              %ul.dropdown-menu{:style => "right:0;left:auto;"}
+                %li
+                  %a{:href=> edit_user_registration_path}
+                    %i.fa.fa-user
+                    Account Settings
 
-          .col-sm-3
-            %ul.user-info.pull-right.pull-none-xsm
-              %li.dropdown
-                %a.dropdown-toggle{'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-close-others' => 'true'}
-                  %img.img-circle{'src' => current_user.gravatar_url(:size =>44, :rating => 'G', :secure => true, :default => 'mm'), 'width' => '44'}
-                  %i.entypo-down-open
-                %ul.dropdown-menu{:style => "right:0;left:auto;"}
+                %li.divider
+                - current_user.spaces.order("created_at asc").each do |s|
                   %li
-                    %a{:href=> payment_methods_path}
-                      %i.entypo-credit-card
-                      Payment Methods
-                  %li.divider
-                    - current_user.spaces.each do |s|
-                      %li
-                        %a{:href=> url_for(:controller => controller_name, :action => action_name, :space_id => s)}
-                          %i.entypo-right
-                          = s.name                        
-                  %li.divider
-                  %li 
-                    %a{:href=> new_space_path}
-                      %i.entypo-plus
-                      Add Space
-                  %li.divider
-                  %li
-                    %a
-                      = link_to("<i class='entypo-logout'></i> Sign out".html_safe,  destroy_user_session_path, :method => :delete)
+                    %a{:href=> space_members_path(s)}
+                      - if @space && @space.id == s.id
+                        %span{style: "color:green"}
+                          &#8226;
+                      - else
+                        %span{style: "color:#eee"}
+                          &#8226;
+                      = s.name                        
+                %li.divider
+                %li 
+                  - if @space
+                    %a{:href=> edit_space_path(@space)}
+                      %i.fa.fa-cog
+                      Configure
+                      = @space.name                     
+                    %li.divider
+                %li
+                  = link_to("<i class='fa fa-sign-out'></i> Sign out".html_safe,  destroy_user_session_path, :method => :delete)
 
-            %ul.nav.navbar-right.pull-right
-              %li.dropdown
-                %a.dropdown-toggle.hidden{'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-close-others' => 'true'}
-                  %i.entypo-mail
-                  %span.badge.badge-info 2
-                %ul.dropdown-menu
-                  %li
-                    %ul.dropdown-menu-list.scroller
-                      %li.active
-                        %a
-                          %span.image.pull-right
-                            %img.img-circle{'src' => 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/73.jpg', 'width' => '44'}
-                          %span.line
-                            %strong
-                              Anthony Penner
-                            &ndash; Yesterday
-                          %span.line.desc.small
-                            This ain’t our first item, it is the best of the rest.
-                  %li.external
-                    %a
-                      All Messages
+      - if @space
+        .row.text-right
+          = @space.name
 
-              %li.dropdown
-                %a.dropdown-toggle.hidden{'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-close-others' => 'true'}
-                  %i.entypo-bell
-                  %span.badge.badge-secondary 2
-                %ul.dropdown-menu
-                  %li.top
-                    %p.small
-                      %a.pull-right{'href' => '#'}
-                        Mark all Read
-                      You have
-                      %strong 3
-                      New notifications.
-                  %li
-                    %ul.dropdown-menu-list.scroller
-                      %li.unread.notification-success
-                        %a{'href' => '#'}
-                          %i.entypo-user-add.pull-right
-                          %span.line
-                            %strong
-                              New User Registered
-                          %span.line.small
-                            30 Seconds Ago
-                      %li.unread.notification-secondary
-                        %a{'href' => '#'}
-                          %i.entypo-heart.pull-right
-                          %span.line
-                            %strong
-                              New User Registered
-                          %span.line.small
-                            2 Min Ago
-                      %li.unread.notification-secondary
-                        %a{'href' => '#'}
-                          %i.entypo-user.pull-right
-                          %span.line
-                            %strong
-                              New User Registered
-                          %span.line.small
-                            2 Min Ago
-                      %li.unread.notification-secondary
-                        %a{'href' => '#'}
-                          %i.entypo-cancel-circled.pull-right
-                          %span.line
-                            %strong
-                              New User Registered
-                          %span.line.small
-                            2 Min Ago
+      .main-content{style: "margin-top:20px;"}
 
-      - if select_sub_nav && @space
-        .sub-menu{:style=> "padding:3px;background:#ddd;"}
-          .container.text-center
-            %ul.nav.nav-pills{:style=>"display:inline-block;"}
-              = render select_sub_nav
-
-      .main-content
         = render 'shared/need_payment_method'
 
         .container
@@ -156,7 +93,15 @@
               = value
 
         .container
-          = yield
+          - if select_sub_nav
+            .row
+              .col-md-2
+                = render select_sub_nav
+              .col-md-10
+                = yield
+          - else
+            .row
+              = yield
 
         = yield :javascript
         = render 'shared/customerio'
