@@ -104,7 +104,7 @@ class InvoicesController < ApplicationController
         @space = current_user.default_space
         redirect_to space_members_path(@space)
       else
-        @space = current_user.spaces.find(params[:space_id])
+        @space = current_user.spaces.friendly.find(params[:space_id])
       end
 
     end
