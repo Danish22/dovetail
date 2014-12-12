@@ -41,8 +41,5 @@ class Integrations::BaseController < ApplicationController
   end
 
   protected
-    def set_space
-      @space = current_user.spaces.find(params[:space_id])
-    end
 
 end
