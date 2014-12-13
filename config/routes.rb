@@ -37,20 +37,9 @@ Rails.application.routes.draw do
         post 'cancel_subscription'
       end
       
-      resources :members do
-        member do 
-          get 'account'  # Account is the 'index' page for invoices, payments and credit notes.
-          post 'invite'  # Send the invite email with the sign up token to the member
-        end
-        resources :invoices, except: [:index] do
-          member do
-            post 'deliver'
-          end
-        end
-        resources :payments, except: [:index]
-        resources :credit_notes, except: [:index]
-      end
-      
+      get 'activities', to: 'activities#index'
+      get 'insights', to: 'insights#index'
+
       resources :locations
       resources :invites do
         member do
@@ -61,9 +50,6 @@ Rails.application.routes.draw do
       resources :resources
       resources :plans
 
-      get 'activities', to: 'activities#index'
-      get 'insights', to: 'insights#index'
-
       get 'integrations', to: 'integrations#index'
       namespace :integrations do
         resource :mailchimp, only: [:show, :create, :update, :destroy]        
@@ -73,7 +59,19 @@ Rails.application.routes.draw do
         end
       end
 
-    end
+      resources :members do
+        member do 
+          post 'invite'  # Send the invite email with the sign up token to the member
+        end
+        resources :invoices, except: [:index] do
+          member do
+            post 'deliver'
+          end
+        end
+        resources :payments, except: [:index]
+        resources :credit_notes, except: [:index]
+      end     
+    end  # Spaces
 
   end
 end

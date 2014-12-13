@@ -16,6 +16,9 @@ class Member < ActiveRecord::Base
   include Gravtastic
   gravtastic
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   validates :name, presence: true
   validates :email, presence: true
 

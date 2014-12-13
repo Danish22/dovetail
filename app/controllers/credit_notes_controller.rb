@@ -80,7 +80,7 @@ class CreditNotesController < ApplicationController
     end
 
     def set_member
-      @member = @space.members.find(params[:member_id])
+      @member = @space.members.friendly.find(params[:member_id])
     end
 
     def set_space

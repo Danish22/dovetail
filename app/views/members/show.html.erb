@@ -1,14 +1,56 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @member.name %>
-</p>
+<div class="row">
+  <h2 class="col-md-6" style="padding-top:0;margin-top:0;">Member Billing: <%=@member.name -%></h2>
+  
+  <div class="col-md-6">
+    <%= link_to "New Invoice", new_space_member_invoice_path(@space, @member), class: "btn btn-default pull-right" -%>
+  </div>
+</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @member.email %>
-</p>
+<!--
+-->
 
-<%= link_to 'Edit', edit_space_member_path(@space, @member) %> |
-<%= link_to 'Back', space_members_path(@space) %>
+<table class="table ledger-items" style="margin-top:25px;">
+  <thead>
+    <tr>
+      <th class="col-md-1">Type</th>
+      <th class="col-md-1">Issued</th>
+      <th class="col-md-1">Due</th>
+      <th class="col-md-3">Status</th>
+      <th>Description</th>      
+      <th  class="col-md-1" style="text-align:right">Amount</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ledger_items.each do |item|-%>
+      <tr>
+        <td>
+          <%#= link_to item_type_description(item), ledger_item_link(@space, @member, item) %>
+          <%=  item_type_description(item) %>
+        </td>
+        <td><%= item.issue_date.strftime("%b %e, %Y") %></td>
+        <td><%= item.is_invoice ? item.due_date.strftime("%b %e, %Y") : "" %></td>
+        <td>
+          <%= item.status %>
+          <% if item.is_invoice -%>
+            <% if item.status == "open" -%>
+               - <%= link_to "Close and Send", deliver_space_member_invoice_path(@space, @member, item), method: "post" -%> 
+            <% else -%>
+              <% if item.paid? -%>
+                <span class="label label-success">Paid</span>
+              <% else -%>
+                <span class="label label-danger"><b>Not Paid</b></span> Add
+                <%= link_to "Payment", new_space_member_payment_path(@space, @member, invoice_id: item.id), class: "" -%> /
+                <%= link_to "Credit Note", new_space_member_credit_note_path(@space, @member, invoice_id: item.id), class: ""  -%>
+              <% end -%>
+            <% end -%>
+          <% end -%>
+        </td>
+        <td><%= truncate(item.description, length: 40) %></td>
+        <td style="text-align:right"><%= item.total_amount_formatted%></td>
+      </tr>
+    <% end -%>
+  </tbody>
+
+</table>

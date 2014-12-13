@@ -8,12 +8,13 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @members = @space.members.all
+    @members = @space.members.all.order("name asc")
   end
 
   # GET /members/1
   # GET /members/1.json
   def show
+    @ledger_items = @member.ledger_items.order("created_at desc")
   end
 
   # GET /members/new
@@ -23,10 +24,6 @@ class MembersController < ApplicationController
 
   # GET /members/1/edit
   def edit
-  end
-
-  def account
-    @ledger_items = @member.ledger_items.order("created_at desc")
   end
 
   # POST /members
@@ -93,7 +90,7 @@ class MembersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
-      @member = @space.members.find(params[:id])
+      @member = @space.members.friendly.find(params[:id])
     end
 
     def set_space

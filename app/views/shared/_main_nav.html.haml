@@ -26,6 +26,13 @@
             %i.fa.fa-bar-chart
             %span.hidden-xs
               Insights
+
+      %li{:class => active_tab(["spaces", "locations", "admins", "resources", "plans", "integrations", "stripes"])}
+        - if @space
+          %a{:href => edit_space_path(@space)}
+            %i.fa.fa-cog
+            %span.hidden-xs
+              Settings
             
   .col-xs-3{style: "padding-right:0;"}
     %ul.list-inline.pull-right.pull-none-xsm
@@ -40,27 +47,22 @@
               Account Settings
 
           %li.divider
-          - current_user.spaces.order("created_at asc").each do |s|
-            %li
-              %a{:href=> space_members_path(s)}
-                - if @space && @space.id == s.id
-                  %span{style: "color:green"}
-                    &#8226;
-                - else
-                  %span{style: "color:#eee"}
-                    &#8226;
-                = s.name                        
-          %li.divider
-          %li 
-            - if @space
-              %a{:href=> edit_space_path(@space)}
-                %i.fa.fa-cog
-                Configure
-                = @space.name                     
-          %li.divider
+          - spaces = current_user.spaces.order("created_at asc")
+          - if spaces.count > 0
+            - spaces.each do |s|
+              %li
+                %a{:href=> space_members_path(s)}
+                  - if @space && @space.id == s.id
+                    %span{style: "color:green"}
+                      &#8226;
+                  - else
+                    %span{style: "color:#eee"}
+                      &#8226;
+                  = s.name                        
+            %li.divider
           %li
             = link_to("<i class='fa fa-sign-out'></i> Sign out".html_safe,  destroy_user_session_path, :method => :delete)
 
 - if @space
-  .row.text-right
+  .row.text-left
     = @space.name
