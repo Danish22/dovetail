@@ -51,6 +51,12 @@ module ApplicationHelper
       else
         return "shared/settings"
       end      
+    elsif ["registrations"].include? controller_name
+      if action_name == "new"
+        return nil       
+      else
+        return "shared/user_account"
+      end      
     elsif ["admins", "locations", "resources", "plans", "integrations", "stripes"].include? controller_name
       return "shared/settings"
     elsif ["payment_methods", "registrations", "passwords"].include? controller_name
