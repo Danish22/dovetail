@@ -24,7 +24,7 @@
   * Consistency issues with forms (size, alignment, titles (if needed))
 
 * Beta (5-10 early adopters)
-  * User password recovery
+  * Improve display of errors on fields for devise forms.
   * Scheduled invoices (subsciptions auto generate)
   * Scheduled payments (auto payment for subscriptions)
     * Email payment receipts - Mailer done, will call when doing subscription payments
