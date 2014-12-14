@@ -35,7 +35,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|   
       if @invoice.save
-        format.html { redirect_to account_space_member_url(@space, @member), notice: 'Invoice was successfully created.' }
+        format.html { redirect_to space_member_url(@space, @member), notice: 'Invoice was successfully created.' }
         format.json { render :show, status: :created, location: [@space, @member, @invoice] }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(member_params)
-        format.html { redirect_to account_space_member_url(@space, @member), notice: 'Invoice was successfully updated.' }
+        format.html { redirect_to space_member_url(@space, @member), notice: 'Invoice was successfully updated.' }
         format.json { render :show, status: :ok, location: [@space, @member, @invoice] }
       else
         format.html { render :edit }
@@ -74,7 +74,7 @@ class InvoicesController < ApplicationController
 
       PaymentMailer.invoice(current_user, @member, @invoice, url, needs_account).deliver
 
-      format.html { redirect_to account_space_member_url(@space, @member), notice: 'Invoice has been sent' }
+      format.html { redirect_to space_member_url(@space, @member), notice: 'Invoice has been sent' }
       format.json { render :show, status: :ok, location: [@space, @member, @invoice] }
     end
   end
@@ -84,7 +84,7 @@ class InvoicesController < ApplicationController
   def destroy
     @invoice.destroy
     respond_to do |format|
-      format.html { redirect_to  account_space_member_url(@space, @member), notice: 'Invoice was successfully destroyed.' }
+      format.html { redirect_to  space_member_url(@space, @member), notice: 'Invoice was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

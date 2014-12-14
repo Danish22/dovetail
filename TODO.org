@@ -24,6 +24,9 @@
   * Consistency issues with forms (size, alignment, titles (if needed))
 
 * Beta (5-10 early adopters)
+  * Timezone plugin
+  * Currency types dropdown/plugin
+  * Countries plugin (States/Provinces too? - likely not)
   * Improve display of errors on fields for devise forms.
   * Scheduled invoices (subsciptions auto generate)
   * Scheduled payments (auto payment for subscriptions)

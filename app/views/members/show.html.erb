@@ -47,12 +47,13 @@
 <table class="table ledger-items" style="margin-top:25px;">
   <thead>
     <tr>
-      <th class="col-md-1">Type</th>
+      <th class="col-md-1">Ref No.</th>
       <th class="col-md-1">Issued</th>
       <th class="col-md-1">Due</th>
-      <th class="col-md-3">Status</th>
-      <th>Description</th>      
+      <th class="col-md-1">Status</th>
+      <th>Details</th>      
       <th  class="col-md-1" style="text-align:right">Amount</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
 
@@ -61,28 +62,58 @@
       <tr>
         <td>
           <%#= link_to item_type_description(item), ledger_item_link(@space, @member, item) %>
-          <%=  item_type_description(item) %>
+          <%=  item.id %>
         </td>
         <td><%= item.issue_date.strftime("%b %e, %Y") %></td>
         <td><%= item.is_invoice ? item.due_date.strftime("%b %e, %Y") : "" %></td>
         <td>
-          <%= item.status %>
-          <% if item.is_invoice -%>
-            <% if item.status == "open" -%>
-               - <%= link_to "Close and Send", deliver_space_member_invoice_path(@space, @member, item), method: "post" -%> 
-            <% else -%>
-              <% if item.paid? -%>
-                <span class="label label-success">Paid</span>
-              <% else -%>
-                <span class="label label-danger"><b>Not Paid</b></span> Add
-                <%= link_to "Payment", new_space_member_payment_path(@space, @member, invoice_id: item.id), class: "" -%> /
-                <%= link_to "Credit Note", new_space_member_credit_note_path(@space, @member, invoice_id: item.id), class: ""  -%>
-              <% end -%>
-            <% end -%>
-          <% end -%>
+          <%= invoice_status(item) %> 
         </td>
         <td><%= truncate(item.description, length: 40) %></td>
         <td style="text-align:right"><%= item.total_amount_formatted%></td>
+        <td class="text-right">
+          <% if item.status == "open" -%>
+            <!-- Split button -->
+            <div class="btn-group">
+              <%= link_to "Send", deliver_space_member_invoice_path(@space, @member, item), class: "btn btn-xs btn-default",  method: "post" -%> 
+              <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="text-left dropdown-menu" role="menu">
+                <li>
+                  <%= link_to "Close and Send", deliver_space_member_invoice_path(@space, @member, item), method: "post" -%> 
+                </li>
+                <li>
+                  <%= link_to "Edit", edit_space_member_invoice_path(@space, @member, item)-%>  
+                </li>
+              </ul>
+            </div>
+          <% else -%>
+            <% if !item.paid? -%>
+              <div class="btn-group">
+                <%= link_to "Payment", new_space_member_payment_path(@space, @member, invoice_id: item.id), class: "btn btn-xs btn-default" -%> 
+                <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="text-left dropdown-menu" role="menu">
+                  <li>
+                    <%= link_to "Enter Payment", new_space_member_payment_path(@space, @member, invoice_id: item.id), class: "" -%>
+                  </li>
+                  <li>
+                    <%= link_to "Add Credit Note", new_space_member_credit_note_path(@space, @member, invoice_id: item.id), class: ""  -%>
+                  </li>
+                  <li>
+                    <%= link_to "View", space_member_invoice_path(@space, @member, item), class: "" -%> 
+                  </li>
+                </ul>
+              </div>              
+            <% else -%>
+              <%= link_to "View", space_member_invoice_path(@space, @member, item), class: "btn btn-xs btn-default" -%> 
+            <% end -%>
+          <% end -%>
+        </td>
       </tr>
     <% end -%>
   </tbody>

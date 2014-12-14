@@ -14,7 +14,7 @@ class MembersController < ApplicationController
   # GET /members/1
   # GET /members/1.json
   def show
-    @ledger_items = @member.ledger_items.order("created_at desc")
+    @ledger_items = @member.member_invoices.order("created_at desc")
   end
 
   # GET /members/new

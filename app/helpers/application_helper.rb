@@ -148,4 +148,23 @@ module ApplicationHelper
     ]
   end
 
+
+  def invoice_status(item)
+    if item.status == 'open'
+      return "<span class='label label-default'>Draft</span>".html_safe
+    elsif item.status == 'closed' && !item.paid?
+      if Date.today < item.due_date
+        return "<span class='label label-primary'>Sent</span>".html_safe
+      elsif Date.today <= item.due_date 
+        return "<span class='label label-warning'>Due</span>".html_safe
+      else
+        return "<span class='label label-danger'>Due</span>".html_safe
+      end
+    elsif item.status == 'closed' && item.paid?
+      return "<span class='label label-success'>Paid</span>".html_safe
+    end
+    "-"
+  end
+
+
 end
