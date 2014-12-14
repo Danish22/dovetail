@@ -1,13 +1,13 @@
+
 .login-container.col-md-4.col-md-offset-4
   .login-header.login-caret{style: "margin-top:45px;margin-bottom:35px;"}
     .login-content.text-center
       %a.logo{href: "index.html"}
         =image_tag "/img/Dovetail_v2_logo.png", width: '50'
-      %p.lead Welcome! Please sign in...
+      %p.lead Forgot your password?
   .login-form
     .login-content
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        = f.hidden_field :invite_token, value: (params[:invite_token] || (params[:user] ? params[:user][:invite_token] : nil))
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
         = devise_error_messages!
         .form-steps
           #step-1.step.current
@@ -17,21 +17,10 @@
                   %i.fa.fa-envelope
                 = f.email_field :email, autofocus: true, class: "form-control", id: "email", placeholder: "Enter you email address"
             .form-group
-              .input-group
-                .input-group-addon
-                  %i.fa.fa-lock
-                = f.password_field :password, class: "form-control", id: "password", placeholder: "Enter your password"
-            - if false && devise_mapping.rememberable?
-              .checkbox
-                %label
-                  = f.check_box :remember_me
-                  Remember me
-            .form-group
               %button.btn.btn-success.btn-block.btn-login#submit_form{type: "submit"}
                 %i.entypo-right-open-mini
-                Sign in
+                Send password reset instructions
         .login-bottom-links.text-center
           = link_to "Create An Account", "/users/sign_up", class: "link" 
           |
-          = link_to "Recover Password", new_user_password_path, class: "link" 
-
+          = link_to "Sign in", new_user_session_path, class: "link" 
