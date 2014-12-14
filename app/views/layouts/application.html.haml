@@ -29,7 +29,7 @@
               = value
 
         .container
-          - if select_sub_nav
+          - if current_user && select_sub_nav
             .row
               .col-md-2
                 = render select_sub_nav

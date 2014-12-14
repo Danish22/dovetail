@@ -17,7 +17,7 @@
   - unless current_user.trialing?
     .form-group{:class => has_error(@space, :coupon)}
       = f.label :coupon 
-      = text_field_tag(:coupon, class: "form-control") 
+      = text_field_tag(:coupon, nil, class: "form-control") 
       = field_errors(@space, :coupon)
   - unless current_user.trialing? && @space.payment_method.nil?
     - if @space.payment_method.nil?

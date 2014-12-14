@@ -13,17 +13,22 @@
 
 
 * Questions
-
+  
 * Alpha (Demoable/guided)
-  * New UI/Navigation (Rip out stupid theme)
-  * Member list
-    * Lots to do - will break out soon
-  * Update Issued Date on invoices when closing
+  * Space branding of main app
+  * New member page design
+    * Update Issued Date on invoices when closing
+  * Invoice details page,  Needed?
+  * Member portal design changes
+  * Simplified integrations (inline them on integrations page)
+  * Consistency issues with forms (size, alignment, titles (if needed))
 
 * Beta (5-10 early adopters)
+  * User password recovery
   * Scheduled invoices (subsciptions auto generate)
   * Scheduled payments (auto payment for subscriptions)
     * Email payment receipts - Mailer done, will call when doing subscription payments
+    * Perhaps it should still send the email when adding any kind of payment?!?
   * Onboarding, take to new member invoice with plan and prefil invoice.
   * Edit invoice/credit note links  (But only for open)
   * Delete invoice/credit note links (Same)

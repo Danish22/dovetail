@@ -1,36 +1,34 @@
-%body
-
-  .login-container.col-md-4.col-md-offset-4
-    .login-header.login-caret{style: "margin-top:45px;margin-bottom:35px;"}
-      .login-content.text-center
-        %a.logo{href: "index.html"}
-          =image_tag "/img/Dovetail_v2_logo.png", width: '50'
-        %p.lead Welcome! Please sign in...
-    .login-form
-      .login-content
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          = f.hidden_field :invite_token, value: (params[:invite_token] || (params[:user] ? params[:user][:invite_token] : nil))
-          = devise_error_messages!
-          .form-steps
-            #step-1.step.current
-              .form-group
-                .input-group
-                  .input-group-addon
-                    %i.fa.fa-envelope
-                  = f.email_field :email, autofocus: true, class: "form-control", id: "email", placeholder: "Enter you email address"
-              .form-group
-                .input-group
-                  .input-group-addon
-                    %i.fa.fa-lock
-                  = f.password_field :password, class: "form-control", id: "password", placeholder: "Enter your password"
-              - if false && devise_mapping.rememberable?
-                .checkbox
-                  %label
-                    = f.check_box :remember_me
-                    Remember me
-              .form-group
-                %button.btn.btn-success.btn-block.btn-login#submit_form{type: "submit"}
-                  %i.entypo-right-open-mini
-                  Sign in
-          .login-bottom-links
-            = link_to "Don't have an account yet? Create one here", "/users/sign_up", class: "link"
+.login-container.col-md-4.col-md-offset-4
+  .login-header.login-caret{style: "margin-top:45px;margin-bottom:35px;"}
+    .login-content.text-center
+      %a.logo{href: "index.html"}
+        =image_tag "/img/Dovetail_v2_logo.png", width: '50'
+      %p.lead Welcome! Please sign in...
+  .login-form
+    .login-content
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = f.hidden_field :invite_token, value: (params[:invite_token] || (params[:user] ? params[:user][:invite_token] : nil))
+        = devise_error_messages!
+        .form-steps
+          #step-1.step.current
+            .form-group
+              .input-group
+                .input-group-addon
+                  %i.fa.fa-envelope
+                = f.email_field :email, autofocus: true, class: "form-control", id: "email", placeholder: "Enter you email address"
+            .form-group
+              .input-group
+                .input-group-addon
+                  %i.fa.fa-lock
+                = f.password_field :password, class: "form-control", id: "password", placeholder: "Enter your password"
+            - if false && devise_mapping.rememberable?
+              .checkbox
+                %label
+                  = f.check_box :remember_me
+                  Remember me
+            .form-group
+              %button.btn.btn-success.btn-block.btn-login#submit_form{type: "submit"}
+                %i.entypo-right-open-mini
+                Sign in
+        .login-bottom-links
+          = link_to "Don't have an account yet? Create one here", "/users/sign_up", class: "link"
