@@ -60,8 +60,8 @@ class InvoicesController < ApplicationController
 
   def deliver
     respond_to do |format|
-      @invoice.update_attribute(:status, "closed")
-
+      @invoice.update(:status, "closed", :issue_date, Time.now)
+      
       host = ENV["PORTAL_BASE_HOST"] || Rails.application.config.action_mailer.default_url_options[:host]
       needs_account = (@member.uid.blank? && @member.provider.blank?)
       if needs_account
@@ -112,6 +112,6 @@ class InvoicesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
       params.require(:member_invoice).permit(:description, :due_date, :identifier, 
-                                      line_items_attributes: [ :description, :tax_amount, :net_amount])
+                                      line_items_attributes: [ :description, :tax_amount, :net_amount, :id])
     end
 end

@@ -2,7 +2,7 @@
   %h4
     New Payment from 
     = @member.name
-  = form_for(@payment, url: space_member_payments_path(@space, @member, @payment)) do |f| 
+  = form_for([@space, @member, @payment]) do |f| 
     = f.hidden_field :invoice_id
 
     .form-group{:class => "#{has_error(@payment, :description)} col-md-9", style: "padding-left:0;"}

@@ -64,8 +64,12 @@
           <%#= link_to item_type_description(item), ledger_item_link(@space, @member, item) %>
           <%=  item.id %>
         </td>
-        <td><%= item.issue_date.strftime("%b %e, %Y") %></td>
-        <td><%= item.is_invoice ? item.due_date.strftime("%b %e, %Y") : "" %></td>
+        <% if item.status == "open"%>
+          <td> - </td>
+        <% else -%>
+          <td><%= item.issue_date.nil? ? "Not Set" : item.issue_date.strftime("%b %e, %Y") %></td>
+        <% end -%>
+        <td><%= item.is_invoice ? (item.due_date.nil? ? "Not Set" : item.due_date.strftime("%b %e, %Y")) : "" %></td>
         <td>
           <%= invoice_status(item) %> 
         </td>
@@ -133,7 +137,7 @@
   <article class="timeline-entry">   
     <div class="timeline-entry-inner">      
       <div class="timeline-icon bg-success">
-        <i class="fa fa-lock"></i>
+        <i class="fa fa-check"></i>
       </div>      
       <div class="timeline-label">
         <h2><a href="#">Art Ramadani</a> <span>posted a status update</span></h2>
@@ -145,7 +149,7 @@
   <article class="timeline-entry">    
     <div class="timeline-entry-inner">      
       <div class="timeline-icon bg-secondary">
-        <i class="entypo-suitcase"></i>
+        <i class="fa fa-warning"></i>
       </div>      
       <div class="timeline-label">
         <h2><a href="#">Job Meeting</a></h2>
@@ -155,19 +159,11 @@
   
   <article class="timeline-entry">    
     <div class="timeline-entry-inner">
-      <div class="timeline-icon bg-warning">
-        <i class="entypo-camera"></i>
+      <div class="timeline-icon bg-info">
+        <i class="fa fa-envelope"></i>
       </div>
       <div class="timeline-label">
         <h2><a href="#">Arber Nushi</a> <span>changed his</span> <a href="#">Profile Picture</a></h2>        
-      </div>
-    </div>
-  </article>
-  
-  <article class="timeline-entry begin">
-    <div class="timeline-entry-inner">
-      <div class="timeline-icon" style="-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);">
-        <i class="entypo-flight"></i> +
       </div>
     </div>
   </article>

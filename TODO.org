@@ -15,6 +15,7 @@
 * Questions
   
 * Alpha (Demoable/guided)
+  * Bug when editing invoices - dupes the line items.
   * Space branding of main app
   * New member page design
     * Update Issued Date on invoices when closing

@@ -2,7 +2,7 @@
   = form_for(@invoice, url: space_member_invoices_path(@space, @member, @invoice)) do |f| 
     .col-md-8{style: "padding-left:0;"}
       %h3
-        New Invoice for
+        Invoice for
         = @member.name
     .form-group{:class => "#{has_error(@invoice, :due_date)} col-md-4", style: "padding-right:0;"}
       = f.label :due_date
@@ -13,6 +13,8 @@
       %label{class: "col-md-2", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"} Tax $
       %label{class: "col-md-2", style: "padding-left:0;padding-right:0;"} Amount
     = f.fields_for :line_items do |l|
+      = l.hidden_field :id
+
       .form-group{:class => "#{has_error(l.object, :description)} col-md-8", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"}
         = l.text_field :description, class: "form-control"
         = field_errors(l.object, :description)
@@ -27,3 +29,4 @@
       = f.submit class: "btn btn-primary"
       or
       = link_to("Cancel", :back)
+
