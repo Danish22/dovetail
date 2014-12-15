@@ -131,44 +131,30 @@
 </div>
 
 <div class="row">
-<div class="col-md-10 col-md-offset-1">
-<div class="timeline-centered">
-
-  <article class="timeline-entry">   
-    <div class="timeline-entry-inner">      
-      <div class="timeline-icon bg-success">
-        <i class="fa fa-check"></i>
-      </div>      
-      <div class="timeline-label">
-        <h2><a href="#">Art Ramadani</a> <span>posted a status update</span></h2>
+  <div class="col-md-10 col-md-offset-1">
+    
+    <% if @history_items.count == 0 -%>
+      <p class="text-center">        
+        <i>There are no history items to display.</i>
+      </p>
+    <% else -%>
+      <div class="timeline-centered">
+        
+        <% @history_items.each do |history_item| -%>
+          <article class="timeline-entry">   
+            <div class="timeline-entry-inner">      
+              <div class="timeline-icon <%= timeline_bg_colour(history_item) -%>">
+                <i class="fa <%= timeline_icon(history_item) -%>"></i>
+              </div>      
+              <div class="timeline-label">
+                <h2><a href="#">Art Ramadani</a> <span>posted a status update</span></h2>
+              </div>
+            </div>
+          </article>
+        <% end -%>
+        
       </div>
-    </div>
-  </article>
-  
-  
-  <article class="timeline-entry">    
-    <div class="timeline-entry-inner">      
-      <div class="timeline-icon bg-secondary">
-        <i class="fa fa-warning"></i>
-      </div>      
-      <div class="timeline-label">
-        <h2><a href="#">Job Meeting</a></h2>
-      </div>
-    </div>    
-  </article>
-  
-  <article class="timeline-entry">    
-    <div class="timeline-entry-inner">
-      <div class="timeline-icon bg-info">
-        <i class="fa fa-envelope"></i>
-      </div>
-      <div class="timeline-label">
-        <h2><a href="#">Arber Nushi</a> <span>changed his</span> <a href="#">Profile Picture</a></h2>        
-      </div>
-    </div>
-  </article>
-  
-</div>
-
-</div>
+    <% end -%>
+    
+  </div>
 </div>

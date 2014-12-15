@@ -166,5 +166,28 @@ module ApplicationHelper
     "-"
   end
 
+  def timeline_bg_colour(item) 
+    if item.status == 'closed'
+      if item.is_invoice
+        return "bg-info"    # Sent invoice
+      else
+        return "bg-success"  # Entered Credit Note
+      end
+    end
+    return "bg-secondary" if item.status == 'failed'
+    return "bg-success" if item.status == 'cleared'    
+  end
+
+  def timeline_icon(item)
+    if item.status == 'closed'
+      if item.is_invoice
+        return "fa-envelope"    # Sent invoice
+      else
+        return "fa-check"       # Entered Credit Note
+      end
+    end
+    return "fa-warning" if item.status == 'failed'
+    return "fa-check" if item.status == 'cleared'
+  end
 
 end

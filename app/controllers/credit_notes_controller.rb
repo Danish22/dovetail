@@ -40,7 +40,7 @@ class CreditNotesController < ApplicationController
       if @credit_note.save
         @invoice.children << @credit_note
 
-        format.html { redirect_to account_space_member_url(@space, @member), notice: 'CreditNote was successfully created.' }
+        format.html { redirect_to space_member_url(@space, @member), notice: 'CreditNote was successfully created.' }
         format.json { render :show, status: :created, location: [@space, @member, @credit_note] }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class CreditNotesController < ApplicationController
   def update
     respond_to do |format|
       if @credit_note.update(member_params)
-        format.html { redirect_to account_space_member_url(@space, @member), notice: 'CreditNote was successfully updated.' }
+        format.html { redirect_to space_member_url(@space, @member), notice: 'CreditNote was successfully updated.' }
         format.json { render :show, status: :ok, location: [@space, @member, @credit_note] }
       else
         format.html { render :edit }
@@ -68,7 +68,7 @@ class CreditNotesController < ApplicationController
   def destroy
     @credit_note.destroy
     respond_to do |format|
-      format.html { redirect_to  account_space_member_url(@space, @member), notice: 'CreditNote was successfully destroyed.' }
+      format.html { redirect_to  space_member_url(@space, @member), notice: 'CreditNote was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -95,7 +95,7 @@ class CreditNotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member_credit_note).permit(:description, :identifier, 
+      params.require(:member_credit_note).permit(:description, :invoice_id, 
                                       line_items_attributes: [ :description, :tax_amount, :net_amount])
     end
 end

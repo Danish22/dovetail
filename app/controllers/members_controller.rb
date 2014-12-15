@@ -15,6 +15,10 @@ class MembersController < ApplicationController
   # GET /members/1.json
   def show
     @ledger_items = @member.member_invoices.order("created_at desc")
+    @history_items = @member.ledger_items
+      .where(status: ["closed", "cleared", "failed"])
+      .order("created_at desc")
+      .limit(6)
   end
 
   # GET /members/new

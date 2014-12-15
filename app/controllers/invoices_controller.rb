@@ -60,7 +60,7 @@ class InvoicesController < ApplicationController
 
   def deliver
     respond_to do |format|
-      @invoice.update(:status, "closed", :issue_date, Time.now)
+      @invoice.update({status: "closed", issue_date: Time.now})
       
       host = ENV["PORTAL_BASE_HOST"] || Rails.application.config.action_mailer.default_url_options[:host]
       needs_account = (@member.uid.blank? && @member.provider.blank?)
