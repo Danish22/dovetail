@@ -90,7 +90,7 @@ class Space < ActiveRecord::Base
       p = member.member_payments.create(status: "failed", 
                                         currency: member.location.currency,
                                         sender: self,
-                                        description: "Charge failed: #{e.message}", 
+                                        description: "FAILED: #{e.message}", 
                                         total_amount: amount,
                                         issue_date: Time.now)
     end

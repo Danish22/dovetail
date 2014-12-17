@@ -3,7 +3,7 @@ class StripeIntegration < Integration
   def charge_member(member, amount, currency, description = "")
 
     if member.payment_system_customer_id.blank?
-      raise Exception.new("Charge failed: no credit card on file.")
+      raise Exception.new("No credit card on file.")
     end
 
     # Charge the Customer, if this raises an exception, the caller will deal with it.
@@ -40,7 +40,7 @@ class StripeIntegration < Integration
 
       customer.save
 
-      self.last_4_digits = customer.cards.retrieve(customer.default_card).last4      
+      member.last_4_digits = customer.cards.retrieve(customer.default_card).last4      
     end
 
     member.payment_system_customer_id = customer.id

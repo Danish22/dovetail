@@ -1,0 +1,12 @@
+%h2
+  - if history_item.status == "cleared"
+    = item_type_description(history_item)
+    of #{history_item.total_amount_formatted} for 
+    = link_to "Invoice Ref No. #{history_item.parent.id}", "#"
+    was recorded on on #{history_item.issue_date.strftime("%B %d, %Y %H:%M")}
+  - else
+    = item_type_description(history_item)
+    attempt
+    of #{history_item.total_amount_formatted} for 
+    = link_to "Invoice Ref No. #{history_item.parent.id}", "#"
+    #{history_item.description} on #{history_item.issue_date.strftime("%B %d, %Y %H:%M")}
