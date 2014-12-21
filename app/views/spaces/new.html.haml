@@ -48,17 +48,17 @@
         = field_errors(l.object, :postal_code)
       .form-group{:class => has_error(l.object, :country)}
         = l.label :country
-        = l.text_field :country, class: "form-control"
+        = l.country_select("country", {}, {class: "form-control"})
         = field_errors(l.object, :country)
       .form-group{:class => has_error(l.object, :timezone)}
         = l.label :timezone
-        = l.text_field :timezone, class: "form-control"
+        = l.time_zone_select "timezone", nil, {}, {class: "form-control"}
         = field_errors(l.object, :timezone)
 
       %h3 Billing Settings
       .form-group{:class => has_error(l.object, :currency)}
         = l.label :currency
-        = l.text_field :currency, class: "form-control"
+        = l.select :currency, currency_list, {allow_blank: false }, {class: "form-control"}
         = field_errors(l.object, :currency)
       .form-group{:class => has_error(l.object, :tax_rate)}
         = l.label :tax_rate
