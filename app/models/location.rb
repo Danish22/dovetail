@@ -12,4 +12,11 @@ class Location < ActiveRecord::Base
   def to_s
     description
   end
+
+  # When displaying a country to users/members (ie on invoices/reciepts)
+  def country_name
+    c = ISO3166::Country[self.country]
+    c.translations[I18n.locale.to_s] || c.name
+  end
+
 end

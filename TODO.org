@@ -20,11 +20,11 @@
   * Add evil icons (rails plugin, etc) or are we going to use pngs generated from AI file?
 
 * Beta (5-10 early adopters)
+  * Make use of timezone
   * Scheduled invoices (subsciptions auto generate)
   * Scheduled payments (auto payment for subscriptions)
     * Email payment receipts - Mailer done, will call when doing subscription payments
     * Perhaps it should still send the email when adding any kind of payment?!?
-  * Timezone plugin
   * Currency types dropdown/plugin
   * Countries plugin (States/Provinces too? - likely not)
   * Improve display of errors on fields for devise forms.

@@ -22,7 +22,7 @@
       = field_errors(@location, :postal_code)
     .form-group{:class => has_error(@location, :country)}
       = f.label :country
-      = f.text_field :country, class: "form-control"
+      = f.country_select("country", {}, {class: "form-control"})
       = field_errors(@location, :country)
     .form-group{:class => has_error(@location, :timezone)}
       = f.label :timezone
