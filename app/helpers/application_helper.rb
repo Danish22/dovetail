@@ -190,4 +190,10 @@ module ApplicationHelper
     return "fa-check" if item.status == 'cleared'
   end
 
+  def currency_list
+    Money::Currency.table.collect{|k, c| [c[:name], c[:iso_code].upcase ] }.sort do |a, b| 
+      a[0] <=> b[0]
+    end
+  end
+
 end

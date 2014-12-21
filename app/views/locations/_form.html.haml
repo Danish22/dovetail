@@ -30,7 +30,7 @@
       = field_errors(@location, :timezone)
     .form-group{:class => has_error(@location, :currency)}
       = f.label :currency
-      = f.text_field :currency, class: "form-control"
+      = f.select :currency, currency_list, {allow_blank: false }, {class: "form-control"}
       = field_errors(@location, :currency)
     .form-group{:class => has_error(@location, :tax_rate)}
       = f.label :tax_rate

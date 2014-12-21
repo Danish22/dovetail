@@ -31,6 +31,7 @@ gem "haml-rails"
 gem 'kaminari'
 gem 'bootstrap_form'
 gem 'textacular', '~> 3.0'
+gem 'money'
 
 # For stripe and/or OAuth 2.0
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
