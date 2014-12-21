@@ -26,7 +26,7 @@
       = field_errors(@location, :country)
     .form-group{:class => has_error(@location, :timezone)}
       = f.label :timezone
-      = f.text_field :timezone, class: "form-control"
+      = f.time_zone_select "timezone", nil, {}, {class: "form-control"}
       = field_errors(@location, :timezone)
     .form-group{:class => has_error(@location, :currency)}
       = f.label :currency

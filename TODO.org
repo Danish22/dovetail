@@ -1,40 +1,35 @@
 * For Vince
-  * List of screens for Matt
-  * List of flows/states (ie trialling, end of trial, etc)
   * Production certs for dovetail.io and membrs.co
-
 
 * For Matt
   * Screens
-    * Lots, need to make list
   * Navigation Design - In Progress
   * Marketing site changes
   * Pre-Order?
-
-
+    
 * Questions
   
 * Alpha (Demoable/guided)
-  * Bug when editing invoices - dupes the line items.
-  * Space branding of main app
-  * New member page design
-    * Update Issued Date on invoices when closing
-  * Invoice details page,  Needed?
-  * Member portal design changes
+  * Space branding of main app - contentious
+  * Invoice details page (Coming).
+  * Member portal design changes (Coming?)
   * Simplified integrations (inline them on integrations page)
   * Consistency issues with forms (size, alignment, titles (if needed))
+  * Remove due date column from member page - instead show due date as part of issued column
+  * Add description back in for invoices - perhaps called summary
+  * Add evil icons (rails plugin, etc) or are we going to use pngs generated from AI file?
 
 * Beta (5-10 early adopters)
-  * Timezone plugin
-  * Currency types dropdown/plugin
-  * Countries plugin (States/Provinces too? - likely not)
-  * Improve display of errors on fields for devise forms.
   * Scheduled invoices (subsciptions auto generate)
   * Scheduled payments (auto payment for subscriptions)
     * Email payment receipts - Mailer done, will call when doing subscription payments
     * Perhaps it should still send the email when adding any kind of payment?!?
+  * Timezone plugin
+  * Currency types dropdown/plugin
+  * Countries plugin (States/Provinces too? - likely not)
+  * Improve display of errors on fields for devise forms.
   * Onboarding, take to new member invoice with plan and prefil invoice.
-  * Edit invoice/credit note links  (But only for open)
+  * Edit credit note links?  (But only for open)
   * Delete invoice/credit note links (Same)
 
 * 2.0 (MVP, ship in January-february time frame, available to all, for money)
