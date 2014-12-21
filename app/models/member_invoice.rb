@@ -10,4 +10,8 @@ class MemberInvoice < Invoice
     total_amount - children.in_effect.sum(:total_amount)
   end
 
+  def balance_formatted
+    format_currency_value(balance)
+  end
+  
 end

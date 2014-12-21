@@ -49,10 +49,9 @@
     <tr>
       <th class="col-md-1">Ref No.</th>
       <th class="col-md-1">Issued</th>
-      <th class="col-md-1">Due</th>
       <th class="col-md-1">Status</th>
       <th>Details</th>      
-      <th  class="col-md-1" style="text-align:right">Amount</th>
+      <th  class="col-md-1" style="text-align:right">Balance</th>
       <th>&nbsp;</th>
     </tr>
   </thead>
@@ -69,12 +68,11 @@
         <% else -%>
           <td><%= item.issue_date.nil? ? "Not Set" : item.issue_date.strftime("%b %e, %Y") %></td>
         <% end -%>
-        <td><%= item.is_invoice ? (item.due_date.nil? ? "Not Set" : item.due_date.strftime("%b %e, %Y")) : "" %></td>
         <td>
           <%= invoice_status(item) %> 
         </td>
         <td><%= truncate(item.description, length: 40) %></td>
-        <td style="text-align:right"><%= item.total_amount_formatted%></td>
+        <td style="text-align:right"><%= item.balance_formatted%></td>
         <td class="text-right">
           <% if item.status == "open" -%>
             <!-- Split button -->
