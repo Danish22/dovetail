@@ -9,8 +9,8 @@
 <div class="row">
   <div id="members">
     <% @members.each do |member| %>
-      <div class="col-md-2 col-xs-6 text-center" style="margin-bottom:10px;">
-        <div class="well" style="padding:12px;background:#FFF;border:0;">
+      <div class="col-md-2 col-xs-6 text-center" style="margin-bottom:0px;">
+        <div class="well member-card">
           <img class="img-thumbnail" style="margin-bottom:10px;" src="<%= member.gravatar_url(:size =>80, :rating => 'G', :secure => true, :default => 'identicon') -%>"/><br/>
           <%= member.name %><br/>
           <%= member.email %><br/>

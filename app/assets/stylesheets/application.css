@@ -22,6 +22,25 @@
     text-align:right;
 }
 
+
+.member-card {
+    padding:12px;
+    background:#FFF;
+    border:0;
+}
+
+.member-card .btn-primary {
+    visibility:hidden;
+}
+
+.member-card:hover  {
+    background: #eee !important;
+}
+
+.member-card:hover .btn-primary {
+    visibility:visible !important;
+}
+
 header li.active a {
     color:#4273CB;
     /*rgba(66, 115, 203, 1)*/

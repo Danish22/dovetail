@@ -18,7 +18,6 @@
   * Add description back in for invoices - perhaps called summary
   * Add evil icons (rails plugin, etc) or are we going to use pngs generated from AI file?
     * Looks like they're making a pass to add more icons!  Could get full set of needed very soon.
-  * Add view button back to member list
 
 * Beta (5-10 early adopters)
   * Add "due in" to issue date column on invoice list?
