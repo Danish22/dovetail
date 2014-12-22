@@ -14,14 +14,14 @@
   * Invoice details page (Coming).
   * Member portal design changes (Coming?)
   * Simplified integrations (inline them on integrations page)
-  * Consistency issues with forms (size, alignment, titles (if needed))
-  * Remove due date column from member page - instead show due date as part of issued column
+  * Consistency issues with forms (size, alignment, titles (if needed), post create/update redirects)
   * Add description back in for invoices - perhaps called summary
   * Add evil icons (rails plugin, etc) or are we going to use pngs generated from AI file?
     * Looks like they're making a pass to add more icons!  Could get full set of needed very soon.
-  * Replace total with Balance on invoice list
+  * Add view button back to member list
 
 * Beta (5-10 early adopters)
+  * Add "due in" to issue date column on invoice list?
   * Make use of timezone
   * Scheduled invoices (subsciptions auto generate)
   * Scheduled payments (auto payment for subscriptions)
