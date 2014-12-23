@@ -10,13 +10,8 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require main-gsap 
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
-//= require joinable
-//= require resizeable
-//= require jquery.validate.min.js
-//= require jquery.inputmask.bundle.min.js
 // require_tree . #NOTE: Requiring tree is not a good idea!
 // stub active_admin
