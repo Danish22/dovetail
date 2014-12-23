@@ -169,25 +169,25 @@ module ApplicationHelper
   def timeline_bg_colour(item) 
     if item.status == 'closed'
       if item.is_invoice
-        return "bg-info"    # Sent invoice
+        return "bg-primary"    # Sent invoice
       else
         return "bg-success"  # Entered Credit Note
       end
     end
-    return "bg-secondary" if item.status == 'failed'
+    return "bg-danger" if item.status == 'failed'
     return "bg-success" if item.status == 'cleared'    
   end
 
   def timeline_icon(item)
     if item.status == 'closed'
       if item.is_invoice
-        return "fa-envelope"    # Sent invoice
+        return "glyphicon-envelope"    # Sent invoice
       else
-        return "fa-check"       # Entered Credit Note
+        return "glyphicon-ok"       # Entered Credit Note
       end
     end
-    return "fa-warning" if item.status == 'failed'
-    return "fa-check" if item.status == 'cleared'
+    return "glyphicon-flag" if item.status == 'failed'
+    return "glyphicon-ok" if item.status == 'cleared'
   end
 
   def currency_list

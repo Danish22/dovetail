@@ -1,51 +1,47 @@
-%header.row{style: "margin-top:10px;padding-bottom:0px;border-bottom:3px solid #e1e1e1;padding-left:0;padding-right:0;"}
+%nav.navbar.navbar-inverse{role: "navigation"}
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{:type => "button", "data-toggle" => "collapse", "data-target" => "#bs-example-navbar-collapse-1"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
 
-  .col-xs-3{style: "padding-left:0;"}
-    %a{:href => "/"}
-      %img{'src' => "/img/Dovetail_v2_logo.png", 'width' => '36'}
-      
-  .col-xs-6.text-center{style: "padding-top:2px;"}
-    %ul#main-menu.list-inline{:style=>"margin-top:15px;font-size:16px;"}
-      %li{:class => active_tab("members")}
-        - if @space
-          %a{:href => space_members_path(@space)}
-            %i.fa.fa-users
-            %span.hidden-xs
-              Members
-            
-      %li{:class => active_tab("activities")}
-        - if @space
-          %a{:href => space_activities_path(@space)}
-            %i.fa.fa-bolt
-            %span.hidden-xs
-              Activity
-              
-      %li{:class => active_tab("insights")}
-        - if @space
-          %a{:href => space_insights_path(@space)}
-            %i.fa.fa-bar-chart
-            %span.hidden-xs
-              Insights
+  .collapse.navbar-collapse#bs-example-navbar-collapse-1
+    %ul.nav.navbar-nav
+      %li.pull-left
+        %a.navbar-brand{href: "/"}
+          %img{src: "/img/logo-d.png", height: "40px"}
 
-      %li{:class => active_tab(["spaces", "locations", "admins", "resources", "plans", "integrations", "stripes"])}
+      %li{class: active_tab("members")}
         - if @space
-          %a{:href => edit_space_path(@space)}
-            %i.fa.fa-cog
-            %span.hidden-xs
-              Settings
-            
-  .col-xs-3{style: "padding-right:0;"}
-    %ul.list-inline.pull-right.pull-none-xsm
-      %li.dropdown
-        %a.dropdown-toggle{'data-toggle' => 'dropdown', 'data-hover' => 'dropdown', 'data-close-others' => 'true'}
-          %img.img-rounded{'src' => current_user.gravatar_url(:size =>44, :rating => 'G', :secure => true, :default => 'mm'), 'width' => '44'}
-          %i.fa.fa-caret-down
+          %a{ href: space_members_path(@space)}
+            %span.glyphicon.glyphicon-user{ "aria-hidden" => "true"}
+            Members
+      %li{class: active_tab("activities")}
+        - if @space
+          %a{ href: space_activities_path(@space)}
+            %span.glyphicon.glyphicon-flash{ "aria-hidden" => "true"}
+            Activity
+      %li{class: active_tab("insights")}
+        - if @space
+          %a{ href: space_insights_path(@space)}
+            %span.glyphicon.glyphicon-stats{ "aria-hidden" => "true"}
+            Insights
+      %li{class: active_tab(["spaces", "locations", "admins", "resources", "plans", "integrations", "stripes"])}
+        - if @space
+          %a{ href: edit_space_path(@space)}
+            %span.glyphicon.glyphicon-cog{ "aria-hidden" => "true"}
+            Manage
+
+      %li.dropdown.pull-right
+        %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
+          %img.avatar{src: current_user.gravatar_url(:size =>44, :rating => 'G', :secure => true, :default => 'mm')}
+          %b.caret
         %ul.dropdown-menu{:style => "right:0;left:auto;"}
           %li
             %a{:href=> edit_user_registration_path}
-              %i.fa.fa-user
               Account Settings
-
           %li.divider
           - spaces = current_user.spaces.order("created_at asc")
           - if spaces.count > 0
@@ -61,8 +57,5 @@
                   = s.name                        
             %li.divider
           %li
-            = link_to("<i class='fa fa-sign-out'></i> Sign out".html_safe,  destroy_user_session_path, :method => :delete)
+            = link_to("Sign out",  destroy_user_session_path, :method => :delete)
 
-- if @space
-  .row.text-left
-    = @space.name

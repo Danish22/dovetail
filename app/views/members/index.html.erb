@@ -9,13 +9,14 @@
 <div class="row">
   <div id="members">
     <% @members.each do |member| %>
-      <div class="col-md-2 col-xs-6 text-center" style="margin-bottom:0px;">
-        <div class="well member-card">
-          <img class="img-thumbnail" style="margin-bottom:10px;" src="<%= member.gravatar_url(:size =>80, :rating => 'G', :secure => true, :default => 'identicon') -%>"/><br/>
-          <%= member.name %><br/>
-          <%= member.email %><br/>
-          <br/>
-          <a href="<%= space_member_path(@space, member)%>" class="btn btn-primary">View</a>
+      <div class="col-md-2 col-xs-6">
+        <div class="bs-component">
+          <div class="member-card">
+            <img class="member-pic" src="<%= member.gravatar_url(:size =>96, :rating => 'G', :secure => true, :default => 'identicon') -%>">
+            <span class="member-name"><%= member.name %></span>
+            <span class="member-email"><%= member.email %></span>
+            <a href="<%= space_member_path(@space, member)%>" class="btn btn-default btn-xs btn-view-member">View Member</a>
+          </div>
         </div>
       </div>
       

@@ -14,10 +14,11 @@
 
   %body{style: "background-color:#ffffff;padding-bottom:15px;"}
 
+    - if user_signed_in?
+      = render 'shared/main_nav'
+
     .container
 
-      - if user_signed_in?
-        = render 'shared/main_nav'
 
       .main-content{style: "margin-top:20px;"}
 

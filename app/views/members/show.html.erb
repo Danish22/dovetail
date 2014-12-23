@@ -47,12 +47,12 @@
 <table class="table ledger-items" style="margin-top:25px;">
   <thead>
     <tr>
-      <th class="col-md-1">Ref No.</th>
-      <th class="col-md-1">Issued</th>
-      <th class="col-md-1">Status</th>
-      <th>Details</th>      
-      <th  class="col-md-1" style="text-align:right">Balance</th>
-      <th>&nbsp;</th>
+      <th class="ref-no">Ref No.</th>
+      <th class="status">Status</th>
+      <th class="issue-date">Issue Date</th>
+      <th class="details">Details</th>
+      <th class="balance-due">Balance Due</th>
+      <th class="view-invoice">&nbsp;</th>
     </tr>
   </thead>
 
@@ -63,16 +63,16 @@
           <%#= link_to item_type_description(item), ledger_item_link(@space, @member, item) %>
           <%=  item.id %>
         </td>
+        <td>
+          <%= invoice_status(item) %> 
+        </td>
         <% if item.status == "open"%>
           <td> - </td>
         <% else -%>
           <td><%= item.issue_date.nil? ? "Not Set" : item.issue_date.strftime("%b %e, %Y") %></td>
         <% end -%>
-        <td>
-          <%= invoice_status(item) %> 
-        </td>
         <td><%= truncate(item.description, length: 40) %></td>
-        <td style="text-align:right"><%= item.balance_formatted%></td>
+        <td><%= item.balance_formatted%></td>
         <td class="text-right">
           <% if item.status == "open" -%>
             <!-- Split button -->
@@ -142,7 +142,7 @@
           <article class="timeline-entry">   
             <div class="timeline-entry-inner">      
               <div class="timeline-icon <%= timeline_bg_colour(history_item) -%>">
-                <i class="fa <%= timeline_icon(history_item) -%>"></i>
+                <span class="glyphicon <%= timeline_icon(history_item) -%>"></span>
               </div>      
               <div class="timeline-label">
                 <%= render partial: item_type_description(history_item).downcase, locals: {history_item: history_item} -%>
