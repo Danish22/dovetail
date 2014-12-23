@@ -32,9 +32,9 @@
         .container
           - if current_user && select_sub_nav
             .row
-              .col-md-2
+              .col-md-3
                 = render select_sub_nav
-              .col-md-10
+              .col-md-9
                 = yield
           - else
             = yield
