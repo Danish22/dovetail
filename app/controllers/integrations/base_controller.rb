@@ -35,7 +35,7 @@ class Integrations::BaseController < ApplicationController
     @integration.destroy if @integration.connected?
 
     respond_to do |format|
-      format.html { redirect_to integrations_url }
+      format.html { redirect_to space_integrations_url(@space) }
       format.json { head :no_content }
     end
   end

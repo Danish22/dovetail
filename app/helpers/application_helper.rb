@@ -132,14 +132,15 @@ module ApplicationHelper
     link_to("Make payment", "/#{item.id}/makepayment", method: :post)
   end
 
-  ThirdPartyApp = Struct.new(:impl, :label, :path, :icon, :description)
+  ThirdPartyApp = Struct.new(:impl, :label, :path, :icon, :description, :partial)
 
   def integrations(space)
     [
      ThirdPartyApp.new("StripeIntegration", "Stripe", 
                        space_integrations_stripe_path(space), 
                        "stripe.png", 
-                       "Get paid using your Stripe account."),
+                       "Get paid using your Stripe account.",
+                       "stripe"),
 
      # ThirdPartyApp.new("MailchimpIntegration", "Mailchimp", 
      #                   integrations_mailchimp_path,

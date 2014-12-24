@@ -1,4 +1,4 @@
-.col-md-6.col-md-offset-3
+.col-md-8
   = form_for([@space, @location]) do |f|
     .form-group{:class => has_error(@location, :name)}
       = f.label :name
@@ -37,4 +37,8 @@
       = f.text_field :tax_rate, class: "form-control"
       = field_errors(@location, :tax_rate)
 
-    = f.submit class: "btn btn-primary"
+    = f.submit class: "btn btn-primary" 
+    or 
+    = link_to "Cancel", space_locations_path(@space)
+
+

@@ -33,13 +33,13 @@ class Integrations::StripesController < Integrations::BaseController
         @integration.space = space
         @integration.save
 
-        redirect_to space_integrations_stripe_url(space, notice: "Connection to Stripe established")
+        redirect_to space_integrations_url(space, notice: "Connection to Stripe established")
       rescue Exception => e
         Rails.logger.info("Stripe exception: #{e.inspect}")
-        redirect_to integrations_stripe_url(alert: "There was an error while getting token.")
+        redirect_to space_integrations_url(space, alert: "There was an error while retrieving token")
       end
     else
-      redirect_to space_integrations_stripe_url(space, alert: "There was an error: #{params[:error_description]}")
+      redirect_to space_integrations_url(space, alert: "There was an error: #{params[:error_description]}")
     end
 
   end
@@ -53,7 +53,7 @@ class Integrations::StripesController < Integrations::BaseController
   end
 
   def redirect_url
-    integrations_stripe_url
+    space_integrations_url(@space)
   end
 
   def assign_updates

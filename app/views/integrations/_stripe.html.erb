@@ -1,0 +1,26 @@
+
+<div class="media"  style="padding:5px;">
+  <div class="pull-left text-center" style="margin-right:25px;">
+    <img class="media-object" src="/img/integrations/stripe.png" alt="">
+  </div>
+  <div class="media-body">
+    <div class="media-heading">
+      <p class="" style="margin:0;font-size:19px;"><strong>Get paid using Stripe payments.</strong></p>
+      <p style="line-height:1.4em;font-size:15px;">                
+        Funds are deposited into your account on a <a href="https://stripe.com/help/transfers">7-day rolling basis</a>, minus <a href="https://stripe.com/us/help/pricing">card processing fees charged by Stripe</a>. We don't take a cut of any transaction.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12 text-center" style="margin-top:20px;">  
+  <% if integration && integration.connected? -%>
+    <%= link_to "<i class='fa fa-unlink' style='margin-right:6px;'></i> Disconnect".html_safe, space_integrations_stripe_path(@space), 
+      method: :delete, class: "btn btn-default" %>
+  <% else -%>
+    <a href="<%= authorize_space_integrations_stripe_path(@space) -%>" class="btn btn-primary">
+      <span>Connect Your Stripe Account</span>
+    </a>
+  <% end -%>
+  
+</div>

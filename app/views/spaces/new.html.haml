@@ -1,7 +1,6 @@
-.col-md-7
-
+.col-md-8
   = form_for(@newspace) do |s| 
-    %h3 Basic Information
+    %h4 Basic Information
     .form-group{:class => has_error(@newspace, :name)}
       = s.label :name 
       = s.text_field :name, class: "form-control"
@@ -28,7 +27,7 @@
         = select_tag :payment_method,  options_from_collection_for_select(current_user.payment_methods, "id", "select_name"), include_blank: true, class: "form-control" 
         = field_errors(@newspace, :payment_method)
 
-    %h3 Location
+    %h4 Location
     = s.fields_for :locations do |l|
       .form-group{:class => has_error(l.object, :address)}
         = l.label :address
@@ -55,7 +54,7 @@
         = l.time_zone_select "timezone", nil, {}, {class: "form-control"}
         = field_errors(l.object, :timezone)
 
-      %h3 Billing Settings
+      %h4 Billing Settings
       .form-group{:class => has_error(l.object, :currency)}
         = l.label :currency
         = l.select :currency, currency_list, {allow_blank: false }, {class: "form-control"}

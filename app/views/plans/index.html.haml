@@ -19,7 +19,6 @@
         %td= plan.frequency
         %td= plan.location
         %td.command-bar
-          = link_to 'Show', [@space, plan]
           = link_to 'Edit', edit_space_plan_path(@space, plan)
           = link_to 'Destroy', [@space, plan], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
