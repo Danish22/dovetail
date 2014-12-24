@@ -2344,7 +2344,7 @@ output {
   display: block;
   width: 100%;
   height: 44px;
-  padding: 8px 24px;
+  padding: 8px 20px;
   font-size: 16px;
   line-height: 1.42857143;
   color: #3e3f3a;
@@ -2484,7 +2484,7 @@ fieldset[disabled] .checkbox label {
 .input-sm,
 .form-group-sm .form-control {
   height: 31px;
-  padding: 4px 12px;
+  padding: 4px 10px;
   font-size: 14px;
   line-height: 1.5;
   border-radius: 3px;
@@ -2503,7 +2503,7 @@ select[multiple].form-group-sm .form-control {
 .input-lg,
 .form-group-lg .form-control {
   height: 61px;
-  padding: 16px 48px;
+  padding: 16px 40px;
   font-size: 20px;
   line-height: 1.33;
   border-radius: 6px;
@@ -2746,7 +2746,7 @@ select[multiple].form-group-lg .form-control {
   background-image: none;
   border: 1px solid transparent;
   white-space: nowrap;
-  padding: 8px 24px;
+  padding: 8px 20px;
   font-size: 16px;
   line-height: 1.42857143;
   border-radius: 4px;
@@ -3093,14 +3093,14 @@ fieldset[disabled] .btn-link:focus {
 }
 .btn-lg,
 .btn-group-lg > .btn {
-  padding: 16px 48px;
+  padding: 16px 40px;
   font-size: 20px;
   line-height: 1.33;
   border-radius: 6px;
 }
 .btn-sm,
 .btn-group-sm > .btn {
-  padding: 4px 12px;
+  padding: 4px 10px;
   font-size: 14px;
   line-height: 1.5;
   border-radius: 3px;
@@ -3485,7 +3485,7 @@ tbody.collapse.in {
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
   height: 61px;
-  padding: 16px 48px;
+  padding: 16px 40px;
   font-size: 20px;
   line-height: 1.33;
   border-radius: 6px;
@@ -3508,7 +3508,7 @@ select[multiple].input-group-lg > .input-group-btn > .btn {
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn {
   height: 31px;
-  padding: 4px 12px;
+  padding: 4px 10px;
   font-size: 14px;
   line-height: 1.5;
   border-radius: 3px;
@@ -3544,7 +3544,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   vertical-align: middle;
 }
 .input-group-addon {
-  padding: 8px 24px;
+  padding: 8px 20px;
   font-size: 16px;
   font-weight: normal;
   line-height: 1;
@@ -3555,12 +3555,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-radius: 4px;
 }
 .input-group-addon.input-sm {
-  padding: 4px 12px;
+  padding: 4px 10px;
   font-size: 14px;
   border-radius: 3px;
 }
 .input-group-addon.input-lg {
-  padding: 16px 48px;
+  padding: 16px 40px;
   font-size: 20px;
   border-radius: 6px;
 }
@@ -4367,7 +4367,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > li > span {
   position: relative;
   float: left;
-  padding: 8px 24px;
+  padding: 8px 20px;
   line-height: 1.42857143;
   text-decoration: none;
   color: #98978b;
@@ -4419,7 +4419,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .pagination-lg > li > a,
 .pagination-lg > li > span {
-  padding: 16px 48px;
+  padding: 16px 40px;
   font-size: 20px;
 }
 .pagination-lg > li:first-child > a,
@@ -4434,7 +4434,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .pagination-sm > li > a,
 .pagination-sm > li > span {
-  padding: 4px 12px;
+  padding: 4px 10px;
   font-size: 14px;
 }
 .pagination-sm > li:first-child > a,
@@ -6527,17 +6527,17 @@ input:focus,
   background-color: transparent;
   min-height: 20px;
   padding: 24px 8px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 6px;
   text-align: center;
 }
 .member-card:hover {
   background-color: transparent;
-  border: 1px solid transparent;
-  -moz-box-shadow: 0 0 36px rgba(0, 0, 0, 0.25), inset 0 0 0 #3e3f3a;
-  -webkit-box-shadow: 0 0 36px rgba(0, 0, 0, 0.25), inset 0 0 0 #3e3f3a;
-  box-shadow: 0 0 36px rgba(0, 0, 0, 0.25), inset 0 0 0 #3e3f3a;
+  border: 1px solid #dfd7ca;
+  -webkit-box-shadow: 0 6px 10px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
 }
 .member-card .member-pic {
   display: block;
@@ -6760,4 +6760,48 @@ input:focus,
 }
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 span {
   color: #3e3f3a;
+}
+.login-page-container {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  background: url("../img/login_bg.jpg");
+  background-size: cover;
+}
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-top: -200px;
+  margin-left: -200px;
+}
+.greeting {
+  text-align: center;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  font-size: 16px;
+  color: white;
+  font-weight: 700;
+}
+.login-container .form-group input {
+  margin-bottom: 20px;
+}
+.login-container .btn {
+  margin-bottom: 20px;
+}
+.login-container a.forgot-password,
+.login-container a.signup {
+  color: #8e8c84;
+  line-height: 32px;
+  margin-bottom: 20px;
+}
+.login-container a.forgot-password:hover,
+.login-container a.signup:hover {
+  color: #dfd7ca;
 }
