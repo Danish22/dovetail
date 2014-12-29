@@ -6,14 +6,13 @@
   * Member portal design changes (design coming?)
 
 * Beta (5-10 early adopters)
-  * Add description back in for invoices - perhaps called summary
   * Consistency issues with forms (post create/update redirects)
-  * Make use of timezone?
+  * Onboarding, take to new member invoice with plan and prefil invoice.
   * Scheduled invoices (subsciptions auto generate)
   * Scheduled payments (auto payment for subscriptions)
     * Email payment receipts - Mailer done, will call when doing subscription payments
     * Perhaps it should still send the email when adding any kind of payment?!?
-  * Onboarding, take to new member invoice with plan and prefil invoice.
+  * Make use of timezone?
 
 * 2.0 (MVP, ship in January-february time frame, available to all, for money)
   * Delete invoice links (Same)
