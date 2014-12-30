@@ -17,17 +17,19 @@ Generally I just leave the original window open so I don't need to open the shel
  * 0. Start the VM if needed (See above)
  * 1. Launch a command prompt - For Windows use the Git command prompt
  * 2. Type the following and press return: cd dovetail
- * 3. Start the VM if needed (See Above)
- * 4. Type the following and press return: vagrant ssh
- * 5. Type the following and press return: cd /vagrant
- * 6. You are now logged in and the current directory is set to the project directory
- * 7. Do work (ie start the app, See below)
+ * 3. Type the following and press return: vagrant ssh
+ * 4. Type the following and press return: cd /vagrant
+ * 5. You are now logged in and the current directory is set to the dovetail project
+ * 6. Do work (ie start the app, See below)
 
 # First/one time setup
 
  * 0. Install Runtime: get and install latest Vagrant and VirtualBox (Already done)
  * 1. Launch a command prompt - For Windows use the Git command prompt
- * 2. Grab sources eg: git clone.. (Already done)
+ * 2. Grab sources eg: git clone.. 
+ * 2.1 Since you already have cloned the repo, do the following instead:
+ *   2.1.1 Type the following and press return: cd dovetail
+ *   2.1.2 Type the following and press return: git pull
  * 3. Start the VM (See above)
  * 4. Start a work session (See above)
  * 5. Type the following and press return: ./setup.sh
