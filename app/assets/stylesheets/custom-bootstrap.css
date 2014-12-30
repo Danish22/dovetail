@@ -6808,3 +6808,6 @@ body.registrations.new {
 .login-container a.signup:hover {
   color: #dfd7ca;
 }
+.main-content {
+  padding: 50px 0 100px;
+}
