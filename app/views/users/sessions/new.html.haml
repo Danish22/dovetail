@@ -1,30 +1,27 @@
-/ BEGIN FULL PAGE CONTAINER
-.login-page-container
-  / BEGIN LOGIN WINDOW
-  .login-container
-    .container-fluid
-      .row-fluid
-        .col-md-12.text-center
-          %img{:height => "60px", :src => "/img/logo-w.png"}/
-      .row-fluid
-        .col-md-12.greeting
-          Hi There. Please Login.
-      .row-fluid
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          = f.hidden_field :invite_token, value: (params[:invite_token] || (params[:user] ? params[:user][:invite_token] : nil))
-          = devise_error_messages!
-          .form-group
-            .col-md-12
-              = f.email_field :email, autofocus: true, class: "form-control", id: "email", placeholder: "Email address"
-          .form-group
-            .col-md-12
-              = f.password_field :password, class: "form-control", id: "password", placeholder: "Password"
-      .row-fluid.text-center
-        .col-md-12
-          %a.btn.btn-warning.btn-block{:href => "#"} Log In
-        .col-md-12
-          = link_to "Forgot Your Password?", new_user_password_path, class: "forgot-password"
-        .col-md-12
-          = link_to "New Here?", "/users/sign_up", class: "signup" 
-    / /END LOGIN WINDOW
-  / /END FULL PAGE CONTAINER
+/ BEGIN LOGIN WINDOW
+.login-container
+  .container-fluid
+    .row-fluid
+      .col-md-12.text-center
+        %img{:height => "60px", :src => "/img/logo-w.png"}/
+    .row-fluid
+      .col-md-12.greeting
+        Hi There. Please Login.
+    .row-fluid
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = f.hidden_field :invite_token, value: (params[:invite_token] || (params[:user] ? params[:user][:invite_token] : nil))
+        = devise_error_messages!
+        .form-group
+          .col-md-12
+            = f.email_field :email, autofocus: true, class: "form-control", id: "email", placeholder: "Email address"
+        .form-group
+          .col-md-12
+            = f.password_field :password, class: "form-control", id: "password", placeholder: "Password"
+    .row-fluid.text-center
+      .col-md-12
+        %a.btn.btn-warning.btn-block{:href => "#"} Log In
+      .col-md-12
+        = link_to "Forgot Your Password?", new_user_password_path, class: "forgot-password"
+      .col-md-12
+        = link_to "New Here?", "/users/sign_up", class: "signup" 
+  / /END LOGIN WINDOW
