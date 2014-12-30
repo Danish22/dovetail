@@ -19,10 +19,10 @@
           .form-group
             .col-md-12
               = f.password_field :password, class: "form-control", id: "password", placeholder: "Password"
+          .col-md-12
+            %button.btn.btn-warning.btn-block.btn-login#submit_form{type: "submit"}
+              Log In
       .row-fluid.text-center
-        .col-md-12
-          %button.btn.btn-warning.btn-block.btn-login#submit_form{type: "submit"}
-            Log In
         .col-md-12
           = link_to "Forgot Your Password?", new_user_password_path, class: "forgot-password"
         .col-md-12
