@@ -35,8 +35,6 @@
   * Add 'Social' Signup/Login for Member portal (FB, Twitter, G+)?
   * Add team support
 
-  * Add Paid and Remaining columns to Member account history.
-
   * Attendance tracking (check in, out)
   * Attendance tracking API (remote systems updating)
   * Attendance tracking self checking kiosk mode (use attendance tracking api?)
