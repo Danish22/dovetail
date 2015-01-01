@@ -40,7 +40,7 @@ class MembersController < ApplicationController
       if @member.save
         @space.members << @member
 
-        format.html { redirect_to space_members_url(@space), notice: 'Member was successfully created.' }
+        format.html { redirect_to space_member_url(@space, @member), notice: 'Member was successfully created.' }
         format.json { render :show, status: :created, location: [@space, @member] }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to space_members_url(@space), notice: 'Member was successfully updated.' }
+        format.html { redirect_to space_member_url(@space, @member), notice: 'Member was successfully updated.' }
         format.json { render :show, status: :ok, location: [@space, @member] }
       else
         format.html { render :edit }
