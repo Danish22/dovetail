@@ -42,7 +42,7 @@ class Member < ActiveRecord::Base
       invoice.due_date = invoice.issue_date
       invoice.currency = self.location.currency
       
-      # TODO Add self.plan to invoice (So we can track/update the billing cycle)
+      invoice.plan_id = self.plan_id
 
       # Line items
       count = 10
