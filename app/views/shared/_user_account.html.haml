@@ -1,15 +1,8 @@
-%ul.nav.nav-pills.nav-stacked{}
-  %li
-    %h5 Account Settings
+%ul.account-nav{}
   %li{:class => active_tab("registrations")}
     = link_to "Account".html_safe, edit_user_registration_path
   %li{:class => active_tab("payment_methods")}
     = link_to "Billing", payment_methods_path
-  %li
-    %h5 Spaces you manage
   %li{:class => active_tab("spaces")}
     = link_to "Add a space", new_space_path
-  - current_user.spaces.order("created_at asc").each do |s|
-    %li
-      %a{:href=> space_members_path(s)}
-        = s.name                        
+                       

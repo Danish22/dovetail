@@ -1,7 +1,7 @@
 
 <div class="row">
   <h3 class="col-md-3" style="padding-top:0;margin-top:0;">
-    <img class="img-thumbnail" style="margin-bottom:10px;" src="<%= @member.gravatar_url(:size =>40, :rating => 'G', :secure => true, :default => 'identicon') -%>"/>
+    <img class="img-rounded" style="margin-bottom:10px;" src="<%= @member.gravatar_url(:size =>40, :rating => 'G', :secure => true, :default => 'identicon') -%>"/>
     <%= @member.name -%></h3>
   
   <div class="col-md-6 text-center">

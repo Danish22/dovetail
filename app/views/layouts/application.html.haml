@@ -29,13 +29,14 @@
             %div{ :class => flash_class(key), :style => "margin-top:25px;" }
               = value
 
-        .container
+        .container{ :style => "padding: 0 60px;"}
           - if current_user && select_sub_nav
             .row
-              .col-md-3
-                = render select_sub_nav
-              .col-md-9
-                = yield
+              %div{ :class => "account-box box container-table"}
+                .nav{ :class => "account-sidebar box-sidebar"}
+                  = render select_sub_nav
+                %div{ :class => "box-main box-body"}
+                  = yield
           - else
             = yield
 
