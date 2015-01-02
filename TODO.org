@@ -2,20 +2,21 @@
   
 * Alpha (Demoable/guided)
   * Space branding of main app - contentious
-  * Invoice details page (design coming...).
+  * Invoice details page.
   * Member portal design changes (design coming?)
 
 * Beta (5-10 early adopters)
-  * Consistency issues with forms (post create/update redirects)
-  * Onboarding, take to new member invoice with plan and prefil invoice.
+  * Add payment frequency drop down (probably value == number of months)
   * Scheduled invoices (subsciptions auto generate)
-  * Scheduled payments (auto payment for subscriptions)
+    * Scheduled payments (auto payment for subscriptions)
     * Email payment receipts - Mailer done, will call when doing subscription payments
-    * Perhaps it should still send the email when adding any kind of payment?!?
+      * Perhaps it should still send the email when adding any kind of payment?!?
   * Make use of timezone?
+  * Possibly add tax rate to line_items (and present in UI as the field to edit, compute on the back end)
+  * Should be able to add credit notes and/or payments to draft invoices
 
 * 2.0 (MVP, ship in January-february time frame, available to all, for money)
-  * Delete invoice links (Same)
+  * Delete invoice links (Only for Open invoices)
   * Improve display of errors on fields for devise forms.
   * Add "due in" to issue date column on invoice list?
   * Space Branding for member portal

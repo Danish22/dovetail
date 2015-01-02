@@ -1,3 +1,4 @@
+# This is for Member login...
 class SessionsController < PortalApplicationController
 
   skip_before_filter :verify_authenticity_token
