@@ -6,18 +6,17 @@
   * Member portal design changes (design coming?)
 
 * Beta (5-10 early adopters)
+  * Add payment frequency drop down (probably value == number of months)
   * Scheduled invoices (subsciptions auto generate)
     * Scheduled payments (auto payment for subscriptions)
     * Email payment receipts - Mailer done, will call when doing subscription payments
-    * Perhaps it should still send the email when adding any kind of payment?!?
-    * Add plan_id to invoicing_ledger_item: optional field for tracking plans/billing periods ie may be null
+      * Perhaps it should still send the email when adding any kind of payment?!?
   * Make use of timezone?
-  * Add payment frequency drop down (probably value == number of months)
   * Possibly add tax rate to line_items (and present in UI as the field to edit, compute on the back end)
   * Should be able to add credit notes and/or payments to draft invoices
 
 * 2.0 (MVP, ship in January-february time frame, available to all, for money)
-  * Delete invoice links (Same)
+  * Delete invoice links (Only for Open invoices)
   * Improve display of errors on fields for devise forms.
   * Add "due in" to issue date column on invoice list?
   * Space Branding for member portal
