@@ -6361,13 +6361,13 @@ ul.nav.navbar-nav li.dropdown.pull-right.open {
   width: 18%;
 }
 .table th.details {
-  width: 40%;
+  width: 36%;
 }
 .table th.balance-due {
-  width: 18%;
+  width: 14%;
 }
 .table th.view-invoice {
-  width: 4%;
+  width: 12%;
 }
 .btn {
   border: none;
@@ -6938,4 +6938,27 @@ ul.account-nav {
   font-size: 24px;
   margin: 0 0 10px;
   line-height: 36px;
+}
+.member-show {
+  margin: 30px 0 0;
+}
+.member-show h3 {
+  font-size: 24px;
+  margin: 0 0 20px;
+}
+.member-show .member-pic {
+  display: inline-block;
+  border-radius: 50%;
+  height: 48px;
+  width: auto;
+  margin: 0 16px 0 0;
+}
+.member-show .detail-label {
+  font-size: 10px;
+  color: #ccc;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.member-show .detail-info {
+  font-size: 14px;
 }
