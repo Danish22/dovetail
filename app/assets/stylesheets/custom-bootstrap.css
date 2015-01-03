@@ -6921,3 +6921,21 @@ ul.account-nav {
   right: -10px;
   margin: -10px 0 0;
 }
+.section-coming-soon {
+  width: 720px;
+  margin: 0 auto;
+  padding: 100px 20px 0;
+}
+.section-coming-soon img {
+  margin: 0 0 40px;
+}
+.section-coming-soon h2 {
+  color: #8e8c84;
+  margin: 0 0 20px;
+}
+.section-coming-soon span.explination {
+  color: #ccc;
+  font-size: 24px;
+  margin: 0 0 10px;
+  line-height: 36px;
+}
