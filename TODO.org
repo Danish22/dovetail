@@ -14,12 +14,11 @@
 
   * Make use of timezone?  - Maybe only needed in the scheduled invoices and payments scripts
 
-  * Should be able to add credit notes and/or payments to draft invoices
-
   * Possibly add tax rate to line_items (and present in UI as the field to edit, compute on the back end)
 
+  * Deleting a draft invoice needs to delete all children (payments and/or credit notes)
+
 * 2.0 (MVP, ship in January-february time frame, available to all, for money)
-  * Delete invoice links (Only for Open invoices)
   * Space Branding for member portal
   * Change member password
   * Member password recovery
