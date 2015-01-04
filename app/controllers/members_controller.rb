@@ -8,17 +8,21 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @members = @space.members.all.order("name asc")
+    if stale?(@space)
+      @members = @space.members.all.order("name asc")
+    end
   end
 
   # GET /members/1
   # GET /members/1.json
   def show
-    @ledger_items = @member.member_invoices.order("created_at desc")
-    @history_items = @member.ledger_items
-      .where(status: ["closed", "cleared", "failed"])
-      .order("created_at desc")
-      .limit(6)
+    if stale?(@member)
+      @ledger_items = @member.member_invoices.order("created_at desc")
+      @history_items = @member.ledger_items
+        .where(status: ["closed", "cleared", "failed"])
+        .order("created_at desc")
+        .limit(6)
+    end
   end
 
   # GET /members/new

@@ -1,6 +1,6 @@
 class MemberInvoice < Invoice
-  belongs_to :recipient, class_name: 'Member'
-  belongs_to :sender, class_name: 'Space'
+  belongs_to :recipient, class_name: 'Member', touch: true
+  belongs_to :sender, class_name: 'Space', touch: true
 
   def paid?
     balance <= 0

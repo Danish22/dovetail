@@ -4,7 +4,7 @@ class Integration < ActiveRecord::Base
 
   serialize :settings, Hash
 
-  belongs_to :space
+  belongs_to :space, touch: true
 
   attr_accessor :default_type
   attr_accessor :default_status

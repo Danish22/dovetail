@@ -1,8 +1,8 @@
 class Member < ActiveRecord::Base
 
-  belongs_to :space  
+  belongs_to :space, touch: true
   belongs_to :user   # Admin who created the member record.
-  belongs_to :location
+  belongs_to :location, touch: true
   belongs_to :plan
 
   # Collection of all ledger items for this member
