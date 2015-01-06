@@ -14,7 +14,7 @@
       = field_errors(@invoice, :description)
     .form-group
       %label{class: "col-md-8", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"} Description
-      %label{class: "col-md-2", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"} Tax $
+      %label{class: "col-md-2", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"} Tax %
       %label{class: "col-md-2", style: "padding-left:0;padding-right:0;"} Amount
     = f.fields_for :line_items do |l|
       = l.hidden_field :id
