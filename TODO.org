@@ -6,31 +6,33 @@
   * Member portal design changes (design coming?)
 
 * Beta (5-10 early adopters)
-  * Add payment frequency drop down (probably value == number of months)
+
   * Scheduled invoices (subsciptions auto generate)
     * Scheduled payments (auto payment for subscriptions)
     * Email payment receipts - Mailer done, will call when doing subscription payments
       * Perhaps it should still send the email when adding any kind of payment?!?
-  * Make use of timezone?
+
+  * Make use of timezone?  - Maybe only needed in the scheduled invoices and payments scripts
+
   * Possibly add tax rate to line_items (and present in UI as the field to edit, compute on the back end)
-  * Should be able to add credit notes and/or payments to draft invoices
+
+  * Deleting a draft invoice needs to delete all children (payments and/or credit notes)
 
 * 2.0 (MVP, ship in January-february time frame, available to all, for money)
-  * Delete invoice links (Only for Open invoices)
-  * Improve display of errors on fields for devise forms.
-  * Add "due in" to issue date column on invoice list?
   * Space Branding for member portal
   * Change member password
   * Member password recovery
     * Can also/do instead password reset on admin site (would resend invite basically)
-  * Add evil icons (rails plugin, etc) or are we going to use pngs generated from AI file?
-    * Looks like they're making a pass to add more icons!  Could get full set of needed very soon.
 
 * 2.1
 
 * 2.2
 
 * Backlog
+  * Improve display of errors on fields for devise forms.
+  * Add "due in" to issue date column on invoice list?
+  * Add evil icons (rails plugin, etc) or are we going to use pngs generated from AI file?
+    * Looks like they're making a pass to add more icons!  Could get full set of needed very soon.
   * Events/Notifcations (Activity Tab in New navigation)
   * Maybe add Tags to members to allow arbitrary groupings
   * Add 'Social' Signup/Login for Member portal (FB, Twitter, G+)?

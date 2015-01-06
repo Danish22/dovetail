@@ -7,7 +7,9 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = @space.locations.all
+    if stale?(@space)
+      @locations = @space.locations.all
+    end
   end
 
   # GET /locations/1

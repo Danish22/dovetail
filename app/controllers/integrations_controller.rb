@@ -5,8 +5,10 @@ class IntegrationsController < ApplicationController
   before_action :check_space_payment_method
 
   def index    
-    respond_to do |format|
-      format.html # index.html.erb
+    if stale?(@space)
+      respond_to do |format|
+        format.html # index.html.erb
+      end
     end
   end
 

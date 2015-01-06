@@ -7,7 +7,9 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    @resources = @space.resources.all
+    if stale?(@space)
+      @resources = @space.resources.all
+    end
   end
 
   # GET /resources/1

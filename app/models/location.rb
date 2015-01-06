@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  belongs_to :space
+  belongs_to :space, touch: true
 
   has_many :members
   has_many :resources

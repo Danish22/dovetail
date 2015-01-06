@@ -1,6 +1,6 @@
 class Plan < ActiveRecord::Base
-  belongs_to :space
-  belongs_to :location
+  belongs_to :space, touch: true
+  belongs_to :location, touch: true
 
   has_many :plan_resources
   has_many :resources, through: :plan_resources
