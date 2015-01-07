@@ -6399,13 +6399,21 @@ ul.nav.navbar-nav li.dropdown.pull-right.open {
   color: #fff;
   background-color: #FD6740;
 }
-.btn-light {
-  background: #dfd7ca;
-  color: #8e8c84;
-}
-.btn-light:hover {
-  background-color: #ccbfaa;
+.btn-invoice-action {
+  background: #98978b;
   color: #fff;
+}
+.btn-invoice-action:hover {
+  background-color: #3e3f3a;
+  color: #fff;
+}
+.btn-gray {
+  color: #8e8c84;
+  background-color: #dfd7ca;
+}
+.btn-gray:hover {
+  color: #fff;
+  background-color: #98978b;
 }
 h1,
 h2,
@@ -6892,7 +6900,7 @@ hr {
   background: #fff;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  border: 1px #ede9e3 solid;
+  border: 1px #ddd solid;
   border-radius: 4px;
   -webkit-box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
   box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
@@ -6991,18 +6999,119 @@ ul.account-nav {
 .member-show .detail-info {
   font-size: 14px;
 }
-.invoice-container {
-  padding: 0 150px;
+.invoice {
+  margin: 0 0 80px;
 }
-.invoice-container span.space-name {
+.invoice .inner-padding {
+  padding: 0 100px;
+}
+.invoice-header {
+  margin: 0 0 30px 0;
+}
+.invoice-header .span8 {
+  float: left;
+  width: 66.67%;
+}
+.invoice-header .span4 {
+  float: left;
+  width: 33.33%;
+}
+.invoice-header h3 {
+  margin: 10px 0 6px 0;
+}
+.invoice-header span.label {
+  position: relative;
+  font-size: 15px;
+  margin-left: 10px;
+  bottom: 5px;
+}
+.invoice-header p {
+  font-size: 15px;
+}
+.invoice-header .btn-back {
+  margin-top: 10px;
+}
+.invoice-header .glyphicon {
+  margin-right: 8px;
+}
+.action-bar {
+  background: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0, #e1dcd4), color-stop(0.8, #f2ece2));
+  background: -moz-linear-gradient(center bottom, #dddddd 0%, #eeeeee 80%) repeat scroll 0 0;
+  border: 1px solid #ddd;
+  height: 60px;
+  line-height: 54px;
+  padding: 0px 20px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin-bottom: 60px;
+}
+.action-bar .vertical-center {
+  vertical-align: middle;
+}
+.action-bar .btn {
+  text-transform: none;
+}
+.action-bar button {
+  margin-right: 6px;
+}
+.action-bar .text-right > button {
+  margin: 0;
+}
+.action-bar p.balance {
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  right: 180px;
+  margin-bottom: 0px;
+}
+.invoice span.space-name,
+.invoice span.section-title {
   color: #3e3f3a;
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 20px;
+  line-height: 42px;
   font-weight: 600;
-  margin: 0 0 6px;
 }
-.invoice-container p.space-address {
+.invoice p.space-address {
   color: #8e8c84;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
+  margin-bottom: 30px;
+}
+.invoice p.member-name {
+  color: #8e8c84;
+  font-size: 16px;
+  line-height: 24px;
+}
+.invoice a.member-email {
+  color: #8e8c84;
+  font-weight: 14px;
+  line-height: 24px;
+  text-decoration: underline;
+}
+.invoice .panel {
+  background-color: #f2ece2;
+  border-color: #dfd7ca;
+}
+.invoice span.total,
+.invoice span.money {
+  color: #3e3f3a;
+  font-size: 22px;
+  line-height: 40px;
+  font-weight: 600;
+}
+.invoice h4.history {
+  margin-bottom: 30px;
+}
+.invoice .notes {
+  padding-right: 69px;
+}
+.invoice .notes h4 {
+  margin-bottom: 20px;
+}
+.invoice .notes p {
+  font-size: 14px;
+}
+.invoice .notes p.contact-info a {
+  color: #3e3f3a;
+  text-decoration: underline;
 }

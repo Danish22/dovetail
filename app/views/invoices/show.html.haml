@@ -1,0 +1,134 @@
+.container
+  .invoice
+    .inner-padding
+      .row.invoice-header
+        .span8
+          %h3
+            Invoice No. 0001
+            %span.label.label-default Draft
+          %p
+            Created by
+            %strong Matt Farley
+            on 01/07/2015 at 11:34am
+        .span4.text-right
+          %button.btn.btn-gray.btn-md.btn-back{"aria-label" => "Left Align"}
+            %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}>
+            Back to Member
+      .col-md-12.action-bar
+        .row
+          .col-md-6
+            %button.btn.btn-invoice-action.btn-xs.vertical-center Send Invoice
+            %button.btn.btn-invoice-action.btn-xs.vertical-center Edit Invoice
+            .btn-group
+              %button.btn.btn-invoice-action.btn-xs.vertical-center.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}
+                More Actions
+                %span.caret
+              %ul.dropdown-menu{:role => "menu"}
+                %li
+                  %a{:href => "#"} Add Credit Note
+                %li
+                  %a{:href => "#"} Delete Invoice
+          .col-md-6.text-right
+            %p.balance.verticle-middle
+              Balance:
+              %span{:style => "margin-left:4px; font-weight:600;"} $1,200.00 CAD
+            %button.btn.btn-success.btn-xs.vertical-center Record Payment
+      .box.box-body
+        .row
+          .col-md-6
+            %img{:src => "img/space-logo.png", :width => "160px;"}
+          .col-md-6.text-right
+            %h2{:style => "margin-top: 0px;"} INVOICE
+        .row
+          .col-md-12
+            %hr
+        .row
+          .col-md-6{:style => "margin-top:10px;"}
+            %span.space-name SwitchCube Coworking
+            %p.space-address
+              34711-B 6th Ave.
+              %br
+                Abbotsford, BC V2S8C3
+                %br
+                  Canada
+            %span.section-title Bill to
+            %p.member-name
+              Matt Farley
+              %br
+                %a.member-email{:href => "#"} matt@pendeavor.com
+          .col-md-6{:style => "margin-top:10px;"}
+            .panel.panel-default
+              .panel-body
+                .col-md-6{:style => "font-weight: 600;"}
+                  Reference No.
+                  %br
+                    Issue Date
+                .col-md-6.text-right
+                  0001
+                  %br
+                    01/05/2015
+        / / end client details section
+        .row
+          .col-md-12{:style => "margin-top: 20px;"}
+            %table.table.table-bordered
+              %thead
+                %tr
+                  %th{:style => "width: 56%"}
+                    Description
+                  %th{:style => "text-align: right; width: 8%"}
+                    Qty
+                  %th{:style => "text-align: right; width: 14%"}
+                    Price
+                  %th{:style => "text-align: right; width: 8%"}
+                    Tax
+                  %th{:style => "text-align: right; width: 14%"}
+                    Sub Total
+              %tbody
+                %tr
+                  %td -
+                  %td.text-right -
+                  %td.text-right -
+                  %td.text-right -
+                  %td.text-right -
+                %tr
+                  %td -
+                  %td.text-right -
+                  %td.text-right -
+                  %td.text-right -
+                  %td.text-right -
+                %tr
+                  %td -
+                  %td.text-right -
+                  %td.text-right -
+                  %td.text-right -
+                  %td.text-right -
+        .row
+          .col-md-8.notes
+            %h4 Thanks for supporting SwitchCube
+            %p.contact-info
+              If you have any questions about this invoice, we're happy to help. Simply send an email to
+              %a{:href => "#"} accounting@switchcube.com
+              or give us a call at 123-456-7890. Thanks again!
+          .col-md-2.text-right
+            %p
+              Sub Total :
+              %br
+                TAX :
+                %br
+                  Discount :
+                  %br
+            %span.total Total:
+          .col-md-2.text-right
+            %p
+              $1200.00
+              %br
+                N/A
+                %br
+                  \--
+                  %br
+            %span.money $1,200.00
+    .inner-padding
+      %hr{:style => "margin-top: 50px;"}
+        .row
+          .col-md-12
+            %h4.history Invoice History
