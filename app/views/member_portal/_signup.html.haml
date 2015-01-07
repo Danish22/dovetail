@@ -1,15 +1,26 @@
-%div{style: "padding:25px;"}
-  .col-md-6.col-md-offset-3
-    %h4 Welcome #{current_member.name}, please create a password for your account
-    %br
-    = form_for(@identity, url: "/", method: :post) do |f| 
-      .form-group{:class => has_error(@identity, :password)}
-        = f.label :password
-        = f.password_field :password, class: "form-control"
-        = field_errors(@identity, :password)
-      .form-group{:class => has_error(@identity, :password_confirmation)}
-        = f.label :password_confirmation, "Confirm Password"
-        = f.password_field :password_confirmation, class: "form-control"
-        = field_errors(@identity, :password_confirmation)
-      = f.submit "Sign up", class: "btn btn-primary"
-
+/ BEGIN MEMBER PASSWORD CONFIRMATION
+.login-container
+  .container-fluid
+    .row-fluid
+      .col-md-12.text-center
+        %h3{:style => "padding: 20px 0 0; margin-bottom: 0;"}
+          = @space.name
+    .row-fluid
+      .col-md-12.greeting{:style => "color:#3E3F3A"}
+        Hi #{current_member.name}.
+        Please Confirm Your Account.
+    .row-fluid
+      = form_for(@identity, url: "/", method: :post) do |f| 
+        .form-group{:class => has_error(@identity, :password)}
+          .col-md-12
+            = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Enter new password"
+            = field_errors(@identity, :password)
+        .form-group{:class => has_error(@identity, :password_confirmation)}
+          .col-md-12
+            = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confirm new password"
+            = field_errors(@identity, :password_confirmation)
+        .row-fluid.text-center
+          .col-md-12
+            %button.btn.btn-success.btn-block.btn-login#submit_form{type: "submit"}
+              Confirm Account
+  / /END MEMBER PASSWORD CONFIRMATION

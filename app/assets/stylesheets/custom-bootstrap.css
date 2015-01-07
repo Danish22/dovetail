@@ -6839,6 +6839,14 @@ body.registrations.new {
 .login-container a.signup:hover {
   color: #dfd7ca;
 }
+.login-container a.forgot-password-member {
+  color: #8e8c84;
+  line-height: 32px;
+  margin-bottom: 20px;
+}
+.login-container a.forgot-password-member:hover {
+  color: #3e3f3a;
+}
 hr {
   border-top: 1px solid #eaecf1;
 }
@@ -6982,4 +6990,19 @@ ul.account-nav {
 }
 .member-show .detail-info {
   font-size: 14px;
+}
+.invoice-container {
+  padding: 0 150px;
+}
+.invoice-container span.space-name {
+  color: #3e3f3a;
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+.invoice-container p.space-address {
+  color: #8e8c84;
+  font-size: 18px;
+  line-height: 24px;
 }

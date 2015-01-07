@@ -19,12 +19,11 @@
           = value
 
     .container
-      %div{style: "padding:20px;margin-top:20px;", class: "text-center"}
-        %h2
-          = @space.name
-
       - if !current_member.nil?
         - if !current_member.provider.nil?
+          %div{style: "padding:20px;margin-top:20px;", class: "text-center"}
+            %h3
+              = @space.name
           %div{style: "", class: "text-center"}         
             Welcome #{current_member.name}
             = link_to "Sign out", "/logout", class: "btn btn-default"
