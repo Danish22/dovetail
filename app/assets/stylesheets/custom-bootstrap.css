@@ -6415,6 +6415,9 @@ ul.nav.navbar-nav li.dropdown.pull-right.open {
   color: #fff;
   background-color: #98978b;
 }
+.btn-login {
+  font-size: 15px;
+}
 h1,
 h2,
 h3,
@@ -6816,41 +6819,39 @@ body.registrations.new {
   top: 50%;
   left: 50%;
   width: 400px;
-  height: 400px;
-  margin-top: -200px;
+  margin-top: -250px;
   margin-left: -200px;
+  padding: 20px 0;
 }
 .greeting {
   text-align: center;
+  color: #3e3f3a;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   margin-top: 40px;
   margin-bottom: 20px;
   letter-spacing: 2px;
   font-size: 16px;
-  color: white;
   font-weight: 700;
 }
 .login-container .form-group input {
   margin-bottom: 20px;
 }
 .login-container .btn {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 .login-container a.forgot-password,
 .login-container a.signup {
   color: #8e8c84;
-  line-height: 32px;
-  margin-bottom: 20px;
+  font-size: 13px;
 }
 .login-container a.forgot-password:hover,
 .login-container a.signup:hover {
-  color: #dfd7ca;
+  color: #3e3f3a;
 }
 .login-container a.forgot-password-member {
   color: #8e8c84;
-  line-height: 32px;
-  margin-bottom: 20px;
+  font-size: 13px;
 }
 .login-container a.forgot-password-member:hover {
   color: #3e3f3a;

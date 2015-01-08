@@ -1,14 +1,14 @@
 / BEGIN FULL PAGE CONTAINER
 .login-page-container
   / BEGIN LOGIN WINDOW
-  .login-container
+  .login-container.box
     .container-fluid
       .row-fluid
         .col-md-12.text-center
-          %img{:height => "60px", :src => "/img/logo-w.png"}/
+          %img{:height => "60px", :src => "/img/logo-d.png"}/
       .row-fluid
         .col-md-12.greeting
-          Hi There. Please Login.
+          Hi There. Please Log in.
       .row-fluid
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           = f.hidden_field :invite_token, value: (params[:invite_token] || (params[:user] ? params[:user][:invite_token] : nil))
