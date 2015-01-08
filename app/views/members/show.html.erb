@@ -1,162 +1,143 @@
 <div class="member-show">
   <div class="row">
-    <div class="col-md-4">
-      <h3><img class="member-pic" src="<%= @member.gravatar_url(:size =>96, :rating => 'G', :secure => true, :default => 'identicon') -%>"/><%= @member.name -%></h3>
-    </div>
-    <div class="col-md-6 text-center">
-      <div class="row text-left">
-        <div class="col-md-6">
-          <span class="detail-label">Email</span>
-          <p class="detail-info"><%= @member.email-%></p>
+    <div class="col-md-3 text-center">
+      <div class="box box-body">
+        <div class="row">
+          <%= link_to "<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>" .html_safe, edit_space_member_path(@space, @member), class: "btn btn-gray btn-sm btn-edit" -%>
         </div>
-        <div class="col-md-6">
-          <span class="detail-label">Plan</span>
-          <p class="detail-info"><%= @member.plan.nil? ? "&lt;No Plan&gt;".html_safe : @member.plan.name -%></p>
-        </div>
-      </div>
-      <div class="row text-left">
-        <div class="col-md-6">
-          <span class="detail-label">Joined</span>
-          <p class="detail-info"><%= @member.created_at.strftime("%B %d, %Y")-%></p>
-        </div>
-        <div class="col-md-6">
-          <span class="detail-label">Status</span></br>
-          <span class="label label-success"><%= "Active" -%></span>
+        <img class="member-pic" src="<%= @member.gravatar_url(:size =>96, :rating => 'G', :secure => true, :default => 'identicon') -%>"/>
+        <h4><%= @member.name -%></h4>
+        <hr>
+        <div class="row text-left">
+          <div class="col-md-12">
+            <span class="detail-label">Email</span>
+            <p class="detail-info"><%= @member.email-%></p>
+            <span class="detail-label">Joined</span>
+            <p class="detail-info"><%= @member.created_at.strftime("%B %d, %Y")-%></p>
+            <span class="detail-label">Membership Plan</span>
+            <p class="detail-info"><%= @member.plan.nil? ? "&lt;No Plan&gt;".html_safe : @member.plan.name -%></p>
+            <span class="detail-label">Current Status</span><br>
+            <span class="label label-success"><%= "Active" -%></span>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="col-md-2">
-      <%= link_to "Edit Member", edit_space_member_path(@space, @member), class: "btn btn-default pull-right" -%>
-    </div>
-  </div>
+    <div class="col-md-9">
+      <div class="box box-body">
+        <h3>Account Overview</h3>
+        <%= link_to "New Invoice", new_space_member_invoice_path(@space, @member), class: "btn btn-success btn-new-invoice pull-right" -%>
 
-  <hr/>
+        <hr>
 
-  <!--
-    TODO Put in metrics blocks
-  -->
+        <table class="table ledger-items" style="margin-bottom: 0;">
+          <thead>
+            <tr>
+              <th class="ref-no">Ref No.</th>
+              <th class="status">Status</th>
+              <th class="issue-date">Issue Date</th>
+              <th class="details">Details</th>
+              <th class="balance-due">Balance Due</th>
+              <th class="view-invoice">&nbsp;</th>
+            </tr>
+          </thead>
 
-  <div class="row">
-    <h3 class="col-md-6" style="padding-top:0;margin-top:0;">Account History</h3>
-    
-    <div class="col-md-6">
-      <%= link_to "New Invoice", new_space_member_invoice_path(@space, @member), class: "btn btn-success pull-right" -%>
-    </div>
-  </div>
+          <tbody>
+            <% @ledger_items.each do |item|-%>
+              <tr>
+                <td>
+                  <%#= link_to item_type_description(item), ledger_item_link(@space, @member, item) %>
+                  <%=  item.id %>
+                </td>
+                <td>
+                  <%= invoice_status(item) %> 
+                </td>
+                <% if item.status == "open"%>
+                  <td> - </td>
+                <% else -%>
+                  <td><%= item.issue_date.nil? ? "Not Set" : item.issue_date.strftime("%b %e, %Y") %></td>
+                <% end -%>
+                <td><%= truncate(item.description, length: 40) %></td>
+                <td><%= item.balance_formatted%></td>
+                <td class="text-right">
 
-  <table class="table ledger-items" style="margin-top:25px;">
-    <thead>
-      <tr>
-        <th class="ref-no">Ref No.</th>
-        <th class="status">Status</th>
-        <th class="issue-date">Issue Date</th>
-        <th class="details">Details</th>
-        <th class="balance-due">Balance Due</th>
-        <th class="view-invoice">&nbsp;</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @ledger_items.each do |item|-%>
-        <tr>
-          <td>
-            <%#= link_to item_type_description(item), ledger_item_link(@space, @member, item) %>
-            <%=  item.id %>
-          </td>
-          <td>
-            <%= invoice_status(item) %> 
-          </td>
-          <% if item.status == "open"%>
-            <td> - </td>
-          <% else -%>
-            <td><%= item.issue_date.nil? ? "Not Set" : item.issue_date.strftime("%b %e, %Y") %></td>
-          <% end -%>
-          <td><%= truncate(item.description, length: 40) %></td>
-          <td><%= item.balance_formatted%></td>
-          <td class="text-right">
-
-            <% if item.status == "open" -%>
-              <!-- Split button -->
-              <div class="btn-group">
-                <%= link_to "View", space_member_invoice_path(@space, @member, item), class: "btn btn-xs btn-default"-%> 
-                <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <span class="caret"></span>
-                  <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <ul class="text-left dropdown-menu" role="menu">
-                  <li>
-                    <%= link_to "Send", deliver_space_member_invoice_path(@space, @member, item), method: "post" -%> 
-                  </li>
-                  <li class="divider"/>
-                  <li>
-                    <%= link_to "Edit", edit_space_member_invoice_path(@space, @member, item)-%>  
-                  </li>
-                  <li>
-                    <%= link_to "Delete", space_member_invoice_path(@space, @member, item), method: "delete", data: { confirm: 'Are you sure?' }-%>  
-                  </li>
-                </ul>
-              </div>
-            <% else -%>
-              <% if !item.paid? -%>
-                <div class="btn-group">
-                  <%= link_to "View", space_member_invoice_path(@space, @member, item), class: "btn btn-xs btn-default" -%> 
-                  <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <span class="caret"></span>
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <ul class="text-left dropdown-menu" role="menu">
-                    <li>
-                      <%= link_to "Record Payment", new_space_member_payment_path(@space, @member, invoice_id: item.id), class: "" -%>
-                    </li>
-                    <li>
-                      <%= link_to "Add Credit Note", new_space_member_credit_note_path(@space, @member, invoice_id: item.id), class: ""  -%>
-                    </li>
-                  </ul>
-                </div>              
-              <% else -%>
-                <%= link_to "View", space_member_invoice_path(@space, @member, item), class: "btn btn-xs btn-default" -%> 
-              <% end -%>
+                  <% if item.status == "open" -%>
+                    <!-- Split button -->
+                    <div class="btn-group">
+                      <%= link_to "View", space_member_invoice_path(@space, @member, item), class: "btn btn-xs btn-gray btn-view-invoice"-%> 
+                      <button type="button" class="btn btn-xs btn-gray dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <ul class="text-left dropdown-menu" role="menu">
+                        <li>
+                          <%= link_to "Send", deliver_space_member_invoice_path(@space, @member, item), method: "post" -%> 
+                        </li>
+                        <li class="divider"/>
+                        <li>
+                          <%= link_to "Edit", edit_space_member_invoice_path(@space, @member, item)-%>  
+                        </li>
+                        <li>
+                          <%= link_to "Delete", space_member_invoice_path(@space, @member, item), method: "delete", data: { confirm: 'Are you sure?' }-%>  
+                        </li>
+                      </ul>
+                    </div>
+                  <% else -%>
+                    <% if !item.paid? -%>
+                      <div class="btn-group">
+                        <%= link_to "View", space_member_invoice_path(@space, @member, item), class: "btn btn-xs btn-gray btn-view-invoice" -%> 
+                        <button type="button" class="btn btn-xs btn-gray dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                          <span class="caret"></span>
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="text-left dropdown-menu" role="menu">
+                          <li>
+                            <%= link_to "Record Payment", new_space_member_payment_path(@space, @member, invoice_id: item.id), class: "" -%>
+                          </li>
+                          <li>
+                            <%= link_to "Add Credit Note", new_space_member_credit_note_path(@space, @member, invoice_id: item.id), class: ""  -%>
+                          </li>
+                        </ul>
+                      </div>              
+                    <% else -%>
+                      <%= link_to "View", space_member_invoice_path(@space, @member, item), class: "btn btn-xs btn-gray btn-view-invoice" -%> 
+                    <% end -%>
+                  <% end -%>
+                </td>
+              </tr>
             <% end -%>
-          </td>
-        </tr>
-      <% end -%>
-    </tbody>
+          </tbody>
 
-  </table>
+        </table>
 
-  <hr/>
+      </div>
 
-  <div class="row">
-    <h3 class="col-md-12" style="padding-top:0;margin-top:0;">Recent Account Activity</h3>  
-  </div>
-
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      
-      <% if @history_items.count == 0 -%>
-        <p class="text-center">        
-          <i>There are no history items to display.</i>
-        </p>
-      <% else -%>
-        <div class="timeline-centered">
+      <div class="box-body">
+        <h3>Account History</h3>
+        <hr>
+        <% if @history_items.count == 0 -%>
+          <p class="text-center">        
+            <i>There are no history items to display.</i>
+          </p>
+        <% else -%>
+          <div class="timeline-centered">
           
-          <% @history_items.each do |history_item| -%>
-            <article class="timeline-entry">   
-              <div class="timeline-entry-inner">      
-                <div class="timeline-icon <%= timeline_bg_colour(history_item) -%>">
-                  <span class="glyphicon <%= timeline_icon(history_item) -%>"></span>
-                </div>      
-                <div class="timeline-label">
-                  <%= render partial: item_type_description(history_item).downcase, locals: {history_item: history_item} -%>
+            <% @history_items.each do |history_item| -%>
+              <article class="timeline-entry">   
+                <div class="timeline-entry-inner">      
+                  <div class="timeline-icon <%= timeline_bg_colour(history_item) -%>">
+                    <span class="glyphicon <%= timeline_icon(history_item) -%>"></span>
+                  </div>      
+                  <div class="timeline-label">
+                    <%= render partial: item_type_description(history_item).downcase, locals: {history_item: history_item} -%>
+                  </div>
                 </div>
-              </div>
-            </article>
-          <% end -%>
+              </article>
+            <% end -%>
           
-        </div>
-      <% end -%>
-      
+          </div>
+        <% end -%>
+
     </div>
   </div>
 </div>

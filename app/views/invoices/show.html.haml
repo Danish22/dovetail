@@ -11,16 +11,16 @@
             %strong Matt Farley
             on 01/07/2015 at 11:34am
         .span4.text-right
-          %button.btn.btn-gray.btn-md.btn-back{"aria-label" => "Left Align"}
+          %a.btn.btn-gray.btn-md.btn-back{"aria-label" => "Left Align"}
             %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}>
             Back to Member
       .col-md-12.action-bar
         .row
           .col-md-6
-            %button.btn.btn-invoice-action.btn-xs.vertical-center Send Invoice
-            %button.btn.btn-invoice-action.btn-xs.vertical-center Edit Invoice
+            %a.btn.btn-invoice-action.btn-xs.vertical-center Send Invoice
+            %a.btn.btn-invoice-action.btn-xs.vertical-center Edit Invoice
             .btn-group
-              %button.btn.btn-invoice-action.btn-xs.vertical-center.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}
+              %a.btn.btn-invoice-action.btn-xs.vertical-center.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}
                 More Actions
                 %span.caret
               %ul.dropdown-menu{:role => "menu"}
@@ -32,7 +32,7 @@
             %p.balance.verticle-middle
               Balance:
               %span{:style => "margin-left:4px; font-weight:600;"} $1,200.00 CAD
-            %button.btn.btn-success.btn-xs.vertical-center Record Payment
+            %a.btn.btn-success.btn-xs.vertical-center Record Payment
       .box.box-body
         .row
           .col-md-6

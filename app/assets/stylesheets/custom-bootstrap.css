@@ -893,7 +893,7 @@ body {
   font-size: 16px;
   line-height: 1.42857143;
   color: #3e3f3a;
-  background-color: #f9f9fb;
+  background-color: #f4f4f4;
 }
 input,
 button,
@@ -2085,7 +2085,7 @@ th {
   border-top: 2px solid #dfd7ca;
 }
 .table .table {
-  background-color: #f9f9fb;
+  background-color: #f4f4f4;
 }
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
@@ -3682,7 +3682,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
   color: #98978b;
-  background-color: #f9f9fb;
+  background-color: #f4f4f4;
   border: 1px solid #dfd7ca;
   border-bottom-color: transparent;
   cursor: default;
@@ -3728,7 +3728,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .nav-tabs.nav-justified > .active > a,
   .nav-tabs.nav-justified > .active > a:hover,
   .nav-tabs.nav-justified > .active > a:focus {
-    border-bottom-color: #f9f9fb;
+    border-bottom-color: #f4f4f4;
   }
 }
 .nav-pills > li {
@@ -3796,7 +3796,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .nav-tabs-justified > .active > a,
   .nav-tabs-justified > .active > a:hover,
   .nav-tabs-justified > .active > a:focus {
-    border-bottom-color: #f9f9fb;
+    border-bottom-color: #f4f4f4;
   }
 }
 .tab-content > .tab-pane {
@@ -6344,12 +6344,13 @@ ul.nav.navbar-nav li.dropdown.pull-right.open {
   height: 64px !important;
 }
 .table > thead > tr {
-  background: #f2ece2;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  font-size: 14px;
+  vertical-align: middle;
 }
 .table > tbody > tr > td {
   font-size: 14px;
+  vertical-align: middle;
+  padding: 8px;
 }
 .table th.ref-no {
   width: 10%;
@@ -6358,16 +6359,16 @@ ul.nav.navbar-nav li.dropdown.pull-right.open {
   width: 10%;
 }
 .table th.issue-date {
-  width: 18%;
-}
-.table th.details {
-  width: 36%;
-}
-.table th.balance-due {
   width: 14%;
 }
+.table th.details {
+  width: 34%;
+}
+.table th.balance-due {
+  width: 16%;
+}
 .table th.view-invoice {
-  width: 12%;
+  width: 14%;
 }
 .btn {
   border: none;
@@ -6631,16 +6632,14 @@ input:focus,
   position: absolute;
   display: block;
   width: 2px;
-  background: #dfd7ca;
+  background: #ddd;
   top: 20px;
   bottom: 20px;
   margin-left: 25px;
 }
 .timeline-centered .timeline-entry {
   position: relative;
-  margin-top: 5px;
-  margin-left: 30px;
-  margin-bottom: 10px;
+  margin: 0 0 8px 30px;
   clear: both;
 }
 .timeline-centered .timeline-entry:before,
@@ -6774,7 +6773,7 @@ input:focus,
   position: relative;
   background: transparent;
   padding: 0.4em;
-  margin-left: 60px;
+  margin-left: 44px;
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
   background-clip: padding-box;
@@ -6794,7 +6793,7 @@ input:focus,
   margin-top: 15px;
 }
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 {
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 10px;
 }
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label h2 a {
@@ -6901,7 +6900,7 @@ hr {
   background: #fff;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  border: 1px #eee solid;
+  border: 1px solid #ddd;
   border-radius: 4px;
   -webkit-box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
   box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
@@ -6927,7 +6926,7 @@ hr {
   vertical-align: top;
 }
 .box-body {
-  padding: 40px;
+  padding: 36px;
 }
 .account-nav {
   font-weight: 600;
@@ -6980,20 +6979,36 @@ ul.account-nav {
 .member-show {
   margin: 30px 0 0;
 }
-.member-show h3 {
-  font-size: 24px;
+.member-show h4 {
+  font-size: 18px;
   margin: 0 0 20px;
+}
+.member-show h3 {
+  display: inline;
+  margin: 0 0 10px;
+}
+.member-show a.btn-new-invoice {
+  position: relative;
+  bottom: 6px;
+}
+.member-show a.btn-view-invoice {
+  font-size: 12px;
+}
+.member-show a.btn-edit {
+  position: relative;
+  bottom: 20px;
+  left: 98px;
 }
 .member-show .member-pic {
   display: inline-block;
   border-radius: 50%;
-  height: 48px;
+  height: 96px;
   width: auto;
-  margin: 0 16px 0 0;
+  margin: -30px 0 20px;
 }
 .member-show .detail-label {
-  font-size: 10px;
-  color: #ccc;
+  font-size: 11px;
+  color: #bbb;
   text-transform: uppercase;
   font-weight: 600;
 }
