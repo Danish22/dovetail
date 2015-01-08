@@ -25,7 +25,7 @@
 
     <div class="col-md-9">
       <div class="box box-body">
-        <h3>Account Overview</h3>
+        <h3>Invoices Overview</h3>
         <%= link_to "New Invoice", new_space_member_invoice_path(@space, @member), class: "btn btn-success btn-new-invoice pull-right" -%>
 
         <hr>
@@ -113,7 +113,7 @@
       </div>
 
       <div class="box-body">
-        <h3>Account History</h3>
+        <h4>Recent Account History</h4>
         <hr>
         <% if @history_items.count == 0 -%>
           <p class="text-center">        
