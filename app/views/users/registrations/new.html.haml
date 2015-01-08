@@ -13,16 +13,16 @@
         = f.hidden_field :invite_token, value: (params[:invite_token] || (params[:user] ? params[:user][:invite_token] : nil))
         .form-group
           .col-md-12
-            = f.text_field :full_name, autofocus: true, class: "form-control", id: "full_name", placeholder: "Enter your name"
+            = f.text_field :full_name, autofocus: true, class: "form-control", id: "full_name", placeholder: "Your name, if you please..."
         .form-group
           .col-md-12
-            = f.email_field :email, class: "form-control", id: "email", placeholder: "Enter your email address"
+            = f.email_field :email, class: "form-control", id: "email", placeholder: "What's your email address?"
         .form-group
           .col-md-12
-            = f.password_field :password, autocomplete: "off", class: "form-control", id: "password", placeholder: "Enter your password"
+            = f.password_field :password, autocomplete: "off", class: "form-control", id: "password", placeholder: "Choose a password"
         .form-group
           .col-md-12
-            = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", id: "password", placeholder: "Confirm your password"
+            = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", id: "password", placeholder: "Enter that password again"
         .row-fluid.text-center
           .col-md-12
             %button.btn.btn-warning.btn-block.btn-login#submit_form{type: "submit"}
