@@ -8,7 +8,7 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    if stale?(@space)
+    if stale?([@space, flash])
       @members = @space.members.all.order("name asc")
     end
   end
@@ -16,7 +16,7 @@ class MembersController < ApplicationController
   # GET /members/1
   # GET /members/1.json
   def show
-    if stale?(@member)
+    if stale?([@member, flash])
       @ledger_items = @member.member_invoices.order("created_at desc")
       @history_items = @member.ledger_items
         .where(status: ["closed", "cleared", "failed"])

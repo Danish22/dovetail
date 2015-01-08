@@ -19,7 +19,6 @@
   * Deleting a draft invoice needs to delete all children (payments and/or credit notes)
 
 * 2.0 (MVP, ship in January-february time frame, available to all, for money)
-  * Space Branding for member portal
   * Change member password
   * Member password recovery
     * Can also/do instead password reset on admin site (would resend invite basically)
@@ -29,6 +28,7 @@
 * 2.2
 
 * Backlog
+  * Space Branding for member portal
   * Improve display of errors on fields for devise forms.
   * Add "due in" to issue date column on invoice list?
   * Add evil icons (rails plugin, etc) or are we going to use pngs generated from AI file?
@@ -58,3 +58,36 @@
       * member auth
   * API Client side (restful, ruby, golang? python?, etc?)
 
+
+
+so, my thoughts on once its sent
+label by invoice number changes to sent
+edit invoice button goes away
+more actions button goes away
+replaced by Add Credit Note
+Send invoice becomes Send Reminder? at some point
+until then, it can go away too
+so only options are add credit note and record payment
+or is there another action once its sent?
+Matt • 1 min
+yeah until paid
+no
+1 min
+Vince Hodges
+Matt Farley
+ok
+or maybe instead of removing buttons, we disable them
+Matt • 1 min
+if you prefer
+Now
+Vince Hodges
+Matt Farley
+not sure
+oh, and one more thing
+when invoice is paid
+all buttons are disabled
+record payment is removed
+Matt • Now
+ok
+Now
+Vince Hodges
