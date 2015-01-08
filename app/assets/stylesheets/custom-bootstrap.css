@@ -6563,7 +6563,7 @@ input:focus,
   min-height: 20px;
   padding: 36px 12px;
   margin-bottom: 20px;
-  border: 1px solid #dfd7ca;
+  border: 1px solid #ddd;
   border-radius: 6px;
   text-align: center;
 }
@@ -6900,7 +6900,7 @@ hr {
   background: #fff;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  border: 1px #ddd solid;
+  border: 1px #eee solid;
   border-radius: 4px;
   -webkit-box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
   box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
