@@ -6315,6 +6315,9 @@ button.close {
   float: none;
   display: inline-block;
 }
+.nav > li > a {
+  padding: 19px 30px;
+}
 .navbar-nav img.avatar {
   display: inline-block;
   width: 40px;
@@ -6562,8 +6565,18 @@ input:focus,
 .panel-default .panel-footer {
   color: #98978b;
 }
-#members {
+.members-index {
   margin: 30px 0;
+}
+.members-index h3 {
+  display: inline;
+}
+.members-index .btn {
+  display: inline;
+  margin-top: -4px;
+}
+#members-grid {
+  margin: 24px 0;
 }
 .member-card {
   background-color: #fff;
@@ -6606,7 +6619,7 @@ input:focus,
 .member-card:hover .btn-view-member {
   visibility: visible !important;
 }
-#members a:hover {
+#members-grid a:hover {
   text-decoration: none;
   color: #29abe0;
 }
