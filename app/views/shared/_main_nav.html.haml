@@ -13,7 +13,7 @@
         %a.navbar-brand{href: "/"}
           %img{src: "/img/logo-d.png", height: "40px"}
 
-      %li{class: active_tab("members")}
+      %li{class: active_tab(["members","invoices", "payments", "credit_notes"])}
         - if @space
           %a{ href: space_members_path(@space)}
             %span.glyphicon.glyphicon-user{ "aria-hidden" => "true"}
