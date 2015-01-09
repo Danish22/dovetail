@@ -1,30 +1,31 @@
 
-
-<div class="row" style="margin-bottom:25px;">
-  <div class="col-md-12">
-    <%= link_to "Add New Member", new_space_member_path(@space), class: "btn btn-success pull-right", style: "margin-top: 14px;" -%>
-    <h3 class="">Here's everyone at <%= @space.name-%></h3>
+<div class="members-index">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="">Here's everyone at <%= @space.name-%></h3>
+      <%= link_to "Add New Member", new_space_member_path(@space), class: "btn btn-success pull-right", style: "" -%>
+    </div>
   </div>
-</div>
 
-<hr>
+  <hr>
 
-<div class="row">
-  <div id="members">
-    <% @members.each do |member| %>
-      <div class="col-lg-15 col-md-3 col-xs-6">
-        <div class="bs-component">
-          <a href="<%= space_member_path(@space, member)%>">
-            <div class="member-card">
-              <img class="member-pic" src="<%= member.gravatar_url(:size =>96, :rating => 'G', :secure => true, :default => 'identicon') -%>">
-              <span class="member-name"><%= member.name %></span>
-              <span class="member-email"><%= member.email %></span>
-            </div>
-          </a>
+  <div class="row">
+    <div id="members-grid">
+      <% @members.each do |member| %>
+        <div class="col-lg-15 col-md-3 col-xs-6">
+          <div class="bs-component">
+            <a href="<%= space_member_path(@space, member)%>">
+              <div class="member-card">
+                <img class="member-pic" src="<%= member.gravatar_url(:size =>96, :rating => 'G', :secure => true, :default => 'identicon') -%>">
+                <span class="member-name"><%= member.name %></span>
+                <span class="member-email"><%= member.email %></span>
+              </div>
+            </a>
+          </div>
         </div>
-      </div>
-      
-    <% end %>
+        
+      <% end %>
+    </div>
   </div>
 </div>
 
