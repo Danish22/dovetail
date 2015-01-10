@@ -15,6 +15,7 @@ class Location < ActiveRecord::Base
 
   # When displaying a country to users/members (ie on invoices/reciepts)
   def country_name
+    return "" if self.country.blank?
     c = ISO3166::Country[self.country]
     c.translations[I18n.locale.to_s] || c.name
   end
