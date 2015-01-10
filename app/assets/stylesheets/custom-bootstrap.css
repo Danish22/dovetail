@@ -6316,7 +6316,7 @@ button.close {
   display: inline-block;
 }
 .nav > li > a {
-  padding: 19px 30px;
+  padding: 19px 20px;
 }
 .navbar-nav img.avatar {
   display: inline-block;
@@ -6920,6 +6920,7 @@ hr {
   border-radius: 4px;
   -webkit-box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
   box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
+  padding: 36px;
 }
 .account-sidebar {
   min-width: 204px;
@@ -7146,4 +7147,10 @@ ul.account-nav {
 .invoice .notes p.contact-info a {
   color: #3e3f3a;
   text-decoration: underline;
+}
+.extra-white-space {
+  margin: 30px 0;
+}
+.extra-padding {
+  padding: 48px;
 }
