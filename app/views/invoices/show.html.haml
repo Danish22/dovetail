@@ -70,7 +70,7 @@
                 .col-md-6.text-right
                   #{sprintf("%05d", @invoice.id)}
                   %br
-                    #{ @invoice.issue_date.strftime("%Y/%m/%d")}
+                    #{ @invoice.issue_date.nil? ? "-" : @invoice.issue_date.strftime("%Y/%m/%d")}
         / / end client details section
         .row
           .col-md-12{:style => "margin-top: 20px;"}

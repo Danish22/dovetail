@@ -1,5 +1,5 @@
 %h2
-  %a{href:"#"}
+  %a{href: space_member_invoice_path(@space, @member, history_item)}
     = item_type_description(history_item)
     Ref No. #{history_item.id}
   %span was sent to #{history_item.recipient.email} on #{history_item.issue_date.strftime("%B %d, %Y %H:%M")}
