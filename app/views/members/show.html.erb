@@ -46,8 +46,7 @@
             <% @ledger_items.each do |item|-%>
               <tr>
                 <td>
-                  <%#= link_to item_type_description(item), ledger_item_link(@space, @member, item) %>
-                  <%=  item.id %>
+                  <%= link_to sprintf("%05d", item.id), ledger_item_link(@space, @member, item) %>                  
                 </td>
                 <td>
                   <%= invoice_status(item) %> 

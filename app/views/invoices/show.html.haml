@@ -4,34 +4,37 @@
       .row.invoice-header
         .span8
           %h3
-            Invoice No. 0001
-            %span.label.label-default Draft
+            Invoice Ref. No. #{sprintf("%05d", @invoice.id)}
+            #{invoice_status(@invoice)}
+
           %p
-            Created by
-            %strong Matt Farley
-            on 01/07/2015 at 11:34am
+            Created on
+            #{ @invoice.created_at.strftime("%Y/%m/%d at %l:%M %p %Z")}
         .span4.text-right
-          %a.btn.btn-gray.btn-md.btn-back{"aria-label" => "Left Align"}
+          %a.btn.btn-gray.btn-md.btn-back{"aria-label" => "Left Align", :href => space_member_path(@space, @member)}
             %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}>
             Back to Member
       .col-md-12.action-bar
         .row
           .col-md-6
-            %a.btn.btn-invoice-action.btn-xs.vertical-center Send Invoice
-            %a.btn.btn-invoice-action.btn-xs.vertical-center Edit Invoice
+            %a.btn.btn-invoice-action.btn-xs.vertical-center 
+              Send Invoice
+            %a.btn.btn-invoice-action.btn-xs.vertical-center 
+              Edit Invoice
             .btn-group
               %a.btn.btn-invoice-action.btn-xs.vertical-center.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :type => "button"}
                 More Actions
                 %span.caret
               %ul.dropdown-menu{:role => "menu"}
                 %li
-                  %a{:href => "#"} Add Credit Note
+                  %a{href: "#"} Add Credit Note
                 %li
-                  %a{:href => "#"} Delete Invoice
+                  %a{href: "#"} Delete Invoice
           .col-md-6.text-right
             %p.balance.verticle-middle
               Balance:
-              %span{:style => "margin-left:4px; font-weight:600;"} $1,200.00 CAD
+              %span{:style => "margin-left:4px; font-weight:600;"} 
+                #{@invoice.balance_formatted} #{@member.location.currency}
             %a.btn.btn-success.btn-xs.vertical-center Record Payment
       .box.box-body
         .row
@@ -44,18 +47,19 @@
             %hr
         .row
           .col-md-6{:style => "margin-top:10px;"}
-            %span.space-name SwitchCube Coworking
+            %span.space-name #{@space.name}
             %p.space-address
-              34711-B 6th Ave.
+              #{@member.location.address}
               %br
-                Abbotsford, BC V2S8C3
-                %br
-                  Canada
+              #{@member.location.city}, #{@member.location.state} #{@member.location.postal_code}
+              %br
+              #{@member.location.country_name}
+
             %span.section-title Bill to
             %p.member-name
-              Matt Farley
+              #{@member.name}
               %br
-                %a.member-email{:href => "#"} matt@pendeavor.com
+                %a.member-email{:href => "#"} #{@member.email}
           .col-md-6{:style => "margin-top:10px;"}
             .panel.panel-default
               .panel-body
@@ -64,9 +68,9 @@
                   %br
                     Issue Date
                 .col-md-6.text-right
-                  0001
+                  #{sprintf("%05d", @invoice.id)}
                   %br
-                    01/05/2015
+                    #{ @invoice.issue_date.strftime("%Y/%m/%d")}
         / / end client details section
         .row
           .col-md-12{:style => "margin-top: 20px;"}
