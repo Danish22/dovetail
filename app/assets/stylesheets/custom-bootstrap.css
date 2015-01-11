@@ -6873,6 +6873,7 @@ body.registrations.new {
 }
 hr {
   border-top: 1px solid #eaecf1;
+  margin: 30px 0;
 }
 .main-content {
   padding: 0 0 100px;
@@ -6920,7 +6921,6 @@ hr {
   border-radius: 4px;
   -webkit-box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
   box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
-  padding: 36px;
 }
 .account-sidebar {
   min-width: 204px;
@@ -6942,8 +6942,14 @@ hr {
   padding: 30px 60px;
   vertical-align: top;
 }
-.box-body {
+.box-body-sm {
   padding: 36px;
+}
+.box-body-md {
+  padding: 48px;
+}
+.box-body-lg {
+  padding: 60px;
 }
 .account-nav {
   font-weight: 600;
@@ -7148,9 +7154,24 @@ ul.account-nav {
   color: #3e3f3a;
   text-decoration: underline;
 }
+#space-new {
+  margin-top: 60px;
+  margin-bottom: 100px;
+}
+#space-new h2 {
+  margin: 0 0 24px 0;
+}
+#space-new h4 {
+  margin: 24px 0;
+}
+#space-new p {
+  color: #3e3f3a;
+  margin: 0 0 30px 0;
+}
+#space-new .form-horizontal .control-label {
+  color: #8e8c84;
+  font-weight: 400;
+}
 .extra-white-space {
   margin: 30px 0;
-}
-.extra-padding {
-  padding: 48px;
 }
