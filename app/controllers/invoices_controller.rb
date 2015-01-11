@@ -43,7 +43,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|   
       if @invoice.save
-        format.html { redirect_to space_member_url(@space, @member), notice: 'Invoice was successfully created.' }
+        format.html { redirect_to space_member_invoice_url(@space, @member, @invoice), notice: 'Invoice was successfully created.' }
         format.json { render :show, status: :created, location: [@space, @member, @invoice] }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(member_params)
-        format.html { redirect_to space_member_url(@space, @member), notice: 'Invoice was successfully updated.' }
+        format.html { redirect_to space_member_invoice_url(@space, @member, @invoice), notice: 'Invoice was successfully updated.' }
         format.json { render :show, status: :ok, location: [@space, @member, @invoice] }
       else
         format.html { render :edit }
