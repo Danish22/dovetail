@@ -111,11 +111,11 @@
                   %td.text-right -
         .row
           .col-md-8.notes
-            %h4 Thanks for supporting SwitchCube
+            %h4 Thanks for supporting #{@space.name}
             %p.contact-info
               If you have any questions about this invoice, we're happy to help. Simply send an email to
-              %a{:href => "#"} accounting@switchcube.com
-              or give us a call at 123-456-7890. Thanks again!
+              %a{:href => "mailto:#{@space.user.email}"} #{@space.user.email}
+              Thanks again!
           .col-md-2.text-right
             %p
               Sub Total :
