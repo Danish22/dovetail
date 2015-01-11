@@ -59,49 +59,7 @@
                 <td><%= truncate(item.description, length: 40) %></td>
                 <td><%= item.balance_formatted%></td>
                 <td class="text-right">
-
-                  <% if item.status == "open" -%>
-                    <!-- Split button -->
-                    <div class="btn-group">
-                      <%= link_to "View", space_member_invoice_path(@space, @member, item), class: "btn btn-xs btn-gray btn-view-invoice"-%> 
-                      <button type="button" class="btn btn-xs btn-gray dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <ul class="text-left dropdown-menu" role="menu">
-                        <li>
-                          <%= link_to "Send", deliver_space_member_invoice_path(@space, @member, item), method: "post" -%> 
-                        </li>
-                        <li class="divider"/>
-                        <li>
-                          <%= link_to "Edit", edit_space_member_invoice_path(@space, @member, item)-%>  
-                        </li>
-                        <li>
-                          <%= link_to "Delete", space_member_invoice_path(@space, @member, item), method: "delete", data: { confirm: 'Are you sure?' }-%>  
-                        </li>
-                      </ul>
-                    </div>
-                  <% else -%>
-                    <% if !item.paid? -%>
-                      <div class="btn-group">
-                        <%= link_to "View", space_member_invoice_path(@space, @member, item), class: "btn btn-xs btn-gray btn-view-invoice" -%> 
-                        <button type="button" class="btn btn-xs btn-gray dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                          <span class="caret"></span>
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="text-left dropdown-menu" role="menu">
-                          <li>
-                            <%= link_to "Record Payment", new_space_member_payment_path(@space, @member, invoice_id: item.id), class: "" -%>
-                          </li>
-                          <li>
-                            <%= link_to "Add Credit Note", new_space_member_credit_note_path(@space, @member, invoice_id: item.id), class: ""  -%>
-                          </li>
-                        </ul>
-                      </div>              
-                    <% else -%>
-                      <%= link_to "View", space_member_invoice_path(@space, @member, item), class: "btn btn-xs btn-gray btn-view-invoice" -%> 
-                    <% end -%>
-                  <% end -%>
+                  &nbsp;
                 </td>
               </tr>
             <% end -%>
