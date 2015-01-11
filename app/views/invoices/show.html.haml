@@ -135,7 +135,7 @@
                   %br
             %span.money $1,200.00
     .inner-padding
-      %hr{:style => "margin-top: 50px;"}
+      %div{:style => "margin-top: 50px;"}
         .row
           .col-md-12
-            %h4.history Invoice History
+            = render partial: 'shared/transaction_history', locals: {history_title: "Invoice History"}

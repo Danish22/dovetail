@@ -9,6 +9,14 @@ class InvoicesController < ApplicationController
   # GET /members/1
   # GET /members/1.json
   def show
+    if stale?([@space, @member, @invoice, flash])
+      @history_items = @invoice.children
+        .order("created_at desc").to_a
+
+      if @invoice.status != "open"
+        @history_items << @invoice
+      end
+    end
   end
 
   # GET /members/new
