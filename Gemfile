@@ -33,6 +33,8 @@ gem 'bootstrap_form'
 gem 'textacular', '~> 3.0'
 gem 'money'
 
+gem 'evil_icons'
+
 # For stripe and/or OAuth 2.0
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'oauth2'

@@ -112,6 +112,7 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
+    evil_icons (1.4.0)
     execjs (2.2.1)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -334,6 +335,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   country_select
   devise
+  evil_icons
   figaro
   friendly_id (~> 5.0.0)
   gravtastic

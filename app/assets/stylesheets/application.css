@@ -13,6 +13,7 @@
  * require_tree . #Not a good idea with this theme
  *
  *= require custom-bootstrap
+ *= require evil-icons
  *= stub active_admin
  *= require_self
  */
@@ -20,3 +21,22 @@
 .command-bar {
     text-align:right;
 }
+
+.icon {
+    float:left;
+    margin-right: 2px;
+}
+
+.navbar .nav > li > a .icon {
+    fill:#98978b;
+}
+.navbar .nav > li.active > a .icon {
+    fill:#3e3f3a;
+}
+
+.navbar .nav > li > a:hover .icon {
+    fill:#3e3f3a;
+}
+
+
+
