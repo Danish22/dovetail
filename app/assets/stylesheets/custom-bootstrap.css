@@ -6909,10 +6909,6 @@ hr {
     float: left;
   }
 }
-.account-box {
-  position: relative;
-  margin: 30px;
-}
 .box {
   background: #fff;
   -webkit-background-clip: padding-box;
@@ -6922,25 +6918,8 @@ hr {
   -webkit-box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
   box-shadow: 0 2px 4px rgba(79, 74, 63, 0.05);
 }
-.account-sidebar {
-  min-width: 204px;
-  display: table-cell;
-  font-size: 14px;
-  padding: 10px 0 0;
-  text-align: center;
-  vertical-align: top;
-}
-.box-sidebar {
-  background: #f1ede4;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  padding: 10px;
-}
-.box-main {
-  width: 100%;
-  display: table-cell;
-  padding: 30px 60px;
-  vertical-align: top;
+.box-body-xs {
+  padding: 24px;
 }
 .box-body-sm {
   padding: 36px;
@@ -6951,35 +6930,117 @@ hr {
 .box-body-lg {
   padding: 60px;
 }
-.account-nav {
+.account-sidebar .avatar-wrap {
+  float: left;
+  margin: 0 16px 0 0;
+  position: relative;
+}
+.account-sidebar .admin-pic {
+  display: inline;
+  border-radius: 50%;
+  height: 96px;
+  width: auto;
+}
+.account-sidebar .admin-info {
+  display: inline-block;
+  margin: 10px 0 0;
+  width: 63%;
+}
+.account-sidebar h5 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 10px 0 0 0;
+  padding: 0 0 10px;
+  border-bottom: 1px dotted #ccc;
+}
+.account-sidebar p.email {
+  color: #98978b;
+  font-size: 12px;
+  margin: 8px 0 6px;
+}
+.account-nav .list-group {
+  margin: 0;
+}
+.account-sidebar .account-nav .list-group-item {
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border-top: 1px solid #eaecf1;
+  border-bottom: 1px solid #eaecf1;
+  border-left: 0px solid #eaecf1;
+  border-right: 0px solid #eaecf1;
+  border-radius: 0px;
+}
+.account-sidebar a.list-group-item {
+  color: #29abe0;
+}
+.account-sidebar .account-nav .list-group-item:hover {
+  color: #29abe0;
+}
+.account-sidebar .account-nav .list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  z-index: 2;
+  color: #fff;
+  background-color: #3e3f3a;
+  border-color: #dfd7ca;
+}
+.account-content hr {
+  margin: 16px 0 30px;
+}
+.account-content h3 {
+  margin: 0;
+}
+.account-content .well-space {
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 26px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #29abe0;
+  border: 1px solid #ddd;
+  padding: 40px 20px;
+  background-color: #f4f4f4;
+}
+.account-content .well-space:hover {
+  background-color: #3e3f3a;
+  color: #fff;
+}
+#user-plans {
+  margin-bottom: 40px;
+}
+#credit-cards {
+  margin-bottom: 50px;
+}
+#billing-history p.receipt {
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+#user-plans p.notice {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 24px;
+}
+.account-content .well-plan {
+  border: 1px solid #ddd;
+}
+.account-content .well-plan h4 {
   font-weight: 600;
 }
-ul.account-nav {
-  list-style: none;
-  padding: 0;
+.account-content span.plan-status {
+  margin: 12px 0 18px;
+  display: block;
+  font-size: 14px;
 }
-.account-nav > .active > a {
-  background: #dfd7ca;
-  color: #8e8c84;
-  border-radius: 6px;
+.account-content .well-plan p {
+  font-size: 13px;
+  color: #98978b;
+  line-height: 1.4;
+  margin: 0 0 20px;
 }
-.account-nav > li > a {
-  display: inline-block;
-  padding: 6px 20px;
-  text-decoration: none;
+.account-content .well-plan .btn {
+  margin: 8px 0 12px;
 }
-.account-nav > li {
-  position: relative;
-  margin: 15px 0;
-}
-.account-nav > .active:after {
-  content: '';
-  border: 10px transparent solid;
-  border-right-color: #fff;
-  position: absolute;
-  top: 50%;
-  right: -10px;
-  margin: -10px 0 0;
+.account-content .well-plan .btn .btn-coming-soon {
+  background-color: transparent;
 }
 .section-coming-soon {
   width: 720px;
@@ -7174,4 +7235,11 @@ ul.account-nav {
 }
 .extra-white-space {
   margin: 30px 0;
+}
+.help-block {
+  color: #98978b;
+  font-size: 15px;
+}
+.icon {
+  margin-right: 4px;
 }
