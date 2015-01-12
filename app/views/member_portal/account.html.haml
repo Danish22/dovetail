@@ -61,7 +61,7 @@
 
                 %td= truncate(item.description, length: 40)
                 %td= item.balance_formatted
-                %td.text-right
+                %td.text-right= paid(item)
 
       =# render partial: 'shared/transaction_history', locals: {history_title: "Recent Account History"}
     
