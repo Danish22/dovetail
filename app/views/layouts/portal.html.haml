@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title Dovetail
+    %title #{@space.name} - Members
 
     %meta{'charset' => "utf-8"}
     %meta{'http-equiv' => "X-UA-Compatible", 'content' => "IE=edge"}
@@ -24,9 +24,7 @@
           %div{style: "padding:20px;margin-top:20px;", class: "text-center"}
             %h3
               = @space.name
-          %div{style: "", class: "text-center"}         
-            Welcome #{current_member.name}
-            = link_to "Sign out", "/logout", class: "btn btn-default"
+            = link_to "Sign Out", "/logout", class: "btn btn-small"
           = yield
         - else
           = render "signup"

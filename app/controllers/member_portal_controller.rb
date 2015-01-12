@@ -6,7 +6,11 @@ class MemberPortalController < PortalApplicationController
   def account
 
     if current_member
-      @ledger_items = current_member.ledger_items.in_effect.order("issue_date DESC")
+      @ledger_items = current_member.member_invoices.in_effect.order("created_at desc")
+      @history_items = current_member.ledger_items
+        .where(status: ["closed", "cleared", "failed"])
+        .order("created_at desc")
+        .limit(6)
     end
 
     @identity = MemberIdentity.new # Really only used on signup

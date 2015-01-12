@@ -29,6 +29,8 @@
 
 * Backlog
 
+  * fix conditional get caching (cache busting for dev mode, add flash to cache key, version #?)
+
   * spaces/show (overview - replaces manage)
 
   * Trial ending on space and owner (rather than current user)

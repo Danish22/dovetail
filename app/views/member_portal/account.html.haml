@@ -1,36 +1,66 @@
-.col-md-7
-  %h3 History
+- return unless current_member.present?
 
-  - if !@ledger_items.nil? && @ledger_items.length == 0
-    .text-center
-      %em There are no payments or invoices to display
-  - elsif !@ledger_items.nil? && @ledger_items.length > 0
-    %table.table.ledger-items{style: "margin-top:25px;"}
-      %thead
-        %tr
-          %th Type
-          %th Description
-          %th Issued
-          %th Due
-          %th{style: "text-align:right"} Amount
-          %th
-          
-        %tbody
-          - @ledger_items.each do |item|
+.member-show
+  .row
+    .col-md-3.text-center
+      .box.box-body-sm
+        .row
+          = link_to "<span class='glyphicon glyphicon-cog' aria-hidden='true'>".html_safe, "#", class: "btn btn-gray btn-sm btn-edit"
+        
+        %img.member-pic{src: current_member.gravatar_url(:size =>96, :rating => 'G', :secure => true, :default => 'identicon')}
+        %h4 #{ current_member.name }
+        %hr
+        .row.text-left
+          .col-md-12
+            %span.detail-label Email
+            %p.detail-info #{current_member.email}
+
+            %span.detail-label Joined
+            %p.detail-info #{current_member.created_at.strftime("%B %d, %Y")}
+
+            %span.detail-label Membership Plan
+            %p.detail-info #{current_member.plan.nil? ? "&lt;No Plan&gt;".html_safe : current_member.plan.name }
+       
+        - if @gateway && current_member
+          %br
+          %h5 Credit Card
+          - if current_member.payment_system_customer_id.blank?
+            <a href="/credit_card">Add a credit card</a>
+          - else
+            XXXX XXXX XXXX #{current_member.last_4_digits}
+            %br
+            <a href="/credit_card">Change</a>
+        - else
+          &nbsp;
+               
+    .col-md-9
+      .box.box-body-sm
+        %h3 Invoices Overview
+
+        %hr
+
+        %table.table.ledger-items{ style: "margin-bottom: 0;"}
+          %thead
             %tr
-              %td= link_to item_type_description(item), "/#{item.id}/details"
-              %td= truncate(item.description, length: 30)
-              %td= item.issue_date.strftime("%b %e, %Y")
-              %td= item.is_invoice ? item.due_date.strftime("%b %e, %Y") : "&nbsp".html_safe
-              %td{style: "text-align:right"}= item.total_amount_formatted
-              %td= paid(item)
+              %th.ref-no Ref No.
+              %th.issue-date Issue Date
+              %th.details Details
+              %th.balance-due Balance Due
+              %th.view-invoice &nbsp;
+            
+          %tbody
+            - @ledger_items.each do |item| 
+              %tr
+                %td
+                  = link_to sprintf("%05d", item.id), "/#{item.id}/details"                   
+                - if item.status == "open"
+                  %td - 
+                - else
+                  %td= item.issue_date.nil? ? "Not Set" : item.issue_date.strftime("%b %e, %Y") 
 
-.col-md-5
-  - if @gateway && current_member
-    %h3 Credit Card
-    - if current_member.payment_system_customer_id.blank?
-      No card on file, <a href="/credit_card">please enter one.</a>
-    - else
-      Card one file, ending in: #{current_member.last_4_digits}. <a href="/credit_card">Change card</a>
-  - else
-    &nbsp;
+                %td= truncate(item.description, length: 40)
+                %td= item.balance_formatted
+                %td.text-right
+
+      =# render partial: 'shared/transaction_history', locals: {history_title: "Recent Account History"}
+    
