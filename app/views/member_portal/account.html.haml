@@ -5,8 +5,9 @@
     .col-md-3.text-center
       .box.box-body-sm
         .row
-          = link_to "<span class='glyphicon glyphicon-cog' aria-hidden='true'>".html_safe, "#", class: "btn btn-gray btn-sm btn-edit"
-        
+          =# link_to "<span class='glyphicon glyphicon-cog' aria-hidden='true'>".html_safe, "#", class: "btn btn-gray btn-sm btn-edit"
+          %br
+
         %img.member-pic{src: current_member.gravatar_url(:size =>96, :rating => 'G', :secure => true, :default => 'identicon')}
         %h4 #{ current_member.name }
         %hr
