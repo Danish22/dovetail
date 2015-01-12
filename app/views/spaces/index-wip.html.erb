@@ -1,0 +1,33 @@
+
+.row
+  .account-sidebar
+    .col-md-4
+      .box
+        .box-body-xs.clearfix
+          .avatar-wrap
+            %img.admin-pic{:src => "https://secure.gravatar.com/avatar/e12ccd91b6a0fc838f9af1b3ca896564.png?d=mm&r=G&s=96"}/
+          .admin-info
+            %h5 Matt Farley
+            %p.email matt@pendeavor.com
+        .account-nav
+          .list-group
+            %a.list-group-item{:href => "/my-account.html"} My Account
+            %a.list-group-item.active{:href => "/spaces.html"} Spaces
+            %a.list-group-item{:href => "/billing.html"} Billing
+  .account-content
+    .col-md-8
+      .box.box-body-sm.clearfix
+        %h3 Spaces You Manage
+        %hr/
+        .row.text-center
+          .col-md-4
+            .well.well-space
+              SwitchCube
+          .col-md-4
+            .well.well-space
+              Mission Makers
+          .col-md-4
+            .well.well-space
+              The Networkhub
+        %hr/
+        %a.btn.btn-success{:href => "/space-new.html"} Create New Space
