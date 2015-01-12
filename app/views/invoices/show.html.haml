@@ -91,24 +91,14 @@
                   %th{:style => "text-align: right; width: 14%"}
                     Sub Total
               %tbody
-                %tr
-                  %td -
-                  %td.text-right -
-                  %td.text-right -
-                  %td.text-right -
-                  %td.text-right -
-                %tr
-                  %td -
-                  %td.text-right -
-                  %td.text-right -
-                  %td.text-right -
-                  %td.text-right -
-                %tr
-                  %td -
-                  %td.text-right -
-                  %td.text-right -
-                  %td.text-right -
-                  %td.text-right -
+                - @invoice.line_items.each do |line|
+                  - next if line.description.blank?
+                  %tr
+                    %td #{line.description}
+                    %td.text-right #{line.quantity}
+                    %td.text-right #{line.net_amount_formatted}
+                    %td.text-right #{line.tax_amount_formatted}
+                    %td.text-right #{line.gross_amount_formatted}
         .row
           .col-md-8.notes
             %h4 Thanks for supporting #{@space.name}
@@ -120,20 +110,16 @@
             %p
               Sub Total :
               %br
-                TAX :
-                %br
-                  Discount :
-                  %br
-            %span.total Total:
+              TAX :
+              %br
+              %span.total Total:
           .col-md-2.text-right
             %p
-              $1200.00
+              #{@invoice.net_amount_formatted}
               %br
-                N/A
-                %br
-                  \--
-                  %br
-            %span.money $1,200.00
+              #{@invoice.tax_amount_formatted}  
+              %br
+              %span.money #{@invoice.total_amount_formatted}
     .inner-padding
       %div{:style => "margin-top: 50px;"}
         .row
