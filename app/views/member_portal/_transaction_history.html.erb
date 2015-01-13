@@ -1,0 +1,26 @@
+<div class="box-body-sm">
+  <h4><%= history_title-%></h4>
+  <hr>
+  <% if @history_items.count == 0 -%>
+    <p class="text-center">        
+      <i>There are no history items to display.</i>
+    </p>
+  <% else -%>
+    <div class="timeline-centered">
+      
+      <% @history_items.each do |history_item| -%>
+        <article class="timeline-entry">   
+          <div class="timeline-entry-inner">      
+            <div class="timeline-icon <%= timeline_bg_colour(history_item) -%>">
+              <span class="glyphicon <%= timeline_icon(history_item) -%>"></span>
+            </div>      
+            <div class="timeline-label">
+              <%= render partial: item_type_description(history_item).downcase, locals: {history_item: history_item} -%>
+            </div>
+          </div>
+        </article>
+      <% end -%>
+      
+    </div>
+  <% end -%>
+</div>

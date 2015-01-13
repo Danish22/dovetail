@@ -18,6 +18,13 @@ class MemberPortalController < PortalApplicationController
 
   def details
     @invoice = current_member.ledger_items.find(params[:ledger_item_id])
+    @history_items = @invoice.children
+      .order("created_at desc").to_a
+    
+    if @invoice.status != "open"
+      @history_items << @invoice
+    end
+    
   end
 
   def create_identity

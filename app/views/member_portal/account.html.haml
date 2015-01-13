@@ -63,5 +63,5 @@
                 %td= item.balance_formatted
                 %td.text-right= paid(item)
 
-      =# render partial: 'shared/transaction_history', locals: {history_title: "Recent Account History"}
+      = render partial: 'transaction_history', locals: {history_title: "Recent Account History"}
     
