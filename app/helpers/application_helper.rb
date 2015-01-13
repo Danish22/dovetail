@@ -129,7 +129,7 @@ module ApplicationHelper
     raise "Can only pay invoices" unless item.is_invoice
     raise "Can only pay unpaid invoices" if item.paid?
 
-    link_to("Make payment", "/#{item.id}/makepayment", method: :post)
+    link_to("Pay Invoice", "/#{item.id}/makepayment", method: :post)
   end
 
   ThirdPartyApp = Struct.new(:impl, :label, :path, :icon, :description, :partial)

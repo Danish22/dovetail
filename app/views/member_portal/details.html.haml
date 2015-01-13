@@ -1,24 +1,112 @@
-.col-md-6.col-md-offset-3
-  %h3 #{item_type_description(@item)} Details
-  %h5 #{@item.description} #{@item.total_amount_formatted}
+.container
+  .invoice
+    .inner-padding
+      .row.invoice-header
+        .span8
+          %h3
+            Invoice Ref. No. #{sprintf("%05d", @invoice.id)}
 
-  - if @item.line_items.length > 0
-    %table.table.line-items{style: "margin-top:25px;"}
-      %thead
-        %tr
-          %th Description
-          %th{style: "text-align:right"} Tax Amount
-          %th{style: "text-align:right"} Total Amount
-          
-        %tbody
-          - @item.line_items.each do |item|
-            - next if item.description.blank?
-            %tr
-              %td= item.description
-              %td{style: "text-align:right"}= item.tax_amount_formatted
-              %td{style: "text-align:right"}= item.gross_amount_formatted
+          %p
+            Created on
+            #{ @invoice.created_at.strftime("%Y/%m/%d at %l:%M %p %Z")}
+        .span4.text-right
+          %a.btn.btn-gray.btn-md.btn-back{"aria-label" => "Left Align", :href => "/"}
+            %span.glyphicon.glyphicon-arrow-left{"aria-hidden" => "true"}>
+            Back 
+      .col-md-12.action-bar
+        .row
+          .col-md-6
+          .col-md-6.text-right
+            %p.balance.verticle-middle
+              Balance:
+              %span{:style => "margin-left:4px; font-weight:600;"} 
+                #{@invoice.balance_formatted} #{current_member.location.currency}  
+            - if !@invoice.paid? 
+              = link_to "Pay Invoice", "/#{@invoice.id}/makepayment", method: :post, class: "btn btn-success btn-xs vertical-center" 
 
-  = link_to "Back to account", "/"
+      .box.box-body-md
+        .row
+          .col-md-6
+            -#%img{:src => "/img/space-logo.png", :width => "160px;"}
+          .col-md-6.text-right
+            %h2{:style => "margin-top: 0px;"} INVOICE
+        .row
+          .col-md-12
+            %hr
+        .row
+          .col-md-6{:style => "margin-top:10px;"}
+            %span.space-name #{@space.name}
+            %p.space-address
+              #{current_member.location.address}
+              %br
+              #{current_member.location.city}, #{current_member.location.state} #{current_member.location.postal_code}
+              %br
+              #{current_member.location.country_name}
 
-.col-md-5
-  &nbsp;
+            %span.section-title Bill to
+            %p.member-name
+              #{current_member.name}
+              %br
+                %a.member-email{:href => "#"} #{current_member.email}
+          .col-md-6{:style => "margin-top:10px;"}
+            .panel.panel-default
+              .panel-body
+                .col-md-6{:style => "font-weight: 600;"}
+                  Reference No.
+                  %br
+                    Issue Date
+                .col-md-6.text-right
+                  #{sprintf("%05d", @invoice.id)}
+                  %br
+                    #{ @invoice.issue_date.nil? ? "-" : @invoice.issue_date.strftime("%Y/%m/%d")}
+        / / end client details section
+        .row
+          .col-md-12{:style => "margin-top: 20px;"}
+            %table.table.table-bordered
+              %thead
+                %tr
+                  %th{:style => "width: 56%"}
+                    Description
+                  %th{:style => "text-align: right; width: 8%"}
+                    Qty
+                  %th{:style => "text-align: right; width: 14%"}
+                    Price
+                  %th{:style => "text-align: right; width: 8%"}
+                    Tax
+                  %th{:style => "text-align: right; width: 14%"}
+                    Sub Total
+              %tbody
+                - @invoice.line_items.each do |line|
+                  - next if line.description.blank?
+                  %tr
+                    %td #{line.description}
+                    %td.text-right #{line.quantity}
+                    %td.text-right #{line.net_amount_formatted}
+                    %td.text-right #{line.tax_amount_formatted}
+                    %td.text-right #{line.gross_amount_formatted}
+        .row
+          .col-md-8.notes
+            %h4 Thanks for supporting #{@space.name}
+            %p.contact-info
+              If you have any questions about this invoice, we're happy to help. Simply send an email to
+              %a{:href => "mailto:#{@space.user.email}"} #{@space.user.email}
+              Thanks again!
+          .col-md-2.text-right
+            %p
+              Sub Total :
+              %br
+              TAX :
+              %br
+              %span.total Total:
+          .col-md-2.text-right
+            %p
+              #{@invoice.net_amount_formatted}
+              %br
+              #{@invoice.tax_amount_formatted}  
+              %br
+              %span.money #{@invoice.total_amount_formatted}
+    .inner-padding
+      %div{:style => "margin-top: 50px;"}
+        .row
+          .col-md-12
+            =# render partial: 'shared/transaction_history', locals: {history_title: "Invoice History"}

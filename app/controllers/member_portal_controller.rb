@@ -17,7 +17,7 @@ class MemberPortalController < PortalApplicationController
   end
 
   def details
-    @item = current_member.ledger_items.find(params[:ledger_item_id])
+    @invoice = current_member.ledger_items.find(params[:ledger_item_id])
   end
 
   def create_identity
