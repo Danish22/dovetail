@@ -1,0 +1,37 @@
+.row
+  .account-sidebar
+    .col-md-4
+      .box
+        .box-body-xs.clearfix
+          .avatar-wrap
+            %img.admin-pic{:src => "https://secure.gravatar.com/avatar/e12ccd91b6a0fc838f9af1b3ca896564.png?d=mm&r=G&s=96"}/
+          .admin-info
+            %h5 Matt Farley
+            %p.email matt@pendeavor.com
+        .account-nav
+          .list-group
+            %a.list-group-item{:href => "/my-account.html"} My Account
+            %a.list-group-item.active{:href => "/change-password.html"} Change Password
+            %a.list-group-item{:href => "/spaces.html"} Spaces
+            %a.list-group-item{:href => "/billing.html"} Billing
+  .account-content
+    .col-md-8
+      .box.box-body-sm
+        %h3 Change Your Password
+        %hr/
+        %form
+          .form-group
+            %label{:for => "user_password"} New Password
+            %input#user_password.form-control{:autocomplete => "off", :name => "user[password]", :type => "password"}/
+            %span.help-block
+              %i (leave blank if you don't want to change it)
+          .form-group
+            %label{:for => "user_password_confirmation"} New Password Confirmation
+            %input#user_password_confirmation.form-control{:autocomplete => "off", :name => "user[password_confirmation]", :type => "password"}/
+          .form-group
+            %label{:for => "user_current_password"} Current password
+            %input#user_current_password.form-control{:autocomplete => "off", :name => "user[current_password]", :type => "password"}/
+            %span.help-block
+              %i (we need your current password to confirm the change)
+          %hr/
+          %input.btn.btn-success{:name => "commit", :type => "submit", :value => "Save & Update"}/
