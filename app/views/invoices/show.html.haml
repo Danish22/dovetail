@@ -39,7 +39,7 @@
                 #{@invoice.balance_formatted} #{@member.location.currency}  
             - if !@invoice.paid? 
               = link_to "Record Payment", new_space_member_payment_path(@space, @member, invoice_id: @invoice.id), class: "btn btn-success btn-xs vertical-center" 
-      .box.box-body
+      .box.box-body-md
         .row
           .col-md-6
             -#%img{:src => "/img/space-logo.png", :width => "160px;"}
