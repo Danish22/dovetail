@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   constraints(AppConstraint) do
 
-    root to: 'members#index'
+    root to: 'spaces#index'
 
     resources :payment_methods, path: "billing"
 

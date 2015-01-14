@@ -46,7 +46,7 @@ module ApplicationHelper
 
   def select_sub_nav
     if ["spaces"].include? controller_name
-      if action_name == "new"
+      if action_name == "new" || action_name == "index"
         return "shared/user_account"
       else
         return "shared/settings"

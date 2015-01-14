@@ -1,0 +1,14 @@
+%h3 Spaces You Manage
+%hr
+
+.row.text-center
+  - @spaces.each do |space|
+    .col-md-4
+      %a{href:  space_members_path(space)}
+        .well.well-space
+          #{space.name}
+
+%hr/
+
+%a.btn.btn-success{:href => new_space_path} Create New Space
+

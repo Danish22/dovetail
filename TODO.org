@@ -1,9 +1,6 @@
 * Questions
   
 * Alpha (Demoable/guided)
-  * Space branding of main app - contentious
-  * Invoice details page.
-  * Member portal design changes -   (virtually a) Clone of members/show and invoices/show
 
 * Beta (5-10 early adopters)
 
@@ -15,6 +12,7 @@
   * Make use of timezone?  - Maybe only needed in the scheduled invoices and payments scripts
 
   * Possibly add tax rate to line_items (and present in UI as the field to edit, compute on the back end)
+  * Deal with quantities on invoice line items
 
   * Deleting a draft invoice needs to delete all children (payments and/or credit notes)
 
@@ -29,6 +27,8 @@
 
 * Backlog
 
+  * Possibly move subscription/plan to account - but only if we don't really have plans.
+
   * fix conditional get caching (cache busting for dev mode, add flash to cache key, version #?)
 
   * spaces/show (overview - replaces manage)
@@ -39,11 +39,9 @@
 
   * Update billing page to include details on spaces/locations used for each CC
 
-  * Space Branding for member portal
   * Improve display of errors on fields for devise forms.
   * Add "due in" to issue date column on invoice list?
-  * Add evil icons (rails plugin, etc) or are we going to use pngs generated from AI file?
-    * Looks like they're making a pass to add more icons!  Could get full set of needed very soon.
+
   * Events/Notifcations (Activity Tab in New navigation)
   * Maybe add Tags to members to allow arbitrary groupings
   * Add 'Social' Signup/Login for Member portal (FB, Twitter, G+)?

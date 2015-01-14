@@ -1,8 +1,13 @@
-%ul.account-nav{}
-  %li{:class => active_tab("registrations")}
-    = link_to "Account".html_safe, edit_user_registration_path
-  %li{:class => active_tab("payment_methods")}
-    = link_to "Billing", payment_methods_path
-  %li{:class => active_tab("spaces")}
-    = link_to "Add a space", new_space_path
+.box
+  .box-body-xs.clearfix
+    .avatar-wrap
+      %img.admin-pic{src: current_user.gravatar_url(:size =>96, :rating => 'G', :secure => true, :default => 'mm')}
+    .admin-info
+      %h5 #{current_user.full_name}
+      %p.email #{current_user.email}
+  .account-nav
+    .list-group
+      %a.list-group-item{:class => active_tab("registrations"), :href => edit_user_registration_path} Your Account
+      %a.list-group-item{:class => active_tab("spaces"), :href =>  spaces_path} Spaces
+      %a.list-group-item{:class => active_tab("payment_methods"), :href =>  payment_methods_path} Billing
                        

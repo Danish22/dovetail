@@ -31,11 +31,14 @@
         .container
           - if current_user && select_sub_nav
             .row
-              %div{ :class => "account-box box container-table"}
-                .nav{ :class => "account-sidebar box-sidebar"}
+              .account-sidebar
+                .col-md-4
                   = render select_sub_nav
-                %div{ :class => "box-main box-body"}
-                  = yield
+
+              .account-content
+                .col-md-8
+                  .box.box-body-sm.clearfix
+                    = yield
           - else
             = yield
 
