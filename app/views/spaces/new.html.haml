@@ -1,68 +1,101 @@
+#space-new
+  .container
+    .row
+      .col-md-8.col-md-offset-2
+        .box.box-body-lg
+          = form_for(@newspace, html: {class: "form-horizontal"}) do |s| 
+            %fieldset
+              %h2{:style => "margin-top:0;"} Create A New Space...
+              %p First, we need some basic information about your space, then you can start creating plans and adding members.
+              %hr/
+              %h4 Basic Information
+              .form-group{:class => has_error(@newspace, :name)}
+                = s.label :name, class: "control-label col-md-3" 
+                .col-md-9
+                  = s.text_field :name, class: "form-control"
+                  = field_errors(@newspace, :name)
+              .form-group{:class => has_error(@newspace, :subdomain)}
+                = s.label :subdomain, class: "control-label col-md-3" 
+                .col-md-9
+                  .input-group
+                    %span{class: "input-group-addon"} https://
+                    = s.text_field :subdomain, class: "form-control" 
+                    %span{class: "input-group-addon"} .dovetail.io
+                    = field_errors(@newspace, :subdomain)
 
-.col-md-8
-  = form_for(@newspace) do |s| 
-    %h4 Basic Information
-    .form-group{:class => has_error(@newspace, :name)}
-      = s.label :name 
-      = s.text_field :name, class: "form-control"
-      = field_errors(@newspace, :name)
-    .form-group{:class => has_error(@newspace, :subdomain)}
-      = s.label :subdomain
-      .input-group
-        %span{class: "input-group-addon"} https://
-        = s.text_field :subdomain, class: "form-control" 
-        %span{class: "input-group-addon"} .membrs.co
-      = field_errors(@newspace, :subdomain)
-    - unless current_user.trialing?
-      .form-group{:class => has_error(@newspace, :plan)}
-        = s.label :plan 
-        = s.select(:plan, Space.plans, {}, {class: "form-control"})
-        = field_errors(@newspace, :plan)
-      .form-group{:class => has_error(@newspace, :coupon)}
-        = s.label :coupon 
-        = text_field_tag(:coupon, class: "form-control") 
-        = field_errors(@newspace, :coupon)
-      .form-group{:class => has_error(@newspace, :payment_method)}
-        = s.label :payment_method   
-        = link_to "Manage Payment Methods", payment_methods_path
-        = select_tag :payment_method,  options_from_collection_for_select(current_user.payment_methods, "id", "select_name"), include_blank: true, class: "form-control" 
-        = field_errors(@newspace, :payment_method)
+              - unless current_user.trialing?
+                .form-group{:class => has_error(@newspace, :plan)}
+                  = s.label :plan 
+                  = s.select(:plan, Space.plans, {}, {class: "form-control"})
+                  = field_errors(@newspace, :plan)
+                .form-group{:class => has_error(@newspace, :coupon)}
+                  = s.label :coupon 
+                  = text_field_tag(:coupon, class: "form-control") 
+                  = field_errors(@newspace, :coupon)
+                .form-group{:class => has_error(@newspace, :payment_method)}
+                  = s.label :payment_method   
+                  = link_to "Manage Payment Methods", payment_methods_path
+                  = select_tag :payment_method,  options_from_collection_for_select(current_user.payment_methods, "id", "select_name"), include_blank: true, class: "form-control" 
+                  = field_errors(@newspace, :payment_method)
 
-    %h4 Location
-    = s.fields_for :locations do |l|
-      .form-group{:class => has_error(l.object, :address)}
-        = l.label :address
-        = l.text_field :address, class: "form-control"
-        = field_errors(l.object, :address)
-      .form-group{:class => has_error(l.object, :city)}
-        = l.label :city
-        = l.text_field :city, class: "form-control"
-        = field_errors(l.object, :city)
-      .form-group{:class => has_error(l.object, :state)}
-        = l.label :state
-        = l.text_field :state, class: "form-control"
-        = field_errors(l.object, :state)
-      .form-group{:class => has_error(l.object, :postal_code)}
-        = l.label :postal_code
-        = l.text_field :postal_code, class: "form-control"
-        = field_errors(l.object, :postal_code)
-      .form-group{:class => has_error(l.object, :country)}
-        = l.label :country
-        = l.country_select("country", {}, {class: "form-control"})
-        = field_errors(l.object, :country)
-      .form-group{:class => has_error(l.object, :timezone)}
-        = l.label :timezone
-        = l.time_zone_select "timezone", nil, {}, {class: "form-control"}
-        = field_errors(l.object, :timezone)
+              = s.fields_for :locations do |l|
 
-      %h4 Billing Settings
-      .form-group{:class => has_error(l.object, :currency)}
-        = l.label :currency
-        = l.select :currency, currency_list, {allow_blank: false }, {class: "form-control"}
-        = field_errors(l.object, :currency)
-      .form-group{:class => has_error(l.object, :tax_rate)}
-        = l.label :tax_rate
-        = l.text_field :tax_rate, class: "form-control"
-        = field_errors(l.object, :tax_rate)
+                .form-group{:class => has_error(l.object, :address)}
+                  = l.label :address, class: "control-label col-md-3" 
+                  .col-md-9
+                    = l.text_field :address, class: "form-control"
+                    = field_errors(l.object, :address)
+                  
+                .form-group{:class => has_error(l.object, :city)}
+                  = l.label :city, class: "control-label col-md-3" 
+                  .col-md-9
+                    = l.text_field :city, class: "form-control"
+                    = field_errors(l.object, :city)
 
-    = s.submit class: "btn btn-primary"
+                .form-group{:class => has_error(l.object, :province)}
+                  = l.label :state, class: "control-label col-md-3" 
+                  .col-md-9
+                    = l.text_field :state, class: "form-control"
+                    = field_errors(l.object, :state)
+
+                .form-group{:class => has_error(l.object, :postal_code)}
+                  = l.label :postal_code, class: "control-label col-md-3" 
+                  .col-md-4
+                    = l.text_field :postal_code, class: "form-control"
+                    = field_errors(l.object, :postal_code)
+
+                .form-group{:class => has_error(l.object, :country)}
+                  = l.label :country, class: "control-label col-md-3" 
+                  .col-lg-9
+                    = l.country_select("country", {}, {class: "form-control"})
+                    = field_errors(l.object, :country)
+
+                .form-group{:class => has_error(l.object, :timezone)}
+                  = l.label :timezone, class: "control-label col-md-3" 
+                  .col-lg-9
+                    = l.time_zone_select "timezone", nil, {}, {class: "form-control"}
+                    = field_errors(l.object, :timezone)
+
+                %h4{:style => "margin-top: 50px;"} Billing Settings
+                .form-group{:class => has_error(l.object, :currency)}
+                  = l.label :currency, class: "control-label col-md-3" 
+                  .col-lg-9
+                    = l.select :currency, currency_list, {allow_blank: false }, {class: "form-control"}
+                    = field_errors(l.object, :currency)
+
+                .form-group{:class => has_error(l.object, :tax_rate)}
+                  = l.label :tax_rate, class: "control-label col-md-3" 
+                  .col-md-3
+                    .input-group
+                      = l.text_field :tax_rate, class: "form-control"
+                      %span.input-group-addon %
+                      = field_errors(l.object, :tax_rate)
+
+                %hr/
+
+                .form-group
+                  .col-md-12
+                    = s.submit "Create Your Space", class: "btn btn-success"
+                    - unless current_user.spaces.count == 0
+                      or #{link_to "Cancel", :back}
+
