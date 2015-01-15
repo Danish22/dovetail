@@ -16,22 +16,22 @@
       %li{class: active_tab(["members","invoices", "payments", "credit_notes"])}
         - if @space
           %a{ href: space_members_path(@space)}
-            = evil_icon 'ei-user', size: :s
+            %span{class:"oi oi-person", title: "icon name", "aria-hidden" => "true"}
             Members
       %li{class: active_tab("activities")}
         - if @space
           %a{ href: space_activities_path(@space)}
-            = evil_icon 'ei-bell', size: :s
+            %span{class:"oi oi-pulse", title: "icon name", "aria-hidden" => "true"}
             Activity
       %li{class: active_tab("insights")}
         - if @space
           %a{ href: space_insights_path(@space)}
-            = evil_icon 'ei-chart', size: :s
+            %span{class:"oi oi-bar-chart", title: "icon name", "aria-hidden" => "true"}
             Insights
       %li{class: active_tab(["spaces", "locations", "admins", "resources", "plans", "integrations", "stripes"])}
         - if @space
           %a{ href: edit_space_path(@space)}
-            = evil_icon 'ei-gear', size: :s
+            %span{class:"oi oi-cog", title: "icon name", "aria-hidden" => "true"}
             Manage
 
       %li.dropdown.pull-right

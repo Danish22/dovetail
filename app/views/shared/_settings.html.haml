@@ -1,14 +1,10 @@
-%ul.account-nav{}
-  %li{:class => active_tab("spaces")}
-    = link_to "Space", edit_space_path(@space)
-  %li{:class => active_tab("locations")}
-    = link_to "Locations", space_locations_path(@space)
-  %li{:class => active_tab("plans")}
-    = link_to "Plans", space_plans_path(@space)
-  %li{:class => active_tab("admins")}
-    = link_to "Managers", space_admins_path(@space)
-  %li{:class => active_tab(["integrations", "stripes"])}
-    = link_to "Integrations", space_integrations_path(@space)
-
+.box
+  .account-nav
+    .list-group
+      %a.list-group-item{:class => active_tab("spaces"), :href => edit_space_path(@space)} Space
+      %a.list-group-item{:class => active_tab("locations"), :href =>  space_locations_path(@space)} Locations
+      %a.list-group-item{:class => active_tab("plans"), :href =>  space_plans_path(@space)} Plans
+      %a.list-group-item{:class => active_tab("admins"), :href =>  space_admins_path(@space)} Managers
+      %a.list-group-item{:class => active_tab("integrations"), :href =>  space_integrations_path(@space)} Integrations
 
 
