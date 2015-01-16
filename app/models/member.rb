@@ -47,17 +47,17 @@ class Member < ActiveRecord::Base
       # Line items
       count = 10
       
-      if plan.setup_fee.present?
+      unless plan.setup_fee.blank?
         count -= 1
         invoice.line_items.build({net_amount: plan.setup_fee, tax_amount: tax(plan.setup_fee), description: "#{plan.name} setup fee"})
       end
 
-      if plan.deposit.present?
+      unless plan.deposit.blank?
         count -= 1
         invoice.line_items.build({net_amount: plan.deposit,  tax_amount: tax(plan.deposit), description: "#{plan.name} deposit"})
       end
 
-      if plan.base_price.present?
+      unless plan.base_price.blank?
         count -= 1
         invoice.line_items.build({net_amount: plan.base_price,  tax_amount: tax(plan.base_price), description: "Plan #{plan.name} subscription fee"})
       end
@@ -72,6 +72,7 @@ class Member < ActiveRecord::Base
   end
 
   def tax(amount)
+    return 0 if location.tax_rate.nil?
     amount * location.tax_rate / 100
   end
 end
