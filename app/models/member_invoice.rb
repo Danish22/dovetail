@@ -13,5 +13,5 @@ class MemberInvoice < Invoice
   def balance_formatted
     format_currency_value(balance)
   end
-  
+
 end

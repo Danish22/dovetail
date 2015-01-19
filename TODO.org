@@ -27,7 +27,8 @@
 
 * Backlog
 
-  * Bug when creating invoice from plan - tax rate should not be required.
+  * Search/filters for members list
+
   * Possibly move subscription/plan to account - but only if we don't really have plans.
 
   * fix conditional get caching (cache busting for dev mode, add flash to cache key, version #?)

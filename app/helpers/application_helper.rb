@@ -107,9 +107,9 @@ module ApplicationHelper
   end
 
   def ledger_item_link(space, member, item)
-    return space_member_invoice_path(space, member, item) if item.is_invoice
-    return space_member_payment_path(space, member, item) if item.is_payment
-    return space_member_credit_note_path(space, member, item) if item.is_credit_note
+    return space_member_member_invoice_path(space, member, item) if item.is_invoice
+    return space_member_member_payment_path(space, member, item) if item.is_payment
+    return space_member_member_credit_note_path(space, member, item) if item.is_credit_note
   end
 
   def item_type_description(item)

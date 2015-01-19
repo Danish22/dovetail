@@ -22,7 +22,9 @@ class InvoicesController < ApplicationController
   # GET /members/new
   def new
     @invoice = @member.member_invoices.new
-    10.times do
+    @invoice.due_date = Time.now
+
+    7.times do
       @invoice.line_items.build()
     end
   end
@@ -43,7 +45,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|   
       if @invoice.save
-        format.html { redirect_to space_member_invoice_url(@space, @member, @invoice), notice: 'Invoice was successfully created.' }
+        format.html { redirect_to space_member_member_invoice_url(@space, @member, @invoice), notice: 'Invoice was successfully created.' }
         format.json { render :show, status: :created, location: [@space, @member, @invoice] }
       else
         format.html { render :new }
@@ -57,7 +59,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(member_params)
-        format.html { redirect_to space_member_invoice_url(@space, @member, @invoice), notice: 'Invoice was successfully updated.' }
+        format.html { redirect_to space_member_member_invoice_url(@space, @member, @invoice), notice: 'Invoice was successfully updated.' }
         format.json { render :show, status: :ok, location: [@space, @member, @invoice] }
       else
         format.html { render :edit }
@@ -120,6 +122,6 @@ class InvoicesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
       params.require(:member_invoice).permit(:description, :due_date, :identifier, 
-                                      line_items_attributes: [ :description, :tax_amount, :net_amount, :id])
+                                      line_items_attributes: [ :description, :quantity, :tax_rate, :unit_price, :id])
     end
 end

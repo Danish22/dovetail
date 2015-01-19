@@ -63,13 +63,13 @@ Rails.application.routes.draw do
         member do 
           post 'invite'  # Send the invite email with the sign up token to the member
         end
-        resources :invoices, except: [:index] do
+        resources :member_invoices, path: "invoices", controller: "invoices", except: [:index] do
           member do
             post 'deliver'
           end
         end
-        resources :payments, except: [:index]
-        resources :credit_notes, except: [:index]
+        resources :member_payments, path: "payments", controller: "payments", except: [:index]
+        resources :member_credit_notes, path: "credit_notes", controller: "credit_notes", except: [:index]
       end     
     end  # Spaces
 

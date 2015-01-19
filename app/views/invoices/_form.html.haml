@@ -1,0 +1,52 @@
+.col-md-8.col-md-offset-2.box.box-body-md
+  = form_for([@space, @member, @invoice]) do |f| 
+    .col-md-7{style: "padding-left:0;padding-top:20px;"}
+      %span.section-title Bill to
+      %p.member-name
+        #{@member.name}
+        %br
+        %a.member-email{:href => space_member_path(@space, @member)} #{@member.email}
+    .form-group{:class => "#{has_error(@invoice, :due_date)} col-md-5" , style: "padding-right:0;"}
+      = f.label :due_date
+      = f.date_field :due_date, class: "form-control"
+      = field_errors(@invoice, :due_date)
+    %br{style: "clear:both;"}
+    .form-group{:class => "#{has_error(@invoice, :description)}", style: "padding-left:0;"}
+      = f.label :description, "Summary"
+      = f.text_field :description, class: "form-control"
+      = field_errors(@invoice, :description)
+    .row
+      .col-md-12{:style => "margin-top: 20px;"}
+        %table.table.table-bordered.invoice{style: "margin-bottom:20px;"}
+          %thead
+            %tr
+              %th{:style => "width: 56%"}
+                Description
+              %th{:style => "text-align: right; width: 8%"}
+                Qty
+              %th{:style => "text-align: right; width: 14%"}
+                Unit Price
+              %th{:style => "text-align: right; width: 8%"}
+                Tax %
+          %tbody
+            = f.fields_for :line_items do |l|
+              = l.hidden_field :id
+              %tr
+                %td{:class => "#{has_error(l.object, :description)}"}
+                  = l.text_field :description, class: "form-control"
+                  = field_errors(l.object, :description)
+                %td{:class => "#{has_error(l.object, :quantity)}"}
+                  = l.text_field :quantity, class: "form-control"
+                  = field_errors(l.object, :quantity)
+                %td{:class => "#{has_error(l.object, :unit_price)}"}
+                  = l.text_field :unit_price, class: "form-control"
+                  = field_errors(l.object, :unit_price)
+                %td{:class => "#{has_error(l.object, :tax_rate)}"}
+                  = l.text_field :tax_rate, class: "form-control"
+                  = field_errors(l.object, :tax_rate)
+
+    %br{style: "clear:both;"}
+    %div
+      = f.submit class: "btn btn-primary"
+      or
+      = link_to("Cancel", :back)
