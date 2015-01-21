@@ -22,7 +22,7 @@ class InvoicingLineItem < ActiveRecord::Base
   end
 
   def unit_price_formatted
-    format_currency_value(unit_price)
+    format_currency_value(unit_price || 0)
   end
 
 end
