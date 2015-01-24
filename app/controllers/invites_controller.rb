@@ -15,7 +15,7 @@ class InvitesController < ApplicationController
         flash[:notice] = "User added as an admin."
       else
         flash[:notice] = "Invite sent"
-        InvitesMailer.new_user_invite(@invite, new_user_registration_path(:invite_token => @invite.token)).deliver
+        InvitesMailer.new_user_invite(@invite, new_user_registration_url(:invite_token => @invite.token)).deliver
       end
     else
       flash[:notice] = "There was a problem sending your invite."      
@@ -26,7 +26,7 @@ class InvitesController < ApplicationController
 
   def resend
     flash[:notice] = "Invite sent"
-    InvitesMailer.new_user_invite(@invite, new_user_registration_path(:invite_token => @invite.token)).deliver
+    InvitesMailer.new_user_invite(@invite, new_user_registration_url(:invite_token => @invite.token)).deliver
 
     respond_to do |format|
       format.html { redirect_to space_admins_url(@space), notice: 'Resent invite' }
