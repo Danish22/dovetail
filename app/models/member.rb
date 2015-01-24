@@ -45,21 +45,21 @@ class Member < ActiveRecord::Base
       invoice.plan_id = self.plan_id
 
       # Line items
-      count = 10
+      count = 7
       
       unless plan.setup_fee.blank?
         count -= 1
-        invoice.line_items.build({net_amount: plan.setup_fee, tax_amount: tax(plan.setup_fee), description: "#{plan.name} setup fee"})
+        invoice.line_items.build({quantity: 1, unit_price: plan.setup_fee, tax_rate: tax_rate(), description: "#{plan.name} setup fee"})
       end
 
       unless plan.deposit.blank?
         count -= 1
-        invoice.line_items.build({net_amount: plan.deposit,  tax_amount: tax(plan.deposit), description: "#{plan.name} deposit"})
+        invoice.line_items.build({quantity: 1, unit_price: plan.deposit,  tax_rate: tax_rate(), description: "#{plan.name} deposit"})
       end
 
       unless plan.base_price.blank?
         count -= 1
-        invoice.line_items.build({net_amount: plan.base_price,  tax_amount: tax(plan.base_price), description: "Plan #{plan.name} subscription fee"})
+        invoice.line_items.build({quantity: 1, unit_price: plan.base_price,  tax_rate: tax_rate(), description: "Plan #{plan.name} subscription fee"})
       end
 
       # Pad invoice with blank rows for later editing.
@@ -71,8 +71,8 @@ class Member < ActiveRecord::Base
     end  # plan_id_changed?
   end
 
-  def tax(amount)
+  def tax_rate()
     return 0 if location.tax_rate.nil?
-    amount * location.tax_rate / 100
+    return location.tax_rate
   end
 end
