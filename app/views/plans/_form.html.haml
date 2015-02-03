@@ -10,7 +10,7 @@
       = field_errors(@plan,  :base_price)
     .form-group{:class => has_error(@plan, :frequency)}
       = f.label :frequency
-      = f.text_field :frequency, class: "form-control"
+      = f.select(:frequency, Plan.frequencies, {}, {class: "form-control"})
       = field_errors(@plan,  :frequency)
     .form-group{:class => has_error(@plan, :setup_fee)}
       = f.label :setup_fee
