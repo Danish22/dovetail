@@ -7,6 +7,7 @@ class Plan < ActiveRecord::Base
 
   def self.frequencies
     [
+     ["One time", "0"],
      ["Monthly", "1"],
      ["Quarterly", "3"],
      ["Semi Annually", "6"],
