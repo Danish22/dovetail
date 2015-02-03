@@ -199,4 +199,10 @@ module ApplicationHelper
     end
   end
 
+  def frequency_label(freq)
+    Plan.frequencies.each do |f|
+      return f[0] if f[1] == freq
+    end
+  end
+
 end

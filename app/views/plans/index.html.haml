@@ -16,7 +16,7 @@
         %td= plan.base_price
         %td= plan.setup_fee
         %td= plan.deposit
-        %td= plan.frequency
+        %td= frequency_label(plan.frequency)
         %td= plan.location
         %td.command-bar
           = link_to 'Edit', edit_space_plan_path(@space, plan)
