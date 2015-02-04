@@ -11,6 +11,7 @@
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = devise_error_messages!
         = f.hidden_field :invite_token, value: (params[:invite_token] || (params[:user] ? params[:user][:invite_token] : nil))
+        = f.hidden_field :promo_code, value: (params[:promo_code] || (params[:user] ? params[:user][:promo_code] : nil))
         .form-group
           .col-md-12
             = f.text_field :full_name, autofocus: true, class: "form-control", id: "full_name", placeholder: "Your name, if you please..."
