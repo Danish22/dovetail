@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119123948) do
+ActiveRecord::Schema.define(version: 20150204152701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20150119123948) do
     t.string   "payment_system_customer_id"
     t.string   "last_4_digits"
     t.string   "slug"
+    t.datetime "last_scheduled_invoice_at"
   end
 
   add_index "members", ["slug"], name: "index_members_on_slug", unique: true, using: :btree
@@ -282,6 +283,7 @@ ActiveRecord::Schema.define(version: 20150119123948) do
     t.string   "full_name"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "promo_code"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
