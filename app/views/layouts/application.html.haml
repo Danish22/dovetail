@@ -19,14 +19,15 @@
 
     .container
 
-
       .main-content
 
         = render 'shared/need_payment_method'
 
         .container
           - flash.each do |key, value|
-            %div{ :class => flash_class(key), :style => "margin-top:25px;" }
+            %div{ :class => flash_class(key), :style => "margin-top:25px;",  :role => "alert"}
+              %button.close{ :type => "button",  'data-dismiss' => "alert", 'aria-label' => "Close"}
+                %span{'aria-hidden' => "true"} &times;
               = value
 
         .container
