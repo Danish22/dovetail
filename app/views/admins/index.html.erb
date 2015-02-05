@@ -56,7 +56,6 @@
     <%= form_for [@space, @invite], html: {class: "form-inline", role: "form"} do |f| %>
       <div class="form-group" style="width:270px;">
         <div class="input-group">
-          <div class="input-group-addon">@</div>
           <%= f.email_field :email, class: "form-control", placeholder: "Enter email", style: "width:225px;" %>
         </div>
       </div>
