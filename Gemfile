@@ -51,7 +51,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem "omniauth" 
 gem "omniauth-identity"
 
-gem 'friendly_id', '~> 5.0.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+gem 'friendly_id', '~> 5.0.0' # Note: You MUST use >= 5.0.0 for Rails 4.0+
+
+gem 'rufus-scheduler'
 
 group :development, :test do
   gem 'meta_request'
@@ -68,7 +70,8 @@ group :development, :test do
   gem 'capistrano-postgresql', '~> 4.2.0'
 end
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+# Spring speeds up development by keeping your application
+#  running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
 # Use unicorn as the app server

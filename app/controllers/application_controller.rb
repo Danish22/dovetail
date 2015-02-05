@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :promo_code
     devise_parameter_sanitizer.for(:sign_up) << :invite_token
     devise_parameter_sanitizer.for(:sign_up) << :full_name
     devise_parameter_sanitizer.for(:sign_up) << :first_name

@@ -102,4 +102,55 @@ class Space < ActiveRecord::Base
      @payment_gateway ||= integrations.where(type: ['StripeIntegration']).first  
   end
 
+  def self.generate_subscription_invoices
+
+    Member.joins('INNER JOIN plans ON plans.id = members.plan_id')
+      .where("members.last_scheduled_invoice_at + '1 month'::interval * plans.frequency::integer <= current_date").find_each do |member|
+
+      begin
+        # Generate a new invoice for member and update last_scheduled_invoice_at
+        
+        invoice = member.member_invoices.new
+
+        invoice.description = "#{member.plan.name} plan subscription"
+
+        invoice.sender = member.space
+        invoice.status = "closed"
+        invoice.issue_date = Time.now
+        invoice.due_date = invoice.issue_date
+        invoice.currency = member.location.currency
+      
+        invoice.plan_id = member.plan_id
+
+        # Line items
+        count = 7
+        
+        unless plan.base_price.blank?
+          count -= 1
+          invoice.line_items.build({quantity: 1, 
+                                     unit_price: plan.base_price,  
+                                     tax_rate: member.tax_rate(), 
+                                     description: "Plan #{plan.name} subscription fee"})
+        end
+        
+        # Pad invoice with blank rows for later editing.
+        (1..count).each do |c|
+          invoice.line_items.build()
+        end
+        
+        invoice.save
+
+        # Also has the update to last_scheduled_invoice_at (mostly for the intial invoice)
+        member.send_invoice(invoice, member.space.user)
+
+      rescue Exception => e
+        Rails.logger.error("Exception generating invoice for #{member.inspect}: #{e.inspect}")
+      end
+    end
+
+  end
+
+  def self.process_subscription_payments
+  end
+
 end

@@ -7,9 +7,7 @@ class PlansController < ApplicationController
   # GET /plans
   # GET /plans.json
   def index
-    if stale?(@space)
-      @plans = @space.plans.all
-    end
+    @plans = @space.plans.all
   end
 
   # GET /plans/1

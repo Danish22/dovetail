@@ -71,18 +71,8 @@ class InvoicesController < ApplicationController
   def deliver
     respond_to do |format|
       @invoice.update({status: "closed", issue_date: Time.now})
-      
-      host = ENV["PORTAL_BASE_HOST"] || Rails.application.config.action_mailer.default_url_options[:host]
-      needs_account = (@member.uid.blank? && @member.provider.blank?)
-      if needs_account
-        @member.invite = Digest::SHA1.hexdigest([@space.id, Time.now, rand].join)
-        @member.save
-        url = portal_account_url(host: host, subdomain: @space.subdomain, invite: @member.invite)      
-      else
-        url = portal_account_url(host: host, subdomain: @space.subdomain)      
-      end
 
-      PaymentMailer.invoice(current_user, @member, @invoice, url, needs_account).deliver
+      @member.send_invoice(@invoice, current_user)
 
       format.html { redirect_to space_member_url(@space, @member), notice: 'Invoice has been sent' }
       format.json { render :show, status: :ok, location: [@space, @member, @invoice] }

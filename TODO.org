@@ -16,13 +16,14 @@
 * 2.0 (MVP, ship in January-february time frame, available to all, for money)
   * Change member password
   * Member password recovery
-    * Can also/do instead password reset on admin site (would resend invite basically)
 
 * 2.1
 
 * 2.2
 
 * Backlog
+
+  * Panels for New/Edit Credit note and new/edit payment (Edits are not hooked in, but should be done JIK)
 
   * Search/filters for members list
 

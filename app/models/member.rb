@@ -27,6 +27,21 @@ class Member < ActiveRecord::Base
   attr_accessor :payment_system_token # Represents the card, only present when setting up or updating subscription
   attr_accessor :gateway_error        # Holds any error from the payment gateway
 
+  def tax_rate()
+    return 0 if location.tax_rate.nil?
+    return location.tax_rate
+  end
+
+  def send_invoice(invoice, user)
+    PaymentMailer.invoice(user, self, invoice).deliver
+
+    # Schedule starts from the date the Manager sends the first invoice 
+    # (this is also called when the system sends subsequent invoices to 
+    # trigger the next invoice)
+    self.last_scheduled_invoice_at = Time.now
+    self.save
+  end
+
   protected
 
   def create_invoice_when_plan_changes
@@ -71,8 +86,4 @@ class Member < ActiveRecord::Base
     end  # plan_id_changed?
   end
 
-  def tax_rate()
-    return 0 if location.tax_rate.nil?
-    return location.tax_rate
-  end
 end

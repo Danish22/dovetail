@@ -4,11 +4,9 @@ class AdminsController < ApplicationController
   before_action :set_space
 
   def index
-    if stale?(@space)
-      @admins = @space.users
-      @invites = @space.invites.where(recipient_id: nil) # Pending/Unaccepted invites
-      @invite = @space.invites.new
-    end
+    @admins = @space.users
+    @invites = @space.invites.where(recipient_id: nil) # Pending/Unaccepted invites
+    @invite = @space.invites.new
   end
 
   def destroy

@@ -1,12 +1,19 @@
 class PaymentMailer < ActionMailer::Base
 
-  def invoice(user, member, invoice, url, needs_account)
+  def invoice(user, member, invoice)
     @member = member
     @space = member.space
-    @url = url
     @invoice = invoice
-    @needs_account = needs_account
 
+    host = ENV["PORTAL_BASE_HOST"] || Rails.application.config.action_mailer.default_url_options[:host]
+    @needs_account = (@member.uid.blank? && @member.provider.blank?)
+    if @needs_account
+      @member.invite = Digest::SHA1.hexdigest([@member.space.id, Time.now, rand].join)
+      @url = portal_account_url(host: host, subdomain: @member.space.subdomain, invite: @member.invite)      
+    else
+      @url = portal_account_url(host: host, subdomain: @member.space.subdomain)      
+    end
+    
     mail(to: @member.email, 
          from: user.email,
          subject: "New invoice from #{@space.name}"
