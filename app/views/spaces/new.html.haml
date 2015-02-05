@@ -24,10 +24,7 @@
                     = field_errors(@newspace, :subdomain)
 
               - unless current_user.trialing?
-                .form-group{:class => has_error(@newspace, :plan)}
-                  = s.label :plan 
-                  = s.select(:plan, Space.plans, {}, {class: "form-control"})
-                  = field_errors(@newspace, :plan)
+                = f.hidden_field(:plan, value: 'Basic-M')
                 .form-group{:class => has_error(@newspace, :coupon)}
                   = s.label :coupon 
                   = text_field_tag(:coupon, class: "form-control") 

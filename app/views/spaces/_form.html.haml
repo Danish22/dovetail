@@ -1,4 +1,5 @@
 = form_for(@space) do |f| 
+  = f.hidden_field(:plan, value: 'Basic-M')
   .form-group{:class => has_error(@space, :name)}
     = f.label :name 
     = f.text_field :name, class: "form-control"
@@ -10,10 +11,6 @@
       = f.text_field :subdomain, class: "form-control" 
       %span{class: "input-group-addon"} .membrs.co
     = field_errors(@space, :subdomain)
-  .form-group{:class => has_error(@space, :plan)}
-    = f.label :plan 
-    = f.select(:plan, Space.plans, {}, {class: "form-control"})
-    = field_errors(@space, :plan)
   - unless current_user.trialing?
     .form-group{:class => has_error(@space, :coupon)}
       = f.label :coupon 
