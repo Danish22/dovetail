@@ -25,7 +25,7 @@
               <td>
                 <%= admin.email %>
               </td>
-              <td class="command-bar"><%= link_to_unless (admin.id == current_user.id || admin.id == @space.user_id), 'Remove', space_admin_url(@space, admin), class: "btn btn-invoice-action btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
+              <td class="command-bar"><%= link_to_unless (admin.id == current_user.id || admin.id == @space.user_id), 'Remove', space_admin_url(@space, admin), class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
               </td>
             </tr>
           <% end %>
