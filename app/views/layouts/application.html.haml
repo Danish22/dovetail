@@ -48,3 +48,60 @@
         = render 'shared/customerio'
 
     = evil_icons_sprite
+    :javascript
+      // Include the UserVoice JavaScript SDK (only needed once on a page)
+      UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/eJTP1UjNSQm8zoAX9NTZYA.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+
+      //
+      // UserVoice Javascript SDK developer documentation:
+      // https://www.uservoice.com/o/javascript-sdk
+      //
+
+      // Set Widget Colors
+      UserVoice.push(['set', {
+        accent_color: '#ff885b',
+        trigger_color: '#fff',
+        trigger_background_color: 'rgba(46, 49, 51, 0.7)'
+      }]);
+
+      // Identify the user and pass traits
+      // To enable, replace sample data with actual user traits and uncomment the line
+      UserVoice.push(['identify', {
+        email: '#{current_user.nil? ? "" : current_user.email}',
+        name:  '#{current_user.nil? ? "" : current_user.full_name}',
+        //created_at: 1364406966, // Unix timestamp for the date the user signed up
+        //id:         123, // Optional: Unique id of the user (if set, this should not change)
+        //type:       'Owner', // Optional: segment your users by type
+        //account: {
+        //  id:           123, // Optional: associate multiple users with a single account
+        //  name:         'Acme, Co.', // Account name
+        //  created_at:   1364406966, // Unix timestamp for the date the account was created
+        //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+        //  ltv:          1495.00, // Decimal; lifetime value of the account
+        //  plan:         'Enhanced' // Plan name for the account
+        //}
+      }]);
+
+      // Add default trigger to the bottom-right corner of the window:
+      UserVoice.push(['addTrigger', {
+        mode: 'contact',
+        trigger_position: 'bottom-right'
+      }]);
+
+      // Customizing Widget Text
+      UserVoice.push(['set', {
+      // (include other options here)
+        strings: {
+          contact_message_placeholder: 'Ask us anything or share your feedback.',
+          smartvote_menu_label: 'Help us decide what to work on next',
+          post_suggestion_title: 'Tell us your idea',
+          post_suggestion_body: 'When you share your idea, it will be posted to our feedback forum so others can  comment on it.',
+          post_suggestion_message_placeholder: 'Describe your idea...'
+        }
+      }]);
+
+      // Or, use your own custom trigger:
+      //UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+
+      // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+      UserVoice.push(['autoprompt', {}]);

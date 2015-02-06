@@ -26,8 +26,8 @@
             %td= frequency_label(plan.frequency)
             %td= plan.location
             %td.command-bar
-              = link_to 'Edit', edit_space_plan_path(@space, plan)
-              = link_to 'Destroy', [@space, plan], :method => :delete, :data => { :confirm => 'Are you sure?' }
+              = link_to '<span aria-hidden="true" class="oi oi-pencil" title="Edit Plan"></span>'.html_safe, edit_space_plan_path(@space, plan), class: "btn btn-invoice-action btn-xs"
+              = link_to '<span aria-hidden="true" class="oi oi-circle-x" title="Delete Plan"></span>'.html_safe, [@space, plan], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
 
     %hr
     = link_to 'Create New Plan', new_space_plan_path(@space), class: "btn btn-success"

@@ -161,3 +161,11 @@ table.invoice input, table.invoice input:hover, table.invoice input:focus, table
   font-size: 13px;
   text-transform: uppercase;
 }
+
+/* UserVoice Widget
+------------------------------------------*/
+
+.uv-icon .uv-bottom-right {
+  bottom: 24px;
+  right: 44px;
+}

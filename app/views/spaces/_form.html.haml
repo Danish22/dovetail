@@ -1,34 +1,41 @@
-= form_for(@space) do |f| 
-  = f.hidden_field(:plan, value: 'Basic-M')
-  .form-group{:class => has_error(@space, :name)}
-    = f.label :name 
-    = f.text_field :name, class: "form-control"
-    = field_errors(@space, :name)
-  .form-group{:class => has_error(@space, :subdomain)}
-    = f.label :subdomain
-    .input-group
-      %span{class: "input-group-addon"} https://
-      = f.text_field :subdomain, class: "form-control" 
-      %span{class: "input-group-addon"} .membrs.co
-    = field_errors(@space, :subdomain)
-  - unless current_user.trialing?
-    .form-group{:class => has_error(@space, :coupon)}
-      = f.label :coupon 
-      = text_field_tag(:coupon, nil, class: "form-control") 
-      = field_errors(@space, :coupon)
-  - unless current_user.trialing? && @space.payment_method.nil?
-    - if @space.payment_method.nil?
-      .form-group{:class => has_error(@space, :payment_method)}
-        = f.label :payment_method   
-        = link_to "Manage Payment Methods", payment_methods_path
-        = select_tag :payment_method,  options_from_collection_for_select(current_user.payment_methods, "id", "select_name"), include_blank: true, class: "form-control" 
-        = field_errors(@space, :payment_method)
-    - else
-      .form-group{:class => has_error(@space, :payment_method)}
-        = f.label :payment_method
-        = @space.payment_method.select_name 
-        = link_to "Change Card Details", edit_payment_method_path(@space.payment_method), class: "btn btn-default" 
-        = link_to "Cancel Subscription",  cancel_subscription_space_path(@space), method: 'post', class: "btn btn-default" 
-        = field_errors(@space, :payment_method)
+#spaces
+  .row
+    .col-md-12
+      %h4 Basic Space Settings
+      %hr
+      = form_for(@space) do |f|
+        = f.hidden_field(:plan, value: 'Basic-M')
+        .form-group{:class => has_error(@space, :name)}
+          = f.label :name
+          = f.text_field :name, class: "form-control"
+          = field_errors(@space, :name)
+        .form-group{:class => has_error(@space, :subdomain)}
+          = f.label :subdomain
+          .input-group
+            %span{class: "input-group-addon"} https://
+            = f.text_field :subdomain, class: "form-control"
+            %span{class: "input-group-addon"} .membrs.co
+          = field_errors(@space, :subdomain)
+          %span.help-block
+            <i>( your members will use this domain to login and pay their invoices )</i>
+        - unless current_user.trialing?
+          .form-group{:class => has_error(@space, :coupon)}
+            = f.label :coupon
+            = text_field_tag(:coupon, nil, class: "form-control")
+            = field_errors(@space, :coupon)
+        - unless current_user.trialing? && @space.payment_method.nil?
+          - if @space.payment_method.nil?
+            .form-group{:class => has_error(@space, :payment_method)}
+              = f.label :payment_method
+              = link_to "Manage Payment Methods", payment_methods_path
+              = select_tag :payment_method,  options_from_collection_for_select(current_user.payment_methods, "id", "select_name"), include_blank: true, class: "form-control"
+              = field_errors(@space, :payment_method)
+          - else
+            .form-group{:class => has_error(@space, :payment_method)}
+              = f.label :payment_method
+              = @space.payment_method.select_name
+              = link_to "Change Card Details", edit_payment_method_path(@space.payment_method), class: "btn btn-default"
+              = link_to "Cancel Subscription",  cancel_subscription_space_path(@space), method: 'post', class: "btn btn-default"
+              = field_errors(@space, :payment_method)
 
-  = f.submit class: "btn btn-primary"
+        = f.submit class: "btn btn-success", style: "margin-top:20px;"

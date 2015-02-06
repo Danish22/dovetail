@@ -26,13 +26,13 @@
                 <%= admin.email %>
               </td>
               <td class="command-bar">
-                <% if (admin.id == current_user.id || admin.id == @space.user_id) -%>                  
-                  <%= link_to 'Remove', space_admin_url(@space, admin), 
-                      disabled: "disabled", class: "btn btn-invoice-action btn-xs", method: :delete, 
+                <% if (admin.id == current_user.id || admin.id == @space.user_id) -%>
+                  <%= link_to 'Remove', space_admin_url(@space, admin),
+                      disabled: "disabled", class: "btn btn-invoice-action btn-xs", method: :delete,
                         data: { confirm: 'Are you sure?' } %>
                 <% else -%>
-                  <%= link_to 'Remove', space_admin_url(@space, admin), 
-                      class: "btn btn-invoice-action btn-xs", method: :delete, 
+                  <%= link_to 'Remove', space_admin_url(@space, admin),
+                      class: "btn btn-danger btn-xs", method: :delete,
                         data: { confirm: 'Are you sure?' } %>
                 <% end -%>
               </td>
@@ -63,7 +63,7 @@
               <td><%= invite.sender.email %></td>
               <td class="command-bar">
                 <%= link_to '<span aria-hidden="true" class="oi oi-envelope-closed" title="Resend Invite"></span>'.html_safe, resend_space_invite_path(@space, invite), class: "btn btn-primary btn-xs" %>
-                <%= link_to '<span aria-hidden="true" class="oi oi-circle-x" title="Cancel Invite"></span>'.html_safe, [@space, invite], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-invoice-action btn-xs" %>
+                <%= link_to '<span aria-hidden="true" class="oi oi-circle-x" title="Cancel Invite"></span>'.html_safe, [@space, invite], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
               </td>
             </tr>
           <% end %>
