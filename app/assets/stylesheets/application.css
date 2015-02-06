@@ -69,7 +69,16 @@ table.invoice input, table.invoice input:hover, table.invoice input:focus, table
   font-size: 14px;
 }
 
-#managers .table > thead > tr > th, #managers .table > tbody > tr > th, #managers .table > tfoot > tr > th, #managers .table > thead > tr > td, #managers .table > tbody > tr > td, #managers .table > tfoot > tr > td {
+
+/* Managers
+------------------------------------------*/
+
+#managers .table > thead > tr > th,
+#managers .table > tbody > tr > th,
+#managers .table > tfoot > tr > th,
+#managers .table > thead > tr > td,
+#managers .table > tbody > tr > td,
+#managers .table > tfoot > tr > td {
   border: none;
 }
 
@@ -92,5 +101,63 @@ table.invoice input, table.invoice input:hover, table.invoice input:focus, table
   font-size: 10px;
   font-weight: 600;
   color: #bbb;
+  text-transform: uppercase;
+}
+
+
+/* Locations
+------------------------------------------*/
+
+#locations .table > thead > tr > th,
+#locations .table > tbody > tr > th,
+#locations .table > tfoot > tr > th,
+#locations .table > thead > tr > td,
+#locations .table > tbody > tr > td,
+#locations .table > tfoot > tr > td {
+  border: none;
+}
+
+#locations .table > thead:first-child > tr:first-child > th {
+  padding: 0px 8px;
+}
+
+#locations .table > tbody > tr > td {
+  padding: 4px 8px;
+  margin-bottom: 12px;
+}
+
+#locations .table > thead > tr > th {
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+
+/* Plans
+------------------------------------------*/
+
+#plans .table {
+  margin-bottom: 80px;
+}
+
+#plans .table > thead > tr > th,
+#plans .table > tbody > tr > th,
+#plans .table > tfoot > tr > th,
+#plans .table > thead > tr > td,
+#plans .table > tbody > tr > td,
+#plans .table > tfoot > tr > td {
+  border: none;
+}
+
+#plans .table > thead:first-child > tr:first-child > th {
+  padding: 0px 8px;
+}
+
+#plans .table > tbody > tr > td {
+  padding: 4px 8px;
+  margin-bottom: 12px;
+}
+
+#plans .table > thead > tr > th {
+  font-size: 13px;
   text-transform: uppercase;
 }

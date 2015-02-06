@@ -1,25 +1,33 @@
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th Base price
-      %th Setup fee
-      %th Deposit
-      %th Frequency
-      %th Location
-      %th
-      
-  %tbody
-    - @plans.each do |plan|
-      %tr
-        %td= plan.name
-        %td= plan.base_price
-        %td= plan.setup_fee
-        %td= plan.deposit
-        %td= frequency_label(plan.frequency)
-        %td= plan.location
-        %td.command-bar
-          = link_to 'Edit', edit_space_plan_path(@space, plan)
-          = link_to 'Destroy', [@space, plan], :method => :delete, :data => { :confirm => 'Are you sure?' }
+#plans
+  .row
+    .col-md-12
+      %h4 Membership Plans
+      %hr
 
-= link_to 'Create New Plan', new_space_plan_path(@space), class: "btn btn-success"
+  .row
+    %table.table
+      %thead
+        %tr
+          %th Name
+          %th Price
+          %th Setup fee
+          %th Deposit
+          %th Frequency
+          %th Location
+          %th
+
+      %tbody
+        - @plans.each do |plan|
+          %tr
+            %td= plan.name
+            %td= plan.base_price
+            %td= plan.setup_fee
+            %td= plan.deposit
+            %td= frequency_label(plan.frequency)
+            %td= plan.location
+            %td.command-bar
+              = link_to 'Edit', edit_space_plan_path(@space, plan)
+              = link_to 'Destroy', [@space, plan], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+    %hr
+    = link_to 'Create New Plan', new_space_plan_path(@space), class: "btn btn-success"

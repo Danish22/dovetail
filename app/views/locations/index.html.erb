@@ -1,22 +1,37 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-    </tr>
-  </thead>
+<div id="locations">
+  <div class="row">
+    <div class="col-md-12">
+      <h4><%= @space.name-%> Locations</h4>
+      <span class="help-block">
+      </span>
+      <hr>
 
-  <tbody>
-    <% @locations.each do |location| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= location.description %></td>
-        <td class="text-right">
-          <%= link_to 'Edit', edit_space_location_path(@space, location) %>
-          <%= link_to 'Destroy', [@space, location], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Postal Code</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<%= link_to 'Add New Location', new_space_location_path(@space), class: "btn btn-success" %>
+    <tbody>
+      <% @locations.each do |location| %>
+        <tr>
+          <td><%= location.address %></td>
+          <td><%= location.city %></td>
+          <td><%= location.state %></td>
+          <td><%= location.postal_code %></td>
+          <td class="text-right">
+            <%= link_to '<span aria-hidden="true" class="oi oi-pencil" title="Edit Location"></span>'.html_safe, edit_space_location_path(@space, location), class: "btn btn-invoice-action btn-xs" %>
+            <%= link_to '<span aria-hidden="true" class="oi oi-circle-x" title="Delete Location"></span>'.html_safe, [@space, location], class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <hr>
+  <%= link_to 'Add New Location', new_space_location_path(@space), class: "btn btn-success" %>
+</div>
