@@ -9,6 +9,9 @@
 
 /.vagrant
 
+Dovetail_Project_ST3.sublime-project
+Dovetail_Project_ST3.sublime-workspace
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
