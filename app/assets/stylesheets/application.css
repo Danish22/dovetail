@@ -22,6 +22,10 @@
     text-align:right;
 }
 
+.command-bar > .btn {
+  margin-left: 6px;
+}
+
 .icon {
     float:left;
     margin-right: 2px;
@@ -59,4 +63,34 @@ table.invoice input, table.invoice input:hover, table.invoice input:focus, table
 
 .account-content a:hover {
     text-decoration: none;
+}
+
+.help-block {
+  font-size: 14px;
+}
+
+#managers .table > thead > tr > th, #managers .table > tbody > tr > th, #managers .table > tfoot > tr > th, #managers .table > thead > tr > td, #managers .table > tbody > tr > td, #managers .table > tfoot > tr > td {
+  border: none;
+}
+
+#managers .table > thead:first-child > tr:first-child > th {
+  padding: 0px 8px;
+}
+
+#managers .table > tbody > tr > td {
+  padding: 4px 8px;
+  margin-bottom: 12px;
+}
+
+#managers .table > thead > tr > th {
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+#managers span.owner {
+  margin-left: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #bbb;
+  text-transform: uppercase;
 }

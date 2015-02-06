@@ -1,66 +1,90 @@
-<div class="row">
+<div id="managers">
+  <div class="row">
 
-  <div class="col-md-12">
-    <h5>Current Managers</h5>
-    
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Email</th>
-          <th colspan="1"></th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <% @admins.each do |admin| %>
+    <div class="col-md-12">
+      <h4>Current <%= @space.name-%> Managers</h4>
+      <span class="help-block">
+      </span>
+      <hr>
+
+      <table class="table" style="margin-bottom: 80px;">
+        <thead>
           <tr>
-            <td><%= admin.email %> <%= admin_relationship(admin, @space) -%></td>
-            <td class="command-bar"><%= link_to_unless (admin.id == current_user.id || admin.id == @space.user_id), 'Delete', space_admin_url(@space, admin), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <th>Name</th>
+            <th>Email</th>
+            <th colspan="1"></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @admins.each do |admin| %>
+            <tr>
+              <td>
+                <%= admin.full_name -%> <span class="owner"><%= admin_relationship(admin, @space) -%></span>
+              </td>
+              <td>
+                <%= admin.email %>
+              </td>
+              <td class="command-bar"><%= link_to_unless (admin.id == current_user.id || admin.id == @space.user_id), 'Remove', space_admin_url(@space, admin), class: "btn btn-invoice-action btn-xs", method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 
-<div class="row">
-
-  <div class="col-md-12">
-    <h5>People invited to co-manage</h5>
-    <table class="table" style="margin-bottom:25px;">
-      <thead>
-        <tr>
-          <th>Sent To</th>
-          <th>Sent By</th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <% @invites.each do |invite| %>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Pending Invites</h4>
+      <hr>
+      <table class="table" style="margin-bottom:80px;">
+        <thead>
           <tr>
-            <td><%= invite.email %></td>
-            <td><%= invite.sender.email %></td>
-            <td class="command-bar"><%= link_to 'Resend', resend_space_invite_path(@space, invite) %></td>
-            <td class="command-bar"><%= link_to 'Delete', [@space, invite], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <th>Sent To</th>
+            <th>Sent By</th>
+            <th colspan="2"></th>
           </tr>
-        <% end %>
-        
-        <% if @invites.empty? -%>
-          <tr><td class="text-center" colspan="4"><i>There are no pending invites.</td></tr>
-        <% end -%>
-        
-      </tbody>
-    </table>
-    
-    <%= form_for [@space, @invite], html: {class: "form-inline", role: "form"} do |f| %>
-      <div class="form-group" style="width:270px;">
-        <div class="input-group">
-          <%= f.email_field :email, class: "form-control", placeholder: "Enter email", style: "width:225px;" %>
+        </thead>
+
+        <tbody>
+          <% @invites.each do |invite| %>
+            <tr>
+              <td><%= invite.email %></td>
+              <td><%= invite.sender.email %></td>
+              <td class="command-bar">
+                <%= link_to '<span aria-hidden="true" class="oi oi-envelope-closed" title="Resend Invite"></span>'.html_safe, resend_space_invite_path(@space, invite), class: "btn btn-primary btn-xs" %>
+                <%= link_to '<span aria-hidden="true" class="oi oi-circle-x" title="Cancel Invite"></span>'.html_safe, [@space, invite], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-invoice-action btn-xs" %>
+              </td>
+            </tr>
+          <% end %>
+
+          <% if @invites.empty? -%>
+            <tr><td class="text-left" colspan="4"><i>There are no pending invites.</i></td></tr>
+          <% end -%>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Invite Co-managers</h4>
+      <span class="help-block">
+        ( you can have as many as you want )
+      </span>
+      <hr>
+      <%= form_for [@space, @invite], html: {class: "form-inline", role: "form"} do |f| %>
+        <div class="form-group">
+          <div class="input-group">
+            <%= f.email_field :email, class: "form-control", placeholder: "Enter email", style: "width:320px;" %>
+            <span class="input-group-btn">
+              <%= f.submit 'Send Invite', class: "btn btn-success" %>
+            </span>
+          </div>
         </div>
-      </div>
-      <%= f.submit 'Send Invite', class: "btn btn-success" %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-
 </div>

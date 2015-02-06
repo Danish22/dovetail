@@ -16,7 +16,7 @@
       %li{class: active_tab(["members","invoices", "payments", "credit_notes"])}
         - if @space
           %a{ href: space_members_path(@space)}
-            %span{class:"oi oi-person", title: "icon name", "aria-hidden" => "true"}
+            %span{class:"oi oi-people", title: "icon name", "aria-hidden" => "true"}
             Members
       %li{class: active_tab("activities")}
         - if @space
@@ -54,7 +54,7 @@
                   - else
                     %span{style: "color:#eee"}
                       &#8226;
-                  = s.name                        
+                  = s.name
             %li.divider
           %li
             = link_to("Sign out",  destroy_user_session_path, :method => :delete)
