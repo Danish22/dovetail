@@ -25,13 +25,13 @@
                   More Actions
                   %span.caret
                 %ul.dropdown-menu{:role => "menu"}
-                  %li
+                  %li{style: "display:none;"}
                     = link_to "Add Credit Note", new_space_member_member_credit_note_path(@space, @member, invoice_id: @invoice.id), class: ""
                   %li
                     = link_to "Delete Invoice", space_member_member_invoice_path(@space, @member, @invoice), class: "", method: "delete", data: { confirm: 'Are you sure?' }
             - else
               - if !@invoice.paid?
-                = link_to "Add Credit Note", new_space_member_member_credit_note_path(@space, @member, invoice_id: @invoice.id), class: "btn btn-invoice-action btn-xs vertical-center"
+                =# link_to "Add Credit Note", new_space_member_member_credit_note_path(@space, @member, invoice_id: @invoice.id), class: "btn btn-invoice-action btn-xs vertical-center"
           .col-md-6.text-right
             %p.balance.verticle-middle
               Balance:
