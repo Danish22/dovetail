@@ -6,7 +6,7 @@ class Location < ActiveRecord::Base
   has_many :plans
 
   def description
-    self.name || "#{self.address}, #{self.city}, #{self.state} "
+    self.name.blank? ? "#{self.address}, #{self.city}, #{self.state}" : self.name 
   end
 
   def to_s

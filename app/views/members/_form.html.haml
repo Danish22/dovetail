@@ -11,7 +11,7 @@
         = field_errors(@member, :email)
       .form-group{:class => has_error(@member, :location)}
         = f.label :location 
-        = f.collection_select :location_id, @space.locations, :id, :name, {allow_blank: false }, {class: "form-control"}
+        = f.collection_select :location_id, @space.locations, :id, :description, {allow_blank: false }, {class: "form-control"}
         = field_errors(@member, :location)
       .form-group{:class => has_error(@member, :plan), :style => "margin-bottom:40px;"}
         = f.label :plan
