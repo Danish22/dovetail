@@ -23,8 +23,10 @@
      email: '<%= current_user.email -%>',
      created_at: <%= current_user.created_at.to_i -%>,
 
-     first_name: '<%= current_user.first_name -%>',   // Add any attributes you'd like to use in the email subject or body.
-     last_name: '<%= current_user.last_name -%>',     // Add any attributes you'd like to use in the email subject or body.
+     // Add any attributes you'd like to use in the email subject or body.
+     first_name: '<%= current_user.first_name -%>',
+     last_name: '<%= current_user.last_name -%>',
+     full_name: '<%= current_user.full_name -%>',
      space_count: '<%= current_user.created_spaces.count -%>',
      payment_method_count: '<%= current_user.payment_methods.count -%>',
      members_count: '<%= current_user.created_members.count -%>',

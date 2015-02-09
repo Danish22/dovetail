@@ -1,9 +1,11 @@
 <div class="col-md-12">
-  <% integrations(@space).each do |integration| -%>   
+  <h4>Integrations</h4>
+  <hr>
+  <% integrations(@space).each do |integration| -%>
     <div class="well row" style="">
       <% integration_impl = @space.integrations.where(type: integration.impl).first -%>
       <%= render partial: integration.partial, locals: {integration: integration_impl} -%>
-    </div>    
+    </div>
   <% end -%>
 </div>
 
