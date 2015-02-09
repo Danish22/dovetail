@@ -1,26 +1,26 @@
-
-.login-container.col-md-4.col-md-offset-4
-  .login-header.login-caret{style: "margin-top:45px;margin-bottom:35px;"}
-    .login-content.text-center
-      %a.logo{href: "index.html"}
-        =image_tag "/img/Dovetail_v2_logo.png", width: '50'
-      %p.lead Forgot your password?
-  .login-form
-    .login-content
-      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-        = devise_error_messages!
-        .form-steps
-          #step-1.step.current
-            .form-group
-              .input-group
-                .input-group-addon
-                  %i.fa.fa-envelope
-                = f.email_field :email, autofocus: true, class: "form-control", id: "email", placeholder: "Enter you email address"
-            .form-group
-              %button.btn.btn-success.btn-block.btn-login#submit_form{type: "submit"}
-                %i.entypo-right-open-mini
-                Send password reset instructions
-        .login-bottom-links.text-center
-          = link_to "Create An Account", "/users/sign_up", class: "link" 
-          |
-          = link_to "Sign in", new_user_session_path, class: "link" 
+/ BEGIN FULL PAGE CONTAINER
+.login-page-container
+  / BEGIN LOGIN WINDOW
+  .login-container.box
+    .container-fluid
+      .row-fluid
+        .col-md-12.text-center
+          %img{:height => "60px", :src => "/img/logo-d.png"}/
+      .row-fluid
+        .col-md-12.greeting
+          Reset Your Password
+      .row-fluid
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          = devise_error_messages!
+          .form-steps
+            #step-1.step.current
+              .form-group
+                .col-md-12
+                  = f.email_field :email, autofocus: true, class: "form-control", id: "email", placeholder: "Enter you email address"
+              .col-md-12
+                %button.btn.btn-warning.btn-block.btn-login#submit_form{type: "submit"}
+                  Send Reset Instructions
+      .row-fluid.text-center
+        .col-md-12
+          = link_to "Log in to your account", new_user_session_path, class: "forgot-password"
+    / /END LOGIN WINDOW
