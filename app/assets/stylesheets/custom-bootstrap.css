@@ -6819,7 +6819,8 @@ input:focus,
   color: #3e3f3a;
 }
 body.sessions.new,
-body.registrations.new {
+body.registrations.new,
+body.passwords.new {
   width: 100%;
   margin: 0 auto;
   overflow: hidden;

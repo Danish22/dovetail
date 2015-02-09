@@ -2,7 +2,7 @@
   %h4
     Credit Note for
     = @member.name
-  = form_for(@credit_note, url: space_member_member_credit_notes_path(@space, @member, @credit_note)) do |f| 
+  = form_for(@credit_note, url: space_member_member_credit_notes_path(@space, @member, @credit_note)) do |f|
     = f.hidden_field :invoice_id
     .form-group
       %label{class: "col-md-8", style: "padding-left:0;padding-right:5px;margin-bottom:5px;"} Description
@@ -19,8 +19,8 @@
         = l.text_field :net_amount, class: "form-control"
         = field_errors(l.object, :net_amount)
     %br{style: "clear:both;"}
-    %div{style: "margin-top:10px;"}
-      = f.submit class: "btn btn-primary"
+    %div{style: "margin-top:20px;"}
+      = f.submit class: "btn btn-success"
       or
       = link_to("Cancel", :back)
 
