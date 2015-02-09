@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def set_trial_ending
-    self.trial_ending = Date.today.to_time(:utc) + 14.days
+    self.trial_ending = Date.today.to_time(:utc) + 30.days
   end
 
   def add_to_space_if_invited
