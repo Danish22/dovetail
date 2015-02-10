@@ -13,6 +13,8 @@
 
   * Deleting a draft invoice needs to delete all children (payments and/or credit notes)
 
+  * Remove Metered billing (quantity stuff)
+
 * 2.0 (MVP, ship in January-february time frame, available to all, for money)
   * Change member password
   * Member password recovery
