@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   attr_accessor :invite_token
 
   def trialing?
-    Date.today.to_time(:utc) < self.trial_ending 
+    true #Date.today.to_time(:utc) < self.trial_ending 
   end
 
   # Mostly for the ActiveAdmin interface
