@@ -15,7 +15,7 @@
         = field_errors(@member, :location)
       .form-group{:class => has_error(@member, :plan), :style => "margin-bottom:40px;"}
         = f.label :plan
-        = f.collection_select :plan_id, @space.plans, :id, :name, {include_blank: true}, {class: "form-control"}
+        = f.collection_select :plan_id, @space.plans, :id, :name, {include_blank: "None"}, {class: "form-control"}
         = field_errors(@member, :plan)
       = f.submit class: "btn btn-success"
       or

@@ -25,6 +25,9 @@ en:
       member_invoice: Invoice
       member_credit_note: Credit Note
       member_payment: Payment
+    attributes:
+      member:
+        plan: "Subscription Plan (Optional)"
   helpers:
     submit:
       member_credit_note:
