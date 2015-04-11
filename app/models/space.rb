@@ -98,6 +98,15 @@ class Space < ActiveRecord::Base
     return p
   end
 
+  def payment_for(invoice)
+    payment = charge_member(invoice.recipient, invoice.balance, invoice.description)
+    invoice.children << payment
+    if payment.status == "cleared"
+      invoice.paid_at = Time.now
+      invoice.save
+    end
+  end
+
   def payment_gateway
      @payment_gateway ||= integrations.where(type: ['StripeIntegration']).first  
   end
@@ -108,8 +117,7 @@ class Space < ActiveRecord::Base
       .where("members.last_scheduled_invoice_at + '1 month'::interval * plans.frequency::integer <= current_date").find_each do |member|
 
       begin
-        # Generate a new invoice for member and update last_scheduled_invoice_at
-        
+        # Generate a new invoice for member and update last_scheduled_invoice_at      
         invoice = member.member_invoices.new
 
         invoice.description = "#{member.plan.name} plan subscription"
@@ -121,16 +129,15 @@ class Space < ActiveRecord::Base
         invoice.currency = member.location.currency
       
         invoice.plan_id = member.plan_id
-
-        # Line items
-        count = 7
         
-        unless plan.base_price.blank?
+        count = 7 # Line items
+        
+        unless member.plan.base_price.blank?
           count -= 1
           invoice.line_items.build({quantity: 1, 
-                                     unit_price: plan.base_price,  
+                                     unit_price: member.plan.base_price,  
                                      tax_rate: member.tax_rate(), 
-                                     description: "Plan #{plan.name} subscription fee"})
+                                     description: "Plan #{member.plan.name} subscription fee"})
         end
         
         # Pad invoice with blank rows for later editing.
@@ -151,6 +158,23 @@ class Space < ActiveRecord::Base
   end
 
   def self.process_subscription_payments
+
+    Space.find_each do |space|
+      # TODO Optimize with a join on integrations.
+      # Skip space that don't have a payment gateway setup (ie Stripe)
+      next if space.payment_gateway.blank?
+
+      # Find all unpaid invoices that are due today or before (ie not future dated) and have a plan For 
+      space.member_invoices.where(["paid_at IS NULL AND plan_id IS NOT NULL AND due_date <= ?", Time.now]).find_each do |invoice|
+        begin
+          space.payment_for(invoice)
+          # TODO Filter members view of unpaid invoices to NOT include unpaid subscription invoices
+        rescue Exception => e
+          Rails.logger.error("Exception attempting payment invoice for #{invoice.inspect}: #{e.inspect}")
+        end
+      end
+    end
+
   end
 
 end

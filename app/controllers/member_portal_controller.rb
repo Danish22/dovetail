@@ -73,8 +73,7 @@ class MemberPortalController < PortalApplicationController
     raise "Invoice is already paid" if @invoice.paid?
 
     respond_to do |format|   
-      payment = @space.charge_member(@member, @invoice.total_amount, @invoice.description)
-      @invoice.children << payment
+      payment = @space.payment_for(@invoice)
 
       if payment.status == "cleared"
         format.html { redirect_to "/", notice: 'Payment succeeded' }

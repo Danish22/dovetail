@@ -32,11 +32,14 @@ class PaymentsController < ApplicationController
     @payment.status = "cleared"
     @payment.issue_date = Time.now
     @payment.currency = @member.location.currency
-
+    
     respond_to do |format|   
       if @payment.save
         @invoice.children << @payment
-
+        
+        @invoice.paid_at = Time.now
+        @invoice.save
+        
         format.html { redirect_to space_member_url(@space, @member), notice: 'Payment was successfully created.' }
         format.json { render :show, status: :created, location: [@space, @member, @payment] }
       else
