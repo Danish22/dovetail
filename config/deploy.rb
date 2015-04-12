@@ -20,8 +20,9 @@ set :ssh_options, {
 set :deploy_to, '/home/deploy/dovetailv2'
 
 # Default value for :linked_files is []
+set :bundle_binstubs, nil
 set :linked_files, %w{config/database.yml config/application.yml}
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
