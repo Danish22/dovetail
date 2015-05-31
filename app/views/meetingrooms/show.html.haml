@@ -1,0 +1,37 @@
+.member-show
+  .row
+    .col-md-3
+      .box.box-body-sm.room-list
+        %h4 Rooms
+        - @space.meetingrooms.group_by { |r| r.location }.each do |location, rooms|
+          %div{style: "border-bottom:1px solid #3a3e3f;"}
+            %small
+              =location.description
+          %br
+          %div{style: "margin-left:10px;"} 
+            - rooms.each do |meetingroom|
+              %a{:class => (meetingroom == @meetingroom ? "active" : ""), :href => space_meetingroom_path(@space, meetingroom)} 
+                = meetingroom.name
+                %br
+                %small= meetingroom.description
+                %br
+                %br
+    .col-md-9
+      .box.box-body-sm
+        %h3 Upcoming Reservations
+        = link_to "New Reservation", new_space_meetingroom_booking_path(@space, @meetingroom), class: "btn btn-success btn-new-invoice pull-right"
+        %hr
+        - if @bookings.length == 0
+          %h5
+            There are no upcoming reservations for this room.  
+            = link_to "Create one ", new_space_meetingroom_booking_path(@space, @meetingroom)
+        - @bookings.group_by{|b| b.starting.strftime("%A %B %e, %Y")}.each do |d, bookings|
+          %h4{style: "margin-top:20px;"}=d
+          %div{style: "margin-left:15px;"}
+            - bookings.each do |booking|
+              %p.booking
+                = booking.starting.strftime("%H:%M") + " - "
+                = booking.ending.strftime("%H:%M")
+                %span.spaced= booking.member.name
+                = link_to '<span aria-hidden="true" class="oi oi-pencil" title="Edit Reservation"></span>'.html_safe, edit_space_meetingroom_booking_path(@space, @meetingroom, booking), class: "btn btn-invoice-action btn-xs"
+                = link_to '<span aria-hidden="true" class="oi oi-circle-x" title="Delete Reservation"></span>'.html_safe, [@space, @meetingroom, booking], class: "btn btn-danger btn-xs", :method => :delete, :data => { :confirm => 'Are you sure?' }  

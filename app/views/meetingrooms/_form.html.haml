@@ -1,0 +1,19 @@
+.col-md-6.col-md-offset-3
+  .box.box-body-md
+    = form_for([@space, @meetingroom]) do |f| 
+      .form-group{:class => has_error(@meetingroom, :location)}
+        = f.label :location
+        = f.collection_select :location_id, @space.locations, :id, :description, {allow_blank: false }, {class: "form-control"}
+        = field_errors(@meetingroom, :location)
+      .form-group{:class => has_error(@meetingroom, :name)}
+        = f.label :name
+        = f.text_field :name, class: "form-control"
+        = field_errors(@meetingroom,  :name)
+      .form-group{:class => has_error(@meetingroom, :description)}
+        = f.label :description
+        = f.text_field :description, class: "form-control"
+        = field_errors(@meetingroom,  :description)
+      = f.submit class: "btn btn-primary" 
+      or 
+      = link_to "Cancel", :back
+

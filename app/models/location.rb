@@ -4,6 +4,8 @@ class Location < ActiveRecord::Base
   has_many :members
   has_many :resources
   has_many :plans
+  has_many :meetingrooms
+  has_many :bookings
 
   def description
     self.name.blank? ? "#{self.address}, #{self.city}, #{self.state}" : self.name 

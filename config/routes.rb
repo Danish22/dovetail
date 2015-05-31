@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     # Authentication/sessions  routes
     post '/auth/:provider/callback', to: 'sessions#create'
     get '/logout', to: 'sessions#destroy'
+
+    resources :member_rooms, path: "meetingrooms" do
+      resources :member_bookings
+    end
   end 
 
   constraints(AppConstraint) do
@@ -49,6 +53,10 @@ Rails.application.routes.draw do
       resources :admins
       resources :resources
       resources :plans
+
+      resources :meetingrooms do 
+        resources :bookings
+      end
 
       get 'integrations', to: 'integrations#index'
       namespace :integrations do

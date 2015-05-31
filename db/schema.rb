@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331143938) do
+ActiveRecord::Schema.define(version: 20150419134159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(version: 20150331143938) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "bookings", force: true do |t|
+    t.integer  "space_id"
+    t.integer  "location_id"
+    t.integer  "meetingroom_id"
+    t.integer  "member_id"
+    t.datetime "starting"
+    t.datetime "ending"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -147,6 +158,16 @@ ActiveRecord::Schema.define(version: 20150331143938) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "address"
+  end
+
+  create_table "meetingrooms", force: true do |t|
+    t.integer  "space_id"
+    t.integer  "location_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "member_identities", force: true do |t|

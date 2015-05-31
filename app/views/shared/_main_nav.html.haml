@@ -18,6 +18,11 @@
           %a{ href: space_members_path(@space)}
             %span{class:"oi oi-people", title: "icon name", "aria-hidden" => "true"}
             Members
+      %li{class: active_tab(["meetingrooms","bookings"])}
+        - if @space
+          %a{ href: space_meetingrooms_path(@space)}
+            %span{class:"oi oi-calendar", title: "icon name", "aria-hidden" => "true"}
+            Rooms
       %li{class: active_tab("activities")}
         - if @space
           %a{ href: space_activities_path(@space)}

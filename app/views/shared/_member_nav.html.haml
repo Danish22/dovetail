@@ -1,0 +1,27 @@
+%nav.navbar.navbar-inverse
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li{class: active_tab(["member_portal"])}
+          %a{:href => "/"}
+            %span{class:"oi oi-credit-card", title: "icon name", "aria-hidden" => "true"}
+            Billing
+            %span.sr-only (current)
+        %li{class: active_tab(["member_rooms", "member_bookings"])}
+          = link_to member_rooms_path do
+            %span{class:"oi oi-calendar", title: "icon name", "aria-hidden" => "true"}
+            Meeting rooms
+        %li
+          = link_to "/logout" do
+            %span{class:'oi oi-account-logout', title: 'icon name', 'aria-hidden' => 'true'} 
+            Sign Out
+    / /.navbar-collapse
+  / /.container-fluid

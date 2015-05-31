@@ -1,0 +1,26 @@
+%table.table
+  %thead
+    %tr
+      %th Space
+      %th Location
+      %th Meetingroom
+      %th Member
+      %th Starting
+      %th Ending
+      %th
+      
+  %tbody
+    - @bookings.each do |booking|
+      %tr
+        %td= booking.space_id
+        %td= booking.location_id
+        %td= booking.meetingroom_id
+        %td= booking.member_id
+        %td= booking.starting
+        %td= booking.ending
+        %td.command-bar
+          = link_to 'Show', booking
+          = link_to 'Edit', edit_booking_path(booking)
+          = link_to 'Destroy', booking, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= link_to 'New Booking', new_booking_path

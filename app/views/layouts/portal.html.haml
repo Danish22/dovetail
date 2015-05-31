@@ -8,10 +8,20 @@
     %meta{'name' => "viewport", 'content' => "width=device-width", 'initial-scale' => "1.0"}
 
     = stylesheet_link_tag 'application', media: 'all'
+    %link{href: "/open-iconic/font/css/open-iconic-bootstrap.css", rel: "stylesheet"}
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body.page-body
+
+    - if !current_member.nil?
+      - if !current_member.provider.nil?
+        .container
+          %div{style: "padding:15px;margin-top:10px;", class: "text-center"}
+            %h3
+              = @space.name
+
+        = render "shared/member_nav"
 
     .container
       - flash.each do |key, value|
@@ -21,10 +31,6 @@
     .container
       - if !current_member.nil?
         - if !current_member.provider.nil?
-          %div{style: "padding:20px;margin-top:20px;", class: "text-center"}
-            %h3
-              = @space.name
-            = link_to "Sign Out", "/logout", class: "btn btn-small"
           = yield
         - else
           = render "signup"

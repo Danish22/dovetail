@@ -18,6 +18,19 @@
  *= require_self
  */
 
+.room-list a.active {
+    color:#3e3f3a;
+    font-weight:500;
+}
+
+.room-list a {
+    color: #98978b;
+}
+
+p.booking .spaced {
+    margin-right:20px;
+}
+
 .command-bar {
     text-align:right;
 }

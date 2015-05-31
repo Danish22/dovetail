@@ -1,0 +1,27 @@
+.box.box-body-sm
+  .row
+    .col-md-6
+      %h3{style: "display:inline"} Meeting Rooms
+    .col-md-6.text-right
+      = link_to 'Add Meeting Room', new_space_meetingroom_path(@space), class: "btn btn-success"
+  %hr
+
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Location
+        %th
+      
+          %tbody
+            - @meetingrooms.each do |meetingroom|
+              %tr
+                %td
+                  %a{href: space_meetingroom_path(@space, meetingroom)}
+                    = meetingroom.name
+                    %br
+                    %small= meetingroom.description
+                %td= meetingroom.location
+                %td.command-bar
+                  = link_to '<span aria-hidden="true" class="oi oi-pencil" title="Edit Room"></span>'.html_safe, edit_space_meetingroom_path(@space, meetingroom), class: "btn btn-invoice-action btn-xs"
+                  = link_to '<span aria-hidden="true" class="oi oi-circle-x" title="Delete Room"></span>'.html_safe, [@space, meetingroom], class: "btn btn-danger btn-xs", method: :delete, data: { confirm: 'Are you sure?' }

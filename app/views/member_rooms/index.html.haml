@@ -1,0 +1,21 @@
+.box.box-body-sm
+  .row
+    .col-md-12
+      %h3{style: "display:inline"} Select a meeting room
+  %hr
+
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Location
+      
+        %tbody
+          - @meetingrooms.each do |meetingroom|
+            %tr
+              %td
+                %a{href: member_room_path(meetingroom)}
+                  = meetingroom.name
+                  %br
+                    %small= meetingroom.description
+                %td= meetingroom.location

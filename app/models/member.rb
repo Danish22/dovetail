@@ -5,6 +5,8 @@ class Member < ActiveRecord::Base
   belongs_to :location, touch: true
   belongs_to :plan
 
+  has_many :bookings
+
   # Collection of all ledger items for this member
   has_many :ledger_items, :foreign_key => 'recipient_id', class_name: 'InvoicingLedgerItem'
 

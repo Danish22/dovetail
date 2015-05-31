@@ -1,0 +1,18 @@
+.col-md-6.col-md-offset-3
+  .box.box-body-md
+    - url = (@booking.new_record? ? member_room_member_bookings_path(@meetingroom) : member_room_member_booking_path(@meetingroom, @booking))
+    = form_for(@booking, url: url) do |f| 
+      .form-group{:class => has_error(@booking, :starting)}
+        = f.label :starting
+        .form-control
+          = f.datetime_select :starting, {minute_step: 15}, {class: ""}
+        = field_errors(@booking,  :starting)
+      .form-group{:class => has_error(@booking, :ending)}
+        = f.label :ending
+        .form-control
+          = f.datetime_select :ending, {minute_step: 15}, {class: ""}
+        = field_errors(@booking,  :ending)
+      = f.submit class: "btn btn-primary" 
+      or 
+      = link_to "Cancel", :back
+
