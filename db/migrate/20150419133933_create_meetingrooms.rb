@@ -5,7 +5,7 @@ class CreateMeetingrooms < ActiveRecord::Migration
       t.integer :location_id
       t.string :name
       t.string :description
-      t.integer :user__id
+      t.integer :user_id
 
       t.timestamps
     end
