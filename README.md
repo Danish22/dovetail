@@ -7,7 +7,8 @@ This is the repo for the Dovetail co-working space management app.
 ### How do I get set up? ###
 
 * Ruby 2.1.2, Rails 4.1.1
-* config/database-sample.yml -> config/database.yml - Edit as appropriate.
+* cp config/database-sample.yml -> config/database.yml - Edit as appropriate.
+* cp config/application-sample.yml -> config/application.yml - Edit as appropriate
 * No external dependencies at this time.
 * bundle exec rake test
 * bundle exec rails server
