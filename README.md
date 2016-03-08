@@ -2,7 +2,7 @@
 
 ### What is this repository for? ###
 
-This is the repo for Dovetail v2.  v2 is a rethink on the dovetail product focused on correcting mistakes made with v1.
+This is the repo for the Dovetail co-working space management app.
 
 ### How do I get set up? ###
 
@@ -10,10 +10,11 @@ This is the repo for Dovetail v2.  v2 is a rethink on the dovetail product focus
 * config/database-sample.yml -> config/database.yml - Edit as appropriate.
 * No external dependencies at this time.
 * bundle exec rake test
-* bundle exec cap deploy
+* bundle exec rails server
 
 ### Contribution guidelines ###
 
+* Fork then clone the repository
 * Create a feature branch
 * Code feature
 * Write tests
