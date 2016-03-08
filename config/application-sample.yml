@@ -1,0 +1,19 @@
+#
+# Configuration
+#
+STRIPE_API_KEY: Your stripe API key
+STRIPE_PUBLISHABLE_KEY: Your Stripe Publishable Key
+
+# For OAuth
+STRIPE_CLIENT_ID: Your stripe client id - for adding a spaces stripe account to their dovetail account
+
+# Needed only for production
+SMTP_ADDRESS: server adress
+SMTP_PORT: server port
+SMTP_USER: server username
+SMTP_PASSWORD: server password
+SMTP_DOMAIN: domain we're sending emails from
+
+# Also only needed for production
+DEFAULT_MAILER_HOST: hostname of dovetail instance (ie app.dovetail.io)
+

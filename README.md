@@ -9,22 +9,23 @@ This is the repo for the Dovetail co-working space management app.
 * Ruby 2.1.2, Rails 4.1.1
 * cp config/database-sample.yml -> config/database.yml - Edit as appropriate.
 * cp config/application-sample.yml -> config/application.yml - Edit as appropriate
-* No external dependencies at this time.
-* bundle exec rake test
+* Using Mailcatcher for capturing emails sent in development mode
+* bundle install
+* bundle exec rake db:create
+* bundle exec db:schema:load
 * bundle exec rails server
+* http://lvh.me:3000/
 
-### Contribution guidelines ###
+### Contributing ###
 
-* Fork then clone the repository
-* Create a feature branch
-* Code feature
-* Write tests
-* Commit and push feature branch
-* Create pull request and get some people on team to review.
-* Code review
-* Reviewer will merge 
+Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Who do I talk to? ###
 
 * Vince Hodges vhodges@gmail.com
 * Matt Farely matt@pendeavor.com
+
+## License
+
+Dovetail is Copyright © 2013-2016 Sourdough Labs Research and Development Corp. It is free
+software, and may be redistributed under the terms specified in the [LICENSE]() file.
