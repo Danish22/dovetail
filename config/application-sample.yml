@@ -17,3 +17,4 @@ SMTP_DOMAIN: domain we're sending emails from
 # Also only needed for production
 DEFAULT_MAILER_HOST: hostname of dovetail instance (ie app.dovetail.io)
 
+USERVOICE: user voice widget id
