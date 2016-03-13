@@ -7,7 +7,7 @@ stdout_path "#{root}/log/unicorn.log"
  
 # Port configuration
 listen "127.0.0.1:5200"
-worker_processes 4
+worker_processes 2
 timeout 30
  
 # Force the bundler gemfile environment variable to
