@@ -11,15 +11,16 @@ cd ~/.rbenv && git pull
 # Update ruby-build
 cd ~/.rbenv/plugins/ruby-build && git pull
 
-# Install ruby 2.1.5
-rbenv install 2.1.5
+# Install ruby 2.3.0
+rbenv install 2.3.0
 
 # Set the default ruby version
-rbenv global 2.1.5
+rbenv global 2.3.0
 
 # Core/Base gems
 gem install bundler --no-ri --no-rdoc
 gem install mailcatcher --no-ri --no-rdoc
+gem install foreman --no-ri --no-rdoc
 
 # Install upstart script for mailcather
 sudo cp /vagrant/mailcatcher.conf /etc/init

@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
 
   before_create :set_trial_ending
 
-  has_many :created_spaces, class: Space
-  has_many :created_members, class: Member
+  has_many :created_spaces, class_name: "Space"
+  has_many :created_members, class_name: "Member"
 
   has_many :user_spaces
   has_many :spaces, through: :user_spaces

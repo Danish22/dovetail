@@ -1,8 +1,11 @@
 source 'https://rubygems.org'
 
-ruby "2.1.5"
+ruby "2.3.0"
 
-gem 'rails', '4.1.1'
+gem 'json', '>= 1.8.2'
+gem 'eventmachine', '>=1.0.4'
+
+gem 'rails', '4.2.6'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
