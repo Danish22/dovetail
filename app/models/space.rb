@@ -108,6 +108,8 @@ class Space < ActiveRecord::Base
       invoice.paid_at = Time.now
       invoice.save
     end
+
+    return payment
   end
 
   def payment_gateway
