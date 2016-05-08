@@ -35,8 +35,15 @@ class Member < ActiveRecord::Base
   end
 
   def send_invoice(invoice, user)
-    PaymentMailer.invoice(user, self, invoice).deliver
 
+    # Wrap in a begin/rescue pair so that errors here don't cause the rest of this method to fail.
+    # TODO Put this into a background job.
+    begin
+      PaymentMailer.invoice(user, self, invoice).deliver
+    rescue => e
+      Rails.logger.error("Error emailing invoice: #{e}")
+    end
+    
     # Schedule starts from the date the Manager sends the first invoice 
     # (this is also called when the system sends subsequent invoices to 
     # trigger the next invoice)
