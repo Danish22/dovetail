@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     # Authentication/sessions  routes
     post '/auth/:provider/callback', to: 'sessions#create'
     get '/logout', to: 'sessions#destroy'
-
+    get '/auth/failure', to: 'sessions#failure'
+    
     resources :member_rooms, path: "meetingrooms" do
       resources :member_bookings
     end
