@@ -14,5 +14,9 @@ class SessionsController < PortalApplicationController
     unauthenticate_member!
   end
 
+  def failure
+    redirect_to '/', :alert => "Authentication error: #{params[:message].humanize}"
+  end
+  
   protected
 end
