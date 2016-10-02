@@ -119,7 +119,7 @@ class Space < ActiveRecord::Base
   def self.generate_subscription_invoices
 
     Member.joins('INNER JOIN plans ON plans.id = members.plan_id')
-      .where("members.last_scheduled_invoice_at + '1 month'::interval * plans.frequency::integer <= current_date").find_each do |member|
+      .where("(members.last_scheduled_invoice_at + '1 month'::interval * plans.frequency::integer)::timestamp::date <= current_date").find_each do |member|
 
       begin
         # Generate a new invoice for member and update last_scheduled_invoice_at      
