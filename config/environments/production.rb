@@ -92,5 +92,6 @@ Rails.application.configure do
     :password       => ENV['SMTP_PASSWORD'],
     :domain         => ENV['SMTP_DOMAIN']
   }
+
   config.action_mailer.delivery_method ||= :smtp
 end
