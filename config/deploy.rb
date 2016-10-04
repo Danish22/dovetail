@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'dovetailv2'
-set :repo_url, 'git@bitbucket.org:dovetail/app-v2.git'
+set :repo_url, 'git@github.com:dovetail/dovetail.git' # git@bitbucket.org:dovetail/app-v2.git'
 
 set :stages, %w(production)
 set :default_stage, "production"
