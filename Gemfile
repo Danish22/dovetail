@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.3.0"
+ruby "2.1.5"
 
 gem 'json', '>= 1.8.2'
 gem 'eventmachine', '>=1.0.4'
