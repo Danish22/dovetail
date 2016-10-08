@@ -422,5 +422,8 @@ DEPENDENCIES
   uuid (~> 2.3.7)
   whenever
 
+RUBY VERSION
+   ruby 2.1.5p273
+
 BUNDLED WITH
-   1.11.2
+   1.13.2
