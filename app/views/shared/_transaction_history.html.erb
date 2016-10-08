@@ -9,6 +9,7 @@
     <div class="timeline-centered">
       
       <% @history_items.each do |history_item| -%>
+        <% next if history_item.parent.nil? -%>
         <article class="timeline-entry">   
           <div class="timeline-entry-inner">      
             <div class="timeline-icon <%= timeline_bg_colour(history_item) -%>">

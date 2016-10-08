@@ -3,7 +3,7 @@ class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_space
   before_action :set_member
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy, :deliver]
+  before_action :set_invoice, only: [:show, :edit, :update, :destroy, :deliver, :cancel]
   before_action :check_space_payment_method
 
   # GET /members/1
@@ -75,6 +75,15 @@ class InvoicesController < ApplicationController
       @member.send_invoice(@invoice, current_user)
 
       format.html { redirect_to space_member_url(@space, @member), notice: 'Invoice has been sent' }
+      format.json { render :show, status: :ok, location: [@space, @member, @invoice] }
+    end
+  end
+
+  def cancel
+    respond_to do |format|
+      @invoice.update({status: "cancelled"})
+
+      format.html { redirect_to space_member_url(@space, @member), notice: 'Invoice has been cancelled' }
       format.json { render :show, status: :ok, location: [@space, @member, @invoice] }
     end
   end

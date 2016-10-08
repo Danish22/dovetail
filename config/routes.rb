@@ -75,6 +75,7 @@ Rails.application.routes.draw do
         resources :member_invoices, path: "invoices", controller: "invoices", except: [:index] do
           member do
             post 'deliver'
+            post 'cancel'
           end
         end
         resources :member_payments, path: "payments", controller: "payments", except: [:index]

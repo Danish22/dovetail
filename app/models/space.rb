@@ -170,7 +170,7 @@ class Space < ActiveRecord::Base
       next if space.payment_gateway.blank?
 
       # Find all unpaid invoices that are due today or before (ie not future dated) and have a plan For 
-      space.member_invoices.where(["paid_at IS NULL AND plan_id IS NOT NULL AND due_date <= ?", Time.now]).find_each do |invoice|
+      space.member_invoices.where(["status = 'closed' AND paid_at IS NULL AND plan_id IS NOT NULL AND due_date <= ?", Time.now]).find_each do |invoice|
         begin
           space.payment_for(invoice)
           # TODO Filter members view of unpaid invoices to NOT include unpaid subscription invoices

@@ -17,7 +17,10 @@
       .col-md-12.action-bar
         .row
           .col-md-6
-            = link_to "Email Invoice", deliver_space_member_member_invoice_path(@space, @member, @invoice), method: "post", class: "btn btn-invoice-action btn-xs vertical-center "
+            - if @invoice.status != "cancelled"
+              = link_to "Email Invoice", deliver_space_member_member_invoice_path(@space, @member, @invoice), method: "post", class: "btn btn-invoice-action btn-xs vertical-center "
+              = link_to "Cancel Invoice", cancel_space_member_member_invoice_path(@space, @member, @invoice), method: "post", class: "btn btn-invoice-action btn-xs vertical-center ", data: { confirm: 'Are you sure?' }
+
             - if @invoice.status == "open"
               = link_to "Edit Invoice", edit_space_member_member_invoice_path(@space, @member, @invoice), class: "btn btn-invoice-action btn-xs vertical-center"
               .btn-group

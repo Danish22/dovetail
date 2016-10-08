@@ -163,6 +163,8 @@ module ApplicationHelper
       else
         return "<span class='label label-danger'>Due</span>".html_safe
       end
+    elsif item.status == "cancelled"
+      return "<span class='label label-warning'>Cancelled</span>".html_safe
     elsif item.status == 'closed' && item.paid?
       return "<span class='label label-success'>Paid</span>".html_safe
     end
