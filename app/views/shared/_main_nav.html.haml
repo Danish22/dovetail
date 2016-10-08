@@ -23,12 +23,12 @@
           %a{ href: space_meetingrooms_path(@space)}
             %span{class:"oi oi-calendar", title: "icon name", "aria-hidden" => "true"}
             Rooms
-      %li{class: active_tab("activities")}
+      %li{class: active_tab("activities"), style: "display:none;"}
         - if @space
           %a{ href: space_activities_path(@space)}
             %span{class:"oi oi-pulse", title: "icon name", "aria-hidden" => "true"}
             Activity
-      %li{class: active_tab("insights")}
+      %li{class: active_tab("insights"), style: "display:none;"}
         - if @space
           %a{ href: space_insights_path(@space)}
             %span{class:"oi oi-bar-chart", title: "icon name", "aria-hidden" => "true"}
