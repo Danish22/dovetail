@@ -33,8 +33,12 @@ class Member < ActiveRecord::Base
   scope :archived, -> { where(status: 'archived') }
   scope :by_status, -> status { where(status: status)  if status.present? }
 
+  def valid_states
+    ["active", "archived"]
+  end
+  
   def status=(state)
-    raise "Invalid state" unless ["active", "archived"].include?(state)
+    raise "Invalid state" unless valid_states.include?(state)
     write_attribute(:status, state)
   end
   
