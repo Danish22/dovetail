@@ -29,6 +29,15 @@ class Member < ActiveRecord::Base
   attr_accessor :payment_system_token # Represents the card, only present when setting up or updating subscription
   attr_accessor :gateway_error        # Holds any error from the payment gateway
 
+  scope :active, -> { where(status: 'active') }
+  scope :archived, -> { where(status: 'archived') }
+  scope :by_status, -> status { where(status: status)  if status.present? }
+
+  def status=(state)
+    raise "Invalid state" unless ["active", "archived"].include?(state)
+    write_attribute(:status, state)
+  end
+  
   def tax_rate()
     return 0 if location.tax_rate.nil?
     return location.tax_rate
