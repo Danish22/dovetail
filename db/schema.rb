@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(version: 20161010105016) do
     t.string   "last_4_digits",              limit: 255
     t.string   "slug",                       limit: 255
     t.datetime "last_scheduled_invoice_at"
-    t.string   "status"
+    t.string   "status",                                 default: "active"
   end
 
   add_index "members", ["slug"], name: "index_members_on_slug", unique: true, using: :btree
