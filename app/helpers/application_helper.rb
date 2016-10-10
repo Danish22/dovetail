@@ -207,4 +207,9 @@ module ApplicationHelper
     end
   end
 
+  def status_toolbar
+    Member.valid_states.map do |s|
+      link_to_unless @state == s, s.capitalize, Rails.application.routes.url_helpers.space_members_path(@space, status: s)
+    end.join(" :: ").html_safe
+  end
 end

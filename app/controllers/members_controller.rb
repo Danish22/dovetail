@@ -8,9 +8,9 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    state = params[:status].present? ? params[:status] : "active"
-    if stale?([@space, state, flash])
-      @members = @space.members.by_status(state).order("name asc")
+    @state = params[:status].present? ? params[:status] : "active"
+    if stale?([@space, @state, flash])
+      @members = @space.members.by_status(@state).order("name asc")
     end
   end
 

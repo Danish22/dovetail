@@ -15,7 +15,7 @@
         = field_errors(@member, :location)
       .form-group{:class => has_error(@member, :status), :style => "margin-bottom:40px;"}
         = f.label :status
-        = f.select :status, @member.valid_states, {}, {class: "form-control"}
+        = f.select :status, Member.valid_states, {}, {class: "form-control"}
         = field_errors(@member, :status)
       .form-group{:class => has_error(@member, :plan), :style => "margin-bottom:40px;"}
         = f.label :plan

@@ -2,8 +2,14 @@
 <div class="members-index">
   <div class="row">
     <div class="col-md-12">
-      <h3 class="">Here's everyone at <%= @space.name-%></h3>
+      <h3 class=""><%= @state.capitalize -%> Members at <%= @space.name-%></h3>
       <%= link_to "Add New Member", new_space_member_path(@space), class: "btn btn-success pull-right", style: "" -%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= status_toolbar -%>
     </div>
   </div>
 
