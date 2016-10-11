@@ -19,10 +19,10 @@ GIT
 
 GIT
   remote: https://github.com/stripe/stripe-ruby
-  revision: f612aa9057fbfca1b89f50d73f3680b3fb882ad9
+  revision: 52b4203af58d8fe276896f5f29cfaa98d153fc9b
   specs:
-    stripe (1.36.1)
-      rest-client (~> 1.4)
+    stripe (1.55.0)
+      rest-client (>= 1.4, < 4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -122,7 +122,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    domain_name (0.5.20160309)
+    domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     eventmachine (1.0.9.1)
@@ -159,7 +159,7 @@ GEM
       haml (~> 4.0.0)
       nokogiri (~> 1.6.0)
       ruby_parser (~> 3.5)
-    http-cookie (1.0.2)
+    http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.7.0)
     i18n_data (0.7.0)
@@ -205,7 +205,7 @@ GEM
       rack-contrib (~> 1.1)
       railties (>= 3.0.0, < 5.1.0)
     method_source (0.8.2)
-    mime-types (2.99.1)
+    mime-types (2.99.3)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     money (6.7.0)
@@ -290,10 +290,10 @@ GEM
       json (~> 1.4)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
-    rest-client (1.8.0)
+    rest-client (2.0.0)
       http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 3.0)
-      netrc (~> 0.7)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     ruby_parser (3.8.1)
       sexp_processor (~> 4.1)
     rufus-scheduler (3.2.0)
