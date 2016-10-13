@@ -13,6 +13,10 @@
         = f.label :location 
         = f.collection_select :location_id, @space.locations, :id, :description, {allow_blank: false }, {class: "form-control"}
         = field_errors(@member, :location)
+      .form-group{:class => has_error(@member, :status), :style => "margin-bottom:40px;"}
+        = f.label :status
+        = f.select :status, Member.valid_states, {}, {class: "form-control"}
+        = field_errors(@member, :status)
       .form-group{:class => has_error(@member, :plan), :style => "margin-bottom:40px;"}
         = f.label :plan
         = f.collection_select :plan_id, @space.plans, :id, :name, {include_blank: "None"}, {class: "form-control"}

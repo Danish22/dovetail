@@ -8,8 +8,9 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    if stale?([@space, flash])
-      @members = @space.members.all.order("name asc")
+    @state = params[:status].present? ? params[:status] : "active"
+    if stale?([@space, @state, flash])
+      @members = @space.members.by_status(@state).order("name asc")
     end
   end
 
@@ -113,6 +114,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:name, :email, :location_id, :plan_id)
+      params.require(:member).permit(:name, :email, :location_id, :plan_id, :status)
     end
 end
