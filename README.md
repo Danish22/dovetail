@@ -27,5 +27,5 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-Dovetail is Copyright © 2013-2016 Sourdough Labs Research and Development Corp. It is free
+Dovetail is Copyright © 2016 Vince Hodges and Matt Farley. It is free
 software, and may be redistributed under the terms specified in the [LICENSE](LICENSE) file.
