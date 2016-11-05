@@ -80,7 +80,12 @@ Rails.application.routes.draw do
         end
         resources :member_payments, path: "payments", controller: "payments", except: [:index]
         resources :member_credit_notes, path: "credit_notes", controller: "credit_notes", except: [:index]
-      end     
+      end
+
+      get 'export', to: "export#index"
+      get 'export/members', to: "export#members"
+      get 'export/invoices', to: "export#invoices"
+                      
     end  # Spaces
 
   end

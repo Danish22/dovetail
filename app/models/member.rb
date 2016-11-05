@@ -64,6 +64,37 @@ class Member < ActiveRecord::Base
     self.save
   end
 
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << [
+        "Id",
+        "Name",
+        "Email",
+        "Plan",
+        "Added by",
+        "Location",
+        "Payment System Customer Id",
+        "Status",
+        "Created",
+        "Updated",
+      ]
+      all.each do |member|
+        csv << [
+          member.id,
+          member.name,
+          member.email,
+          member.plan.present? ? member.plan.name : "Not on a plan",
+          member.user.email,
+          member.location,
+          member.payment_system_customer_id,
+          member.status,
+          member.created_at,
+          member.updated_at,
+        ]
+      end
+    end
+  end
+  
   protected
 
   def create_invoice_when_plan_changes
