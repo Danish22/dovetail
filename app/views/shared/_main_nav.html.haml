@@ -49,7 +49,7 @@
               Account Settings
           %li.divider
           - spaces = current_user.spaces.order("created_at asc")
-          - if spaces.count > 0
+          - if spaces.count > 0 && ENV['MULTIPLE_SPACES'] == 'true'
             - spaces.each do |s|
               %li
                 %a{:href=> space_members_path(s)}

@@ -8,6 +8,7 @@
   .account-nav
     .list-group
       %a.list-group-item{:class => active_tab("registrations"), :href => edit_user_registration_path} Your Account
-      %a.list-group-item{:class => active_tab("spaces"), :href =>  spaces_path} Spaces
+      - if ENV['MULTIPLE_SPACES'] ==  'true'
+        %a.list-group-item{:class => active_tab("spaces"), :href =>  spaces_path} Spaces
       =#%a.list-group-item{:class => active_tab("payment_methods"), :href =>  payment_methods_path} Billing
                        

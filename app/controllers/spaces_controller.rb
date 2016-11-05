@@ -8,6 +8,9 @@ class SpacesController < ApplicationController
   # GET /spaces.json
   def index
     @spaces = current_user.spaces.order("created_at asc").all
+    unless ENV['MULTIPLE_SPACES'] == 'true'
+      redirect_to space_members_path(@spaces.first)
+    end      
   end
 
   # GET /spaces/1
