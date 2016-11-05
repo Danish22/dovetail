@@ -59,7 +59,7 @@ module ApplicationHelper
       else
         return "shared/user_account"
       end      
-    elsif ["admins", "locations", "resources", "plans", "integrations", "stripes"].include? controller_name
+    elsif ["admins", "locations", "resources", "plans", "integrations", "stripes", "export"].include? controller_name
       return "shared/settings"
     elsif ["payment_methods", "registrations", "passwords"].include? controller_name
       return "shared/user_account"
